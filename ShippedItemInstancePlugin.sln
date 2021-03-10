@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShippedItemInstancePlugin", "ShippedItemInstancePlugin.csproj", "{DC33037F-B16E-455B-B18C-A36672D36DDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC33037F-B16E-455B-B18C-A36672D36DDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC33037F-B16E-455B-B18C-A36672D36DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC33037F-B16E-455B-B18C-A36672D36DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC33037F-B16E-455B-B18C-A36672D36DDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A99F84A-2C0F-4999-83DF-2B5DCD737D89}
+	EndGlobalSection
+EndGlobal
