@@ -24,6 +24,9 @@ using AgGateway.ADAPT.Representation.RepresentationSystem.ExtensionMethods;
 
 namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 {
+    /// <summary>
+    /// Maps data from the OAGIS ShippedItemInstance document into the ADAPT ApplicationDataModel
+    /// </summary>
     public class Mapper
     {
         #region Constructors
@@ -64,12 +67,15 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         private void MapShippedItemInstance(Model.ShippedItemInstance shippedItemInstance)
         {
+            //-----------------------
+            //PackagedProductInstance
+            //-----------------------
+            //The PackagedProductInstance represents a single product shipment and maps 1:1 to the ShippedItemInstance
             PackagedProductInstance packagedProductInstance = new PackagedProductInstance();
 
+            //Description and quantity are set on the related class properties
             packagedProductInstance.Description = string.Format("Shipment {0}", shippedItemInstance.Identifier?.Content);
-
-            double quantity;
-            if (double.TryParse(shippedItemInstance.Quantity?.Content, out quantity))
+            if (double.TryParse(shippedItemInstance.Quantity?.Content, out double quantity))
             {
                 packagedProductInstance.ProductQuantity = CreateRepresentationValue(quantity, shippedItemInstance.Quantity.UnitCode);
             }
@@ -78,10 +84,18 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 Errors.Add(new Error(string.Empty, "ShippedItemInstanceMapper.MapShippedItemInstance", $"Quantity {shippedItemInstance.Quantity?.Content} is invalid.", string.Empty));
             }
 
+            //The remaining data is somewhat specific to the ShippedItemInstance and is persisted as ContextItems
+            //The ContextItem data generally is intended to be passed out of the ApplicationDataModel and passed back in unaltered,  
+            //in order that the data may return, e.g., on a logged planting operation and reconcile that planting operation 
+            //back to this ShippedItemInstance.
             packagedProductInstance.ContextItems.AddRange(CreatePackagedProductInstanceContextItems(shippedItemInstance));
 
+            //-----------------------
+            //PackagedProduct
+            //-----------------------
+            //Packaged product is defined a product within a specific packaging.
+            //Multiple ShippedItemInstances may map to the same PackagedProduct
             PackagedProduct packagedProduct = GetPackagedProduct(shippedItemInstance);
-
             if (packagedProduct != null)
             {
                 packagedProductInstance.PackagedProductId = packagedProduct.Id.ReferenceId;
@@ -91,12 +105,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 Errors.Add(new Error(null, "Mapper.MapShippedItemInstance", $"Couldn't create PackagedProduct for PackageProductInstance {packagedProductInstance.Id.ReferenceId}", null));
             }
 
+            //Add the PackagedProductInstance to the Catalog.   The PackagedProduct is added in the subroutine above.
             Catalog.PackagedProductInstances.Add(packagedProductInstance);
 
+            //Set other contextual information from the ShippedItemInstance into relevant ADAPT classes
             SetManufacturerAndBrand(shippedItemInstance);
             SetCrop(shippedItemInstance);
             SetGrower(shippedItemInstance);
-            
         }
 
         private NumericRepresentationValue CreateRepresentationValue(double value, string inputUnitOfMeasure)
@@ -447,6 +462,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                 }
 
+                //The below identifiers are set as ContextItems vs. UniqueIDs so that they can import/export hierarchically
+                //based on the logic in the ISO plugin to handle hierarchical PackagedProducts & PackagedProductInstances
                 if (item?.ManufacturerItemIdentification?.Identifier != null)
                 {
                     packagedProduct.ContextItems.Add(

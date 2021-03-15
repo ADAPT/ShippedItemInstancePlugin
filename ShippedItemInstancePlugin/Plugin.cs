@@ -57,6 +57,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     Model.Document document = JsonConvert.DeserializeObject<Model.Document>(jsonText);
                     if (document.ShippedItemInstances != null)
                     {
+                        //Each document will import as individual ApplicationDataModel
                         ApplicationDataModel.ADM.ApplicationDataModel adm = new ApplicationDataModel.ADM.ApplicationDataModel();
                         adm.Catalog = new Catalog() { Description = fileName };
 
@@ -77,6 +78,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 }
             }
 
+            //Read the Errors property after import to inspect any diagnostic messages.
             Errors = errors;
 
             return models;
