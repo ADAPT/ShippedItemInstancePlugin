@@ -437,8 +437,14 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             else
             {
                 // Try to find a matching PackagedProduct based on the ManufacturerItemIdentifier, UPC Id or GTIN Id
-                packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == item?.ManufacturerItemIdentification?.TypeCode && i.Value == item?.ManufacturerItemIdentification?.Identifier) ||
-                                                                                                         (i.Code == "UPC" && i.Value == item?.Upcid) || (i.Code == "GTIN" && i.Value == item?.Gtinid )));
+                if (!string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.TypeCode) && !string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.Identifier))
+                {
+                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == item?.ManufacturerItemIdentification?.TypeCode && i.Value == item?.ManufacturerItemIdentification?.Identifier)));
+                }
+                else if (!string.IsNullOrEmpty(item?.Gtinid) && !string.IsNullOrEmpty(item?.Upcid))
+                {
+                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == "UPC" && i.Value == item?.Upcid) || (i.Code == "GTIN" && i.Value == item?.Gtinid)));
+                }
             }
 
             if (packagedProduct == null && item?.Description != null)
@@ -519,7 +525,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             if (product == null && shippedItemInstance.Description?.Content != null)
             {
-                if (shippedItemInstance.TypeCode == "seed")
+                if (shippedItemInstance.TypeCode == "seed" || shippedItemInstance.TypeCode == null)
                 {
                     product = new CropVarietyProduct();
                 }
