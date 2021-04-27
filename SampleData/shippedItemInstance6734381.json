@@ -1,0 +1,274 @@
+{
+  "shippedItemInstance": [
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6734381-1",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "ASGROW",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "AG38XF1 XF 40SCUMB UNTR",
+        "gtinid": "00190794332514",
+        "varietyName": "AG38XF1 XF",
+        "productName": "AG38XF1 XF"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 680
+      },
+      "description": {
+        "content": "AG38XF1 XF-CE0SFS2B",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+	    "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "S",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "SOYBEANS"
+            },
+            {
+              "content": "RR2Y/DC",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "CE0SFS2B",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6734381"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-01-11T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "3025867",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "SWALLS ALAN",
+          "location": {
+            "glnid": "  1100013727549"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "NEW LEBANON SEED HUB",
+          "location": {
+            "glnid": "1100028417954"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "NO STANDARD OR SPECIAL TRTMT",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "NO STANDARD OR SPECIAL TRTMT",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6734381-6",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "ASGROW",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "AG35XF1 XF 40SCUMB UNTR",
+        "gtinid": "00190794332248",
+        "varietyName": "AG35XF1 XF",
+        "productName": "AG35XF1 XF"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 680
+      },
+      "description": {
+        "content": "AG35XF1 XF-ST0SB42E",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+	    "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "S",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "SOYBEANS"
+            },
+            {
+              "content": "RR2Y/DC",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "ST0SB42E",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6734381"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-01-11T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "3025867",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "SWALLS ALAN",
+          "location": {
+            "glnid": "  1100013727549"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "NEW LEBANON SEED HUB",
+          "location": {
+            "glnid": "1100028417954"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "NO STANDARD OR SPECIAL TRTMT",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "NO STANDARD OR SPECIAL TRTMT",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6734381-11",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "ASGROW",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "AG40XF0 XF 40SCUMB UNTR",
+        "gtinid": "00190794015172",
+        "varietyName": "AG40XF0 XF",
+        "productName": "AG40XF0 XF"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 280
+      },
+      "description": {
+        "content": "AG40XF0 XF-CE0SAU1D",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+	    "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "S",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "SOYBEANS"
+            },
+            {
+              "content": "RR2Y/DC",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "CE0SAU1D",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6734381"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-01-11T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "3025867",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "SWALLS ALAN",
+          "location": {
+            "glnid": "  1100013727549"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "NEW LEBANON SEED HUB",
+          "location": {
+            "glnid": "1100028417954"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "NO STANDARD OR SPECIAL TRTMT",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "NO STANDARD OR SPECIAL TRTMT",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    }
+  ]
+}
