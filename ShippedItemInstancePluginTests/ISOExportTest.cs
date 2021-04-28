@@ -7,15 +7,19 @@ using Xunit;
 
 namespace ShippedItemInstancePluginTests
 {
+    [Collection("ShippedItemInstanceTestData")]
     public class ISOExportTest
     {
-        //TODO:  This test is not functional until the version of the ISO Plugin supporting ContextItem/LinkList changes is released
-        [Fact (Skip= "Not yet functional")]
+        ShippedItemInstanceTestData _testData;
+        public ISOExportTest(ShippedItemInstanceTestData data)
+        {
+            _testData = data;
+        }
+
+        [Fact]
         public void ISOImportAndExport()
         {
-            //Read the sample data into ADAPT
-            AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin shippedItemInstancePlugin = new AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin();
-            IList<ApplicationDataModel> models = shippedItemInstancePlugin.Import(@"..\..\..\..\SampleData");
+            IList<ApplicationDataModel> models = _testData.Models;
 
             //Export with the ISO Plugin and test that the data is unaltered upon re-import
             string workingPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "TestOutput");

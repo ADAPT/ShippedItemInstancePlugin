@@ -5,6 +5,14 @@
     <AssemblyName>AgGateway.ADAPT.ShippedItemInstancePlugin</AssemblyName>
     <RootNamespace>AgGateway.ADAPT.ShippedItemInstancePlugin</RootNamespace>
 	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	  <Authors>AgGateway and ADAPT Contributors</Authors>
+	  <Company>AgGateway</Company>
+	  <Description>AgGateway ShippedItemInstancePlugin</Description>
+	  <Copyright>Copyright (C) 2021 AgGateway and ADAPT Contributors</Copyright>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <RepositoryUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</RepositoryUrl>
+	  <PackageProjectUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</PackageProjectUrl>
+	  <PackageLicenseExpression>EPL-1.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

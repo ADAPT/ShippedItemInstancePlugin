@@ -1,0 +1,544 @@
+{
+  "shippedItemInstance": [
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452797-1",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC59-82RIB AF2 VT2P 80M ELT500 B-E",
+        "gtinid": "00190794191302",
+        "varietyName": "DKC59-82RI",
+        "productName": "DKC59-82RI"
+      },
+      "quantity": {
+        "unitCode": "BG",
+        "content": 100
+      },
+      "description": {
+        "content": "DKC59-82RI-H26YJN7JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "VT2P-RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H26YJN7JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452797"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-02-25T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2047233",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "COATS RON",
+          "location": {
+            "glnid": "  1100072746031"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "500+B360+ENHANCED DISEASE",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "500+B360+ENHANCED DISEASE",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452797-6",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC63-57RIB AR VT2P SP50 ELT500 B-E",
+        "gtinid": "00190794139977",
+        "varietyName": "DKC63-57RI",
+        "productName": "DKC63-57RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 250
+      },
+      "description": {
+        "content": "DKC63-57RI-H35N9R9JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "VT2P-RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H35N9R9JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452797"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-02-25T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2047233",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "COATS RON",
+          "location": {
+            "glnid": "  1100072746031"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "500+B360+ENHANCED DISEASE",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "500+B360+ENHANCED DISEASE",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452797-11",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC63-90RIB AF SS RIB SP50 ELT500 B-E",
+        "gtinid": "00190794183635",
+        "varietyName": "DKC63-90RI",
+        "productName": "DKC63-90RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 50
+      },
+      "description": {
+        "content": "DKC63-90RI-H21HCC4JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H21HCC4JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452797"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-02-25T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2047233",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "COATS RON",
+          "location": {
+            "glnid": "  1100072746031"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452797-16",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC63-90RIB AF SS RIB SP50 ELT500 B-E",
+        "gtinid": "00190794183635",
+        "varietyName": "DKC63-90RI",
+        "productName": "DKC63-90RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 150
+      },
+      "description": {
+        "content": "DKC63-90RI-H21HVW4JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H21HVW4JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452797"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-02-25T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2047233",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "COATS RON",
+          "location": {
+            "glnid": "  1100072746031"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452797-21",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC63-91RIB AF VT2P SP50 ELT500 B-E",
+        "gtinid": "00190794191739",
+        "varietyName": "DKC63-91RI",
+        "productName": "DKC63-91RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 200
+      },
+      "description": {
+        "content": "DKC63-91RI-H35YET9JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "VT2P-RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H35YET9JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452797"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-02-25T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2047233",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "COATS RON",
+          "location": {
+            "glnid": "  1100072746031"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "500+B360+ENHANCED DISEASE",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "500+B360+ENHANCED DISEASE",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452797-26",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC65-95RIB AF VT2P SP50 ELT500 B-E",
+        "gtinid": "00190794140126",
+        "varietyName": "DKC65-95RI",
+        "productName": "DKC65-95RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 50
+      },
+      "description": {
+        "content": "DKC65-95RI-H18YHE9JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "VT2P-RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H18YHE9JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452797"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-02-25T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2047233",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "COATS RON",
+          "location": {
+            "glnid": "  1100072746031"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "500+B360+ENHANCED DISEASE",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "500+B360+ENHANCED DISEASE",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    }
+  ]
+}

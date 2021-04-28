@@ -1,0 +1,904 @@
+{
+  "shippedItemInstance": [
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-1",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC66-17RIB AF2 SS RIB SP50 ELT500 B-E",
+        "gtinid": "00190794185011",
+        "varietyName": "DKC66-17RI",
+        "productName": "DKC66-17RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 500
+      },
+      "description": {
+        "content": "DKC66-17RI-H21NMM9JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H21NMM9JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-6",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC66-17RIB AF2 SS RIB SP50 ELT500 B-E",
+        "gtinid": "00190794185011",
+        "varietyName": "DKC66-17RI",
+        "productName": "DKC66-17RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 100
+      },
+      "description": {
+        "content": "DKC66-17RI-786WVK3JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "786WVK3JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-11",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC64-64RIB AF SS RIB SP50U ELT500 B-E",
+        "gtinid": "00190794334532",
+        "varietyName": "DKC64-64RI",
+        "productName": "DKC64-64RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 300
+      },
+      "description": {
+        "content": "DKC64-64RI-H39Y749JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H39Y749JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-16",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC64-64RIB AF2 SS RIB SP50U ELT500 B-E",
+        "gtinid": "00190794334556",
+        "varietyName": "DKC64-64RI",
+        "productName": "DKC64-64RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 200
+      },
+      "description": {
+        "content": "DKC64-64RI-H39YT97JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H39YT97JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-21",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC63-90RIB AF2 SS RIB SP50 ELT500 B-E",
+        "gtinid": "00190794183697",
+        "varietyName": "DKC63-90RI",
+        "productName": "DKC63-90RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 300
+      },
+      "description": {
+        "content": "DKC63-90RI-H21HWX4JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H21HWX4JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-26",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC63-90RIB AF2 SS RIB SP50 ELT500 B-E",
+        "gtinid": "00190794183697",
+        "varietyName": "DKC63-90RI",
+        "productName": "DKC63-90RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 400
+      },
+      "description": {
+        "content": "DKC63-90RI-H21HAA4JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H21HAA4JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-31",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC61-40RIB AR SS RIB SP50 ELT500 B-E",
+        "gtinid": "00190794183109",
+        "varietyName": "DKC61-40RI",
+        "productName": "DKC61-40RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 150
+      },
+      "description": {
+        "content": "DKC61-40RI-H39YJE9JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H39YJE9JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-36",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC61-40RIB AR SS RIB SP50 ELT500 B-E",
+        "gtinid": "00190794183109",
+        "varietyName": "DKC61-40RI",
+        "productName": "DKC61-40RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 100
+      },
+      "description": {
+        "content": "DKC61-40RI-H21NLL4JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SSPRIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H21NLL4JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-41",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC59-81RIB AF SS SP50 ELT500 B-E",
+        "gtinid": "00190794182270",
+        "varietyName": "DKC59-81RI",
+        "productName": "DKC59-81RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 200
+      },
+      "description": {
+        "content": "DKC59-81RI-H39YTH9JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SS-RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H39YTH9JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    },
+    {
+      "typeCode": "Seed",
+      "identifier": {
+        "content": "6452810-46",
+        "typeCode": "shipment_line_identifier"
+      },
+      "item": {
+        "brandName": "DEKALB",
+        "manufacturerItemIdentification": {
+          "identifier": "",
+          "typeCode": ""
+        },
+        "description": "DKC59-81RIB AF SS SP50 ELT500 B-E",
+        "gtinid": "00190794182270",
+        "varietyName": "DKC59-81RI",
+        "productName": "DKC59-81RI"
+      },
+      "quantity": {
+        "unitCode": "UN",
+        "content": 200
+      },
+      "description": {
+        "content": "DKC59-81RI-H18Y447JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyIdentifier": "AGIIS",
+              "typeCode": "CORN"
+            },
+            {
+              "content": "SS-RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        }
+      },
+      "lot": {
+        "identifier": {
+          "content": "H18Y447JX",
+          "typeCode": "Lot"
+        }
+      },
+      "documentReference": {
+        "identifier": {
+          "content": "6452810"
+        },
+        "typeCode": "shipment_identifier",
+        "documentDateTime": "2021-03-05T00:00:00-04:00"
+      },
+      "party": [
+        {
+          "identifier": [
+            {
+              "content": "2011635",
+              "typeCode": "retailer_grower_identifier"
+            }
+          ],
+          "name": "MCFATRIDGE ROB",
+          "location": {
+            "glnid": "  1100022651682"
+          },
+          "typeCode": "Grower"
+        },
+        {
+          "name": "TEMPLETON SEED HUB",
+          "location": {
+            "glnid": "1100027907456"
+          },
+          "typeCode": "Retailer"
+        }
+      ],
+      "itemIdentifierSet": [
+        {
+          "identifier": [
+            {
+              "content": "ACCELERON500+B300+ENHANCED DIS",
+              "typeCode": "product"
+            }
+          ],
+          "schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
+          "schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
+          "typeCode": "seed_treatment"
+        }
+      ]
+    }
+  ]
+}

@@ -525,7 +525,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             if (product == null && shippedItemInstance.Description?.Content != null)
             {
-                if (shippedItemInstance.TypeCode == "seed" || shippedItemInstance.TypeCode == null)
+                if (shippedItemInstance.TypeCode == null || shippedItemInstance.TypeCode.ToLower() == "seed") 
                 {
                     product = new CropVarietyProduct();
                 }
@@ -641,10 +641,10 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         private void SetManufacturerAndBrand(Model.ShippedItemInstance shippedItemInstance)
         {
             //Set Manufacturer & Brand as available
-            if (shippedItemInstance.ManufacturingParty?.Name != null)
+            var product = GetProduct(shippedItemInstance);
+            if (product != null)
             {
-                var product = GetProduct(shippedItemInstance);
-                if (product != null)
+                if (shippedItemInstance.ManufacturingParty?.Name != null)
                 {
                     var manufacturer = Catalog.Manufacturers.FirstOrDefault(m => m.Description == shippedItemInstance.ManufacturingParty.Name);
                     if (manufacturer == null)
@@ -653,17 +653,17 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                         Catalog.Manufacturers.Add(manufacturer);
                     }
                     product.ManufacturerId = manufacturer.Id.ReferenceId;
+                }
 
-                    if (shippedItemInstance.Item?.BrandName != null)
+                if (shippedItemInstance.Item?.BrandName != null)
+                {
+                    var brand = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
+                    if (brand == null)
                     {
-                        var brand = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
-                        if (brand == null)
-                        {
-                            brand = new Brand() { Description = shippedItemInstance.Item.BrandName, ManufacturerId = manufacturer.Id.ReferenceId };
-                            Catalog.Brands.Add(brand);
-                        }
-                        product.BrandId = brand.Id.ReferenceId;
+                        brand = new Brand() { Description = shippedItemInstance.Item.BrandName, ManufacturerId = product.ManufacturerId ?? 0};
+                        Catalog.Brands.Add(brand);
                     }
+                    product.BrandId = brand.Id.ReferenceId;
                 }
             }
         }
@@ -671,7 +671,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         private void SetCrop(Model.ShippedItemInstance shippedItemInstance)
         {
             //Set Crop as available
-            if (shippedItemInstance.Classification?.TypeCode == "Crop")
+            if (shippedItemInstance.Classification?.TypeCode != null &&
+                shippedItemInstance.Classification?.TypeCode.ToLower() == "crop")
             {
                 var product = GetProduct(shippedItemInstance);
                 if (product != null && product is CropVarietyProduct)
@@ -699,7 +700,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         private void SetGrower(Model.ShippedItemInstance shippedItemInstance)
         {
             //Set Grower as available
-            Model.Party modelGrower = shippedItemInstance.Parties.FirstOrDefault(p => p.TypeCode == "grower");
+            Model.Party modelGrower = shippedItemInstance.Parties.FirstOrDefault(p => p.TypeCode != null && p.TypeCode.ToLower() == "grower");
             if (modelGrower != null)
             {
                 Grower grower = Catalog.Growers.FirstOrDefault(c => c.Name == modelGrower.Name);
