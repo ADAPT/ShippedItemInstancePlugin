@@ -197,7 +197,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             if (shippedItemInstance.DocumentReference?.DocumentDateTime != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("documentDateTime", shippedItemInstance.DocumentReference.DocumentDateTime.ToString()));
+                contextItem.NestedItems.Add(CreateContextItem("documentDateTime", shippedItemInstance.DocumentReference.DocumentDateTime));
             }
             if (contextItem.NestedItems.Count > 0)
             {
@@ -397,7 +397,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     ContextItem measurementContextItem = CreateContextItem((++measurementIndex).ToString(), null);
                     if (measurement.DateTime != null)
                     {
-                        measurementContextItem.NestedItems.Add(CreateContextItem("dateTime", measurement.DateTime.ToString()));
+                        measurementContextItem.NestedItems.Add(CreateContextItem("dateTime", measurement.DateTime));
                     }
                     if (measurement.Measure != null)
                     {

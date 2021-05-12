@@ -126,7 +126,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin.Model
     {
         public string TypeCode { get; set; }
         public Identifier Identifier { get; set; }
-        public DateTime DocumentDateTime { get; set; }
+        public string DocumentDateTime { get; set; }
     }
 
     public class Attachment
@@ -180,7 +180,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin.Model
 
     public class Measurement
     {
-        public DateTime DateTime { get; set; }
+        public string DateTime { get; set; }
         public string Measure { get; set; }
     }
 }
