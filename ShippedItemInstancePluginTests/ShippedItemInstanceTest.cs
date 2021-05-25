@@ -56,25 +56,25 @@ namespace ShippedItemInstancePluginTests
         [Fact]
         public void Brands()
         {
-            Assert.Equal(1, _testData.Models[0].Catalog.Brands.Count);
-            Assert.Equal(1, _testData.Models[1].Catalog.Brands.Count);
-            Assert.Equal(1, _testData.Models[2].Catalog.Brands.Count);
+            Assert.Single(_testData.Models[0].Catalog.Brands);
+            Assert.Single(_testData.Models[1].Catalog.Brands);
+            Assert.Single(_testData.Models[2].Catalog.Brands);
         }
 
         [Fact]
         public void Growers()
         {
-            Assert.Equal(1, _testData.Models[0].Catalog.Growers.Count);
-            Assert.Equal(1, _testData.Models[1].Catalog.Growers.Count);
-            Assert.Equal(1, _testData.Models[2].Catalog.Growers.Count);
+            Assert.Single(_testData.Models[0].Catalog.Growers);
+            Assert.Single(_testData.Models[1].Catalog.Growers);
+            Assert.Single(_testData.Models[2].Catalog.Growers);
         }
 
         [Fact]
         public void Crops()
         {
-            Assert.Equal(1, _testData.Models[0].Catalog.Crops.Count);
-            Assert.Equal(1, _testData.Models[1].Catalog.Crops.Count);
-            Assert.Equal(1, _testData.Models[2].Catalog.Crops.Count);
+            Assert.Single(_testData.Models[0].Catalog.Crops);
+            Assert.Single(_testData.Models[1].Catalog.Crops);
+            Assert.Single(_testData.Models[2].Catalog.Crops);
         }
     }
 }
