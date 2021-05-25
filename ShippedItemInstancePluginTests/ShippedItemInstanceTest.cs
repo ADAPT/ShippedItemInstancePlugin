@@ -38,9 +38,15 @@ namespace ShippedItemInstancePluginTests
         }
 
         [Fact]
-        public void Products()
+        public void Models()
         {
             Assert.Equal(3, _testData.Models.Count);
+        }
+
+        [Fact]
+        public void Products()
+        {
+
             Assert.Equal(6, _testData.Models[0].Catalog.Products.Count);
             Assert.Equal(6, _testData.Models[0].Catalog.PackagedProducts.Count);
             Assert.Equal(6, _testData.Models[0].Catalog.PackagedProductInstances.Count);
