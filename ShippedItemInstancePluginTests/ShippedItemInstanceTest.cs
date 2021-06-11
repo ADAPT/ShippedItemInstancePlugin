@@ -41,6 +41,13 @@ namespace ShippedItemInstancePluginTests
         }
 
         [Fact]
+        public void Models()
+        {
+            Assert.Equal(3, _testData.Models.Count);
+        }
+
+
+        [Fact]
         public void Products()
         {
             Assert.Equal(6, _testData.Models[0].Catalog.Products.Count);
@@ -59,25 +66,25 @@ namespace ShippedItemInstancePluginTests
         [Fact]
         public void Brands()
         {
-            Assert.Equal(1, _testData.Models[0].Catalog.Brands.Count);
-            Assert.Equal(1, _testData.Models[1].Catalog.Brands.Count);
-            Assert.Equal(1, _testData.Models[2].Catalog.Brands.Count);
+            Assert.Single(_testData.Models[0].Catalog.Brands.Count);
+            Assert.Single(_testData.Models[1].Catalog.Brands.Count);
+            Assert.Single(_testData.Models[2].Catalog.Brands.Count);
         }
 
         [Fact]
         public void Growers()
         {
-            Assert.Equal(1, _testData.Models[0].Catalog.Growers.Count);
-            Assert.Equal(1, _testData.Models[1].Catalog.Growers.Count);
-            Assert.Equal(1, _testData.Models[2].Catalog.Growers.Count);
+            Assert.Single(_testData.Models[0].Catalog.Growers.Count);
+            Assert.Single(_testData.Models[1].Catalog.Growers.Count);
+            Assert.Single(_testData.Models[2].Catalog.Growers.Count);
         }
 
         [Fact]
         public void Crops()
         {
-            Assert.Equal(1, _testData.Models[0].Catalog.Crops.Count);
-            Assert.Equal(1, _testData.Models[1].Catalog.Crops.Count);
-            Assert.Equal(1, _testData.Models[2].Catalog.Crops.Count);
+            Assert.Single(_testData.Models[0].Catalog.Crops.Count);
+            Assert.Single(_testData.Models[1].Catalog.Crops.Count);
+            Assert.Single(_testData.Models[2].Catalog.Crops.Count);
         }
     }
 }
