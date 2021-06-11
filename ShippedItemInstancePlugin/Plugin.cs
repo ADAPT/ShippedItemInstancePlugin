@@ -47,6 +47,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             List<string> fileNames = GetInputFiles(dataPath);
 
+            fileNames.Sort(); // required to ensure OS file system sorting differences are handled
+
             foreach (string fileName in fileNames)
             {
 
