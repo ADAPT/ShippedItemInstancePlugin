@@ -28,13 +28,13 @@ namespace ShippedItemInstancePluginTests
             for (int i = 0; i < models.Count; i++)
             {
                 Properties p = new Properties();
-                string folder1 = $@"{workingPath}\ISOExport1\{i}";
+                string folder1 = Path.Combine(workingPath, "ISOExport1", i.ToString());
                 Directory.CreateDirectory(folder1);
                 isoPlugin.Export(models[i], folder1, p);
 
                 var isoPlugin2 = new AgGateway.ADAPT.ISOv4Plugin.Plugin();
                 IList<ApplicationDataModel> reImport = isoPlugin2.Import(folder1);
-                string folder2 = $@"{workingPath}\ISOExport2\{i}";
+                string folder2 = Path.Combine(workingPath, "ISOExport2", i.ToString());
                 Directory.CreateDirectory(folder2);
                 isoPlugin.Export(reImport[0], folder2, p);
 
