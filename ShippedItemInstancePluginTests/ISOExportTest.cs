@@ -38,8 +38,8 @@ namespace ShippedItemInstancePluginTests
                 Directory.CreateDirectory(folder2);
                 isoPlugin.Export(reImport[0], folder2, p);
 
-                string export1 = File.ReadAllText(Path.Combine(folder1, "TASKDATA", "LINKLIST.xml"));
-                string export2 = File.ReadAllText(Path.Combine(folder2, "TASKDATA", "LINKLIST.xml"));
+                string export1 = File.ReadAllText(Path.Combine(folder1, "TASKDATA", "LINKLIST.XML"));
+                string export2 = File.ReadAllText(Path.Combine(folder2, "TASKDATA", "LINKLIST.XML"));
                 Assert.Equal(export1, export2);
             }
         }
