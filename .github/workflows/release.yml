@@ -17,7 +17,7 @@ jobs:
       - name: Build artifacts
         run: dotnet build --configuration Release /p:Version=${{ env.VERSION }} /p:FileVersion=${{ env.VERSION }}.${{ github.run_number }}
       - name: Package
-        run: mkdir -p ./dist; dotnet pack --configuration Release /p:Version=${{ env.VERSION }} --no-build --output ./dist
+        run: mkdir -p ./dist; dotnet pack --configuration Release /p:NuspecFile=./AgGatewayShippedItemInstancePlugin.nuspec /p:Version=${{ env.VERSION }} --no-build --output ./dist
       
       - name: Push release to Github
         uses: svenstaro/upload-release-action@v2
