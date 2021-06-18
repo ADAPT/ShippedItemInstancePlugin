@@ -15,13 +15,13 @@ jobs:
       - name: Set VERSION variable from tag
         run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
       - name: Build artifacts
-        run: dotnet build --configuration Release /p:Version=${VERSION} /p:FileVersion=${VERSION}.${{ github.run_number }}
+        run: dotnet build --configuration Release /p:Version=${{ env.VERSION }} /p:FileVersion=${{ env.VERSION }}.${{ github.run_number }}
       - name: Package
-        run: mkdir -p ./dist; dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output ./dist
+        run: mkdir -p ./dist; dotnet pack --configuration Release /p:Version=${{ VERSION }} --no-build --output ./dist
       
       - name: Push release to Github
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./dist/AgGatewayShippedItemInstancePlugin.${VERSION}.nupkg
+          file: ./dist/AgGatewayShippedItemInstancePlugin.${{ env.VERSION }}.nupkg
           tag: ${{ github.ref }}
