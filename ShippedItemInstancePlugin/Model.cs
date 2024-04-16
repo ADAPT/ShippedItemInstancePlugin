@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 // add CodeGen namespace
+// rename this file to Document.cs, and fix reference in the Mapper.cs
 
 namespace AgGateway.ADAPT.ShippedItemInstancePlugin.Model
 {
