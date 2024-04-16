@@ -54,10 +54,15 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         /// </summary>
         /// <param name="document"></param>
         /// <returns></returns>
+        ///  
+        /// Model.Document may be missing from Swagger CodeGen 
+        ///
         public IList<IError> MapDocument(Model.Document document)
         {
             Errors = new List<IError>();
 
+            /// Model.ShippedItemInstance would likely be replaced by the generated ShippedItemInstance class from CodeGen
+        
             foreach (Model.ShippedItemInstance shippedItemInstance in document.ShippedItemInstances)
             {
                 MapShippedItemInstance(shippedItemInstance);
@@ -70,7 +75,10 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //-----------------------
             //PackagedProductInstance
             //-----------------------
-            //The PackagedProductInstance represents a single product shipment and maps 1:1 to the ShippedItemInstance
+            // The PackagedProductInstance represents a single, unique product shipment line and maps 1:1 to the ShippedItemInstance
+            // The shipment line is typically a single seed lot or crop protection batch
+            // 
+            //
             PackagedProductInstance packagedProductInstance = new PackagedProductInstance();
 
             //Description and quantity are set on the related class properties
@@ -88,14 +96,20 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //The ContextItem data generally is intended to be passed out of the ApplicationDataModel and passed back in unaltered,  
             //in order that the data may return, e.g., on a logged planting operation and reconcile that planting operation 
             //back to this ShippedItemInstance.
+         
             packagedProductInstance.ContextItems.AddRange(CreatePackagedProductInstanceContextItems(shippedItemInstance));
 
             //-----------------------
-            //PackagedProduct
+            // PackagedProduct
             //-----------------------
-            //Packaged product is defined a product within a specific packaging.
-            //Multiple ShippedItemInstances may map to the same PackagedProduct
+            // Packaged product is defined a referenced product within a specific packaging or container
+            // 
+            // Multiple ShippedItemInstances may map to the same PackagedProduct -- this is not true
+            //
+         
             PackagedProduct packagedProduct = GetPackagedProduct(shippedItemInstance);
+            
+            //
             if (packagedProduct != null)
             {
                 packagedProductInstance.PackagedProductId = packagedProduct.Id.ReferenceId;
