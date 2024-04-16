@@ -55,7 +55,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         /// <param name="document"></param>
         /// <returns></returns>
         ///  
-        /// Model.Document may be missing from Swagger CodeGen 
+        /// Model.Document is not part of Swagger CodeGen 
         ///
         public IList<IError> MapDocument(Model.Document document)
         {
