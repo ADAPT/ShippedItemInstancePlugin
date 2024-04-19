@@ -81,7 +81,10 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             PackagedProductInstance packagedProductInstance = new PackagedProductInstance();
 
             //Description and quantity are set on the related class properties
-            packagedProductInstance.Description = string.Format("Shipment {0}", shippedItemInstance.Id);
+
+            packagedProductInstance.GrossWeight = CreateRepresentationValue((double)shippedItemInstance.Packaging.Quantity.Content,shippedItemInstance.Packaging.Quantity.UnitCode);
+            packagedProductInstance.Description = shippedItemInstance.Item.Description;
+
             var quantity = (double)shippedItemInstance.Packaging.Quantity?.Content;
 
             packagedProductInstance.ProductQuantity = CreateRepresentationValue(quantity, shippedItemInstance.Quantity.UnitCode);
@@ -226,7 +229,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             // ItemIdSet
             if (shippedItemInstance.Item.RelatedId?.Count > 0)
             {
-                contextItem = CreateItemIdentifierSetsContextItem(shippedItemInstance);
+                contextItem = CreateRelatedIdsContextItem(shippedItemInstance);
                 if (contextItem.NestedItems.Count > 0)
                 {
                     items.Add(contextItem);
@@ -239,13 +242,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             {
                 contextItem.NestedItems.Add(CreateContextItem("content", shippedItemInstance.Uid.Content));
             }
-            if (shippedItemInstance.Uid?.SchemeIdentifier != null)
+            if (shippedItemInstance.Uid?.SchemeId != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("schemaIdentifier", shippedItemInstance.Uid.SchemeIdentifier));
+                contextItem.NestedItems.Add(CreateContextItem("schemaId", shippedItemInstance.Uid.SchemeId));
             }
-            if (shippedItemInstance.Uid?.SchemeAgencyIdentifier != null)
+            if (shippedItemInstance.Uid?.SchemeAgencyId != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("schemaAgencyIdentifier", shippedItemInstance.Uid.SchemeAgencyIdentifier));
+                contextItem.NestedItems.Add(CreateContextItem("schemaAgencyId", shippedItemInstance.Uid.SchemeAgencyId));
             }
             if (shippedItemInstance.Uid?.TypeCode != null)
             {
@@ -282,75 +285,43 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             return item;
         }
 
-        private ContextItem CreateItemIdentifierSetsContextItem(ShippedItemInstance shippedItemInstance)
+        private ContextItem CreateRelatedIdsContextItem(ShippedItemInstance shippedItemInstance)
         {
-            ContextItem itemIdentifierSetsContextItem = CreateContextItem("ItemIdentifierSets", null);
+            ContextItem itemRelatedIdsContextItem = CreateContextItem("ItemRelatedIds", null);
 
-            int identifierSetIndex = 0;
-            foreach (ItemIdentifierSet itemIdentifierSet in shippedItemInstance.ItemIdentifierSets)
+            int relateIdIndex = 0;
+
+            foreach (ItemRelatedId relatedId in shippedItemInstance.Item.RelatedId)
             {
-                ContextItem itemIdentifierSetContextItem = CreateContextItem((++identifierSetIndex).ToString(), null);
-                if (itemIdentifierSet.SchemeIdentifier != null)
+                ContextItem relatedIdContextItem = CreateContextItem((++relateIdIndex).ToString(), null);
+                if (relatedId.Id != null)
                 {
-                    itemIdentifierSetContextItem.NestedItems.Add(CreateContextItem("schemeIdentifier", itemIdentifierSet.SchemeIdentifier));
+                    relatedIdContextItem.NestedItems.Add(CreateContextItem("id", relatedId.Id));
                 }
-                if (itemIdentifierSet.SchemeVersionIdentifier != null)
+                if (relatedId.TypeCode != null)
                 {
-                    itemIdentifierSetContextItem.NestedItems.Add(CreateContextItem("schemaVersionIdentifier", itemIdentifierSet.SchemeVersionIdentifier));
+                    relatedIdContextItem.NestedItems.Add(CreateContextItem("typeCode", relatedId.TypeCode));
                 }
-                if (itemIdentifierSet.SchemeAgencyIdentifier != null)
+                if (relatedId.SourceId != null)
                 {
-                    itemIdentifierSetContextItem.NestedItems.Add(CreateContextItem("schemaAgencyIdentifier", itemIdentifierSet.SchemeAgencyIdentifier));
+                    relatedIdContextItem.NestedItems.Add(CreateContextItem("source", relatedId.SourceId));
                 }
-                if (itemIdentifierSet.TypeCode != null)
+                if (relatedId.TypeCode != null)
                 {
-                    itemIdentifierSetContextItem.NestedItems.Add(CreateContextItem("typeCode", itemIdentifierSet.TypeCode));
-                }
-
-                ContextItem identifiersContextItem = CreateContextItem("identifiers", null);
-                int identifierIndex = 0;
-                foreach (Item.RelatedId identifier in itemIdentifierSet.Identifiers)
-                {
-                    ContextItem identifierContextItem = CreateContextItem((++identifierIndex).ToString(), null);
-                    if (identifier.Content != null)
-                    {
-                        identifierContextItem.NestedItems.Add(CreateContextItem("content", identifier.Content));
-                    }
-                    if (identifier.SchemeIdentifier != null)
-                    {
-                        identifierContextItem.NestedItems.Add(CreateContextItem("schemaIdentifier", identifier.SchemeIdentifier));
-                    }
-                    if (identifier.SchemeAgencyIdentifier != null)
-                    {
-                        identifierContextItem.NestedItems.Add(CreateContextItem("schemaAgencyIdentifier", identifier.SchemeAgencyIdentifier));
-                    }
-                    if (identifier.TypeCode != null)
-                    {
-                        identifierContextItem.NestedItems.Add(CreateContextItem("typeCode", identifier.TypeCode));
-                    }
-                    if (identifierContextItem.NestedItems.Count > 0)
-                    {
-                        identifiersContextItem.NestedItems.Add(identifierContextItem);
-                    }
+                    relatedIdContextItem.NestedItems.Add(CreateContextItem("partyId", relatedId.PartyId));
                 }
 
-                if (identifiersContextItem.NestedItems.Count > 0)
+                if (relatedIdContextItem.NestedItems.Count > 0)
                 {
-                    itemIdentifierSetContextItem.NestedItems.Add(identifiersContextItem);
-                }
-
-                if (itemIdentifierSetContextItem.NestedItems.Count > 0)
-                {
-                    itemIdentifierSetsContextItem.NestedItems.Add(itemIdentifierSetContextItem);
+                    itemRelatedIdsContextItem.NestedItems.Add(relatedIdContextItem);
                 }
             }
-
-            return itemIdentifierSetsContextItem;
+            return itemRelatedIdsContextItem;
         }
 
         private ContextItem CreateQuantitativeResultsContextItem(ShippedItemInstance shippedItemInstance)
         {
-            ContextItem results = CreateContextItem("QuantitativeResults", null);
+            ContextItem results = CreateContextItem("QuantitativeMeasurements", null);
 
             int quantitateResultIndex = 0;
             foreach (Measurement measurement in shippedItemInstance.Results.Quantitative.Measurement)
@@ -366,54 +337,23 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     measurementContextItem.NestedItems.Add(CreateContextItem("name", measurement.Name));
                 }
 
-                // Unit of Measure
-                ContextItem uomCodeContextItem = CreateContextItem("uomCode", null);
+                 if (measurement.Measure != null)
+                {
+                    measurementContextItem.NestedItems.Add(CreateContextItem("measure", measurement.Measure.ToString()));
+                }
                 if (measurement.UnitCode != null)
                 {
-                    uomCodeContextItem.NestedItems.Add(CreateContextItem("measure", measurement.Measure.ToString()));
+                    measurementContextItem.NestedItems.Add(CreateContextItem("measure", measurement.UnitCode));
+                }
+                // date time of measure
+                if (measurement.DateTime != null)
+                {
+                    measurementContextItem.NestedItems.Add(CreateContextItem("measurement timestamp", measurement.DateTime.ToString()));
                 }
 
-                if (uomCodeContextItem.NestedItems.Count > 0)
+                if (measurementContextItem.NestedItems.Count > 0)
                 {
-                    measurementContextItem.NestedItems.Add(uomCodeContextItem);
-                }
-
-                //Significant Digits
-                if (quantitativeResult.SignificantDigitsNumber != null)
-                {
-                    quantitativeResultContextItem.NestedItems.Add(CreateContextItem("significantDigitsNumber", quantitativeResult.SignificantDigitsNumber));
-                }
-
-                // Measurement
-                ContextItem measurementsContextItem = CreateContextItem("measurements", null);
-                int measurementIndex = 0;
-                foreach (Measurement measurement in quantitativeResult.Measurements)
-                {
-                    ContextItem measurementContextItem = CreateContextItem((++measurementIndex).ToString(), null);
-                    if (measurement.DateTime != null)
-                    {
-                        measurementContextItem.NestedItems.Add(CreateContextItem("dateTime", measurement.DateTime));
-                    }
-                    if (measurement.Measure != null)
-                    {
-                        measurementContextItem.NestedItems.Add(CreateContextItem("measure", measurement.Measure));
-                    }
-
-                    if (measurementContextItem.NestedItems.Count > 0)
-                    {
-                        measurementsContextItem.NestedItems.Add(measurementContextItem);
-                    }
-                }
-
-                if (measurementsContextItem.NestedItems.Count > 0)
-                {
-                    quantitativeResultContextItem.NestedItems.Add(measurementsContextItem);
-                }
-
-                // Add to results if any nested items were added
-                if (quantitativeResultContextItem.NestedItems.Count > 0)
-                {
-                    results.NestedItems.Add(quantitativeResultContextItem);
+                    results.NestedItems.Add(measurementContextItem);
                 }
             }          
 
@@ -432,13 +372,16 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             else
             {
                 // Try to find a matching PackagedProduct based on the ManufacturerItemIdentifier, UPC Id or GTIN Id
-                if (!string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.TypeCode) && !string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.Id))
+                if (!string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.TypeCode) 
+                    && !string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.Id))
                 {
-                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == item?.ManufacturerItemIdentification?.TypeCode && i.Value == item?.ManufacturerItemIdentification?.Identifier)));
+                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == item?.ManufacturerItemIdentification?.TypeCode && 
+                        i.Value == item?.ManufacturerItemIdentification?.Id)));
                 }
                 else if (!string.IsNullOrEmpty(item?.Gtinid) && !string.IsNullOrEmpty(item?.Upcid))
                 {
-                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == "UPC" && i.Value == item?.Upcid) || (i.Code == "GTIN" && i.Value == item?.Gtinid)));
+                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == "UPC" && i.Value == item?.Upcid) 
+                        || (i.Code == "GTIN" && i.Value == item?.Gtinid)));
                 }
             }
 
@@ -567,13 +510,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             ContextItem classificationContextItem = CreateContextItem("Classification", null);
             if (shippedItemInstance.Item.Classification.Codes.Code != null)
             {
-                classificationContextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Classification.TypeCode));
+                classificationContextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Item.Classification.TypeCode));
             }
             if (shippedItemInstance.Item.Classification.Codes?.Code?.Count > 0)
             {
                 ContextItem codesContextItem = CreateContextItem("codes", null);
                 int codeIndex = 0;
-                foreach (ShippedItemInstance.Item.Classification.Codes.Code code in shippedItemInstance.Item.Classification.Codes.Code)
+                foreach (ClassificationCodesCode code in shippedItemInstance.Item.Classification.Codes.Code)
                 {
                     ContextItem codeContextItem = CreateContextItem((++codeIndex).ToString(), null);
 
@@ -581,9 +524,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     {
                         codeContextItem.NestedItems.Add(CreateContextItem("content", code.Content));
                     }
-                    if (code.ListAgencyIdentifier != null)
+                    if (code.ListAgencyId != null)
                     {
-                        codeContextItem.NestedItems.Add(CreateContextItem("listAgencyIdentifier", code.ListAgencyIdentifier));
+                        codeContextItem.NestedItems.Add(CreateContextItem("listAgencyIdentifier", code.ListAgencyId));
                     }
                     if (code.TypeCode != null)
                     {
@@ -674,7 +617,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     {
                         string cropName = cropInformation.TypeCode;
                         string cropID = cropInformation.Content;
-                        string idAgency = cropInformation.ListAgencyIdentifier;
+                        string idAgency = cropInformation.ListAgencyId;
                         Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
                         if (crop == null)
                         {
