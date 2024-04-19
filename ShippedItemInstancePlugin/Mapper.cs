@@ -161,11 +161,41 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         {
             List<ContextItem> items = new List<ContextItem>();
 
-            // Lot
+            // Lot or Batch Id and type
             if (shippedItemInstance.Lot?.Id != null)
             {
-                items.Add(CreateContextItem("Lot", shippedItemInstance.Lot?.Id));
+                // TODO:
+ 
+                items.Add(CreateContextItem("LotBatchIdentifier", shippedItemInstance.Lot?.Id));
+
+                if (shippedItemInstance.Lot?.SerialNumberId.Count > 0)
+                {
+                    ContextItem lotSerialNumberIdsContextItem = CreateContextItem("SerialNumberIds", null);
+                    int SerialNumberIdsIndex = 0;
+
+                    foreach (String serialNumberId in shippedItemInstance.Lot.SerialNumberId)
+                    {
+                        ContextItem serialNumberIdContextItem = CreateContextItem((++SerialNumberIdsIndex).ToString(), null);
+                        if (serialNumberId != null)
+                        {
+                            serialNumberIdContextItem.NestedItems.Add(CreateContextItem("serialNumber" , serialNumberId));
+                        }
+                        if (serialNumberIdContextItem.NestedItems.Count > 0)
+                        {
+                                lotSerialNumberIdsContextItem.NestedItems.Add(serialNumberIdContextItem);
+                        }
+                    }
+
+                }
             }
+
+            if (shippedItemInstance.Lot?.TypeCode != null)
+            {
+                items.Add(CreateContextItem("LotBatchIdentifierTypeCode", shippedItemInstance.Lot.TypeCode));
+            }
+            // Batch Serial identifiers, e.g., serialized jugs of crop protection
+            //
+
 
             // Packaging
             ContextItem contextItem = CreateContextItem("Packaging", null);
