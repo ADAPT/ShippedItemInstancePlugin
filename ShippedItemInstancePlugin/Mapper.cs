@@ -84,6 +84,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             packagedProductInstance.GrossWeight = CreateRepresentationValue((double)shippedItemInstance.Packaging.Quantity.Content,shippedItemInstance.Packaging.Quantity.UnitCode);
             packagedProductInstance.Description = shippedItemInstance.Item.Description;
+            
 
             var quantity = (double)shippedItemInstance.Packaging.Quantity?.Content;
 
@@ -405,7 +406,26 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                                 });
 
                 }
+                if (item?.Packaging?.PerPackageQuantity?.Content != null)
+                {
+                    packagedProduct.ContextItems.Add(
+                                new ContextItem()
+                                {
+                                    Code = "PerPackageQuantity",
+                                    Value = item.Packaging.PerPackageQuantity.Content.ToString()
+                                });
 
+                }
+                if (item?.Packaging?.PerPackageQuantity?.UnitCode != null)
+                {
+                    packagedProduct.ContextItems.Add(
+                                new ContextItem()
+                                {
+                                    Code = "PerPackageQuantityUnitCode",
+                                    Value = item.Packaging.PerPackageQuantity.UnitCode
+                                });
+
+                }
                 //The below identifiers are set as ContextItems vs. UniqueIDs so that they can import/export hierarchically
                 //based on the logic in the ISO plugin to handle hierarchical PackagedProducts & PackagedProductInstances
                 if (item?.ManufacturerItemIdentification?.Id != null)
@@ -507,7 +527,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
 
             // Classification
-            ContextItem classificationContextItem = CreateContextItem("Classification", null);
+            ContextItem classificationContextItem = CreateContextItem("Item.Classification", null);
             if (shippedItemInstance.Item.Classification.Codes.Code != null)
             {
                 classificationContextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Item.Classification.TypeCode));
