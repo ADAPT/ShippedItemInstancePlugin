@@ -7,6 +7,7 @@
   *
   * Contributors:
   *    Rob Cederberg, Kelly Nelson - initial implementation
+  *    Scott Nieman, V4 uplift
   *******************************************************************************/
 
 using System;

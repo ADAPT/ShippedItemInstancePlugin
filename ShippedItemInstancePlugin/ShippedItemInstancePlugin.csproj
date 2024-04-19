@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>AgGateway.ADAPT.ShippedItemInstancePlugin</AssemblyName>
     <RootNamespace>AgGateway.ADAPT.ShippedItemInstancePlugin</RootNamespace>
 	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -17,7 +17,8 @@
 
   <ItemGroup>
     <PackageReference Include="AgGatewayADAPTFramework" Version="2.3.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.ComponentModel.Annotations" />
   </ItemGroup>
   
 </Project>
