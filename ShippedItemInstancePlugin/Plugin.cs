@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
-  * Copyright (C) 2021 AgGateway and ADAPT Contributors
+  * Copyright (C) 2024 AgGateway and ADAPT Contributors
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
