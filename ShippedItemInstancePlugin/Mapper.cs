@@ -323,7 +323,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             int relateIdIndex = 0;
 
-            foreach (ItemRelatedId relatedId in shippedItemInstance.Item.RelatedId)
+            foreach (RelatedId relatedId in shippedItemInstance.Item.RelatedId)
             {
                 ContextItem relatedIdContextItem = CreateContextItem((++relateIdIndex).ToString(), null);
                 if (relatedId.Id != null)
