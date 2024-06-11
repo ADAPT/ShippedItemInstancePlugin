@@ -1,6 +1,7 @@
 ﻿using AgGateway.ADAPT.ApplicationDataModel.ADM;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Xunit;
 
@@ -16,7 +17,10 @@ namespace ShippedItemInstancePluginTests
                 if (_models == null)
                 {
                     AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin shippedItemInstancePlugin = new AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin();
-                    _models = shippedItemInstancePlugin.Import(@"..\..\..\..\SampleData");
+
+                    // use Path.Combine to ensure proper OS directory separator chars are applied 
+                    string sampleDataPath = Path.Combine("..", "..", "..", "..", "SampleData");
+                    _models = shippedItemInstancePlugin.Import(sampleDataPath);
                 }
                 return _models;
             }
