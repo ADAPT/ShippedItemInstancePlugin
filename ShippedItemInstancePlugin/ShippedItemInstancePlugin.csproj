@@ -1,18 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <AssemblyName>AgGateway.ADAPT.ShippedItemInstancePlugin</AssemblyName>
     <RootNamespace>AgGateway.ADAPT.ShippedItemInstancePlugin</RootNamespace>
-	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-	  <Authors>AgGateway and ADAPT Contributors</Authors>
-	  <Company>AgGateway</Company>
-	  <Description>AgGateway ShippedItemInstancePlugin</Description>
-	  <Copyright>Copyright (C) 2024 AgGateway and ADAPT Contributors</Copyright>
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <RepositoryUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</RepositoryUrl>
-	  <PackageProjectUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</PackageProjectUrl>
-	  <PackageLicenseExpression>EPL-1.0</PackageLicenseExpression>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Authors>AgGateway and ADAPT Contributors</Authors>
+    <Company>AgGateway</Company>
+    <Description>AgGateway ShippedItemInstancePlugin</Description>
+    <Copyright>Copyright (C) 2024 AgGateway and ADAPT Contributors</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</PackageProjectUrl>
+    <PackageLicenseExpression>EPL-1.0</PackageLicenseExpression>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
