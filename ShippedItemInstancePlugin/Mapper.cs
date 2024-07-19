@@ -83,15 +83,16 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             //Description and quantity are set on the related class properties
 
-            packagedProductInstance.GrossWeight = CreateRepresentationValue((double)shippedItemInstance.Packaging.Quantity.Content,shippedItemInstance.Packaging.Quantity.UnitCode);
-            packagedProductInstance.Description = shippedItemInstance.Item.Description;
-            
-
             var quantity = (double)shippedItemInstance.Packaging.Quantity?.Content;
 
             packagedProductInstance.ProductQuantity = CreateRepresentationValue(quantity, shippedItemInstance.Quantity.UnitCode);
-         
 
+            var perPackageWeight = (double)shippedItemInstance.Item.Packaging.PerPackageQuantity?.Content;
+            var grossWeight = perPackageWeight * quantity;
+
+            packagedProductInstance.GrossWeight = CreateRepresentationValue((double)grossWeight,shippedItemInstance.Packaging.Quantity.UnitCode);
+            packagedProductInstance.Description = shippedItemInstance.Item?.Description;
+            
 
             //The remaining data is somewhat specific to the ShippedItemInstance and is persisted as ContextItems
             //The ContextItem data generally is intended to be passed out of the ApplicationDataModel and passed back in unaltered,  
@@ -651,6 +652,10 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     }
                     product.BrandId = brand.Id.ReferenceId;
                 }
+
+                var variety = Catalog.PackagedProductInstances.
+
+
             }
         }
 
@@ -666,9 +671,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     var cropInformation = shippedItemInstance.Item.Classification?.Codes?.Code?.FirstOrDefault();
                     if (cropInformation != null)
                     {
-                        string cropName = cropInformation.TypeCode;
-                        string cropID = cropInformation.Content;
-                        string idAgency = cropInformation.ListAgencyId;
+                        string cropName = cropInformation?.TypeCode;
+                        string cropID = cropInformation?.Content;
+                        string idAgency = cropInformation?.ListAgencyId;
                         Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
                         if (crop == null)
                         {
@@ -693,9 +698,11 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 if (grower == null)
                 {
                     grower = new Grower() { Name = modelGrower.Name };
-                    if (modelGrower.Location?.Glnid != null)
+                    // Previously GLN was used but most farmers lack a GLN, so the ERP account id for the farmer is best
+                    //
+                    if (modelGrower?.AccountId != null)
                     {
-                        UniqueId id = new UniqueId() { Id = modelGrower.Location.Glnid, Source = "GLN", IdType = IdTypeEnum.String };
+                        UniqueId id = new UniqueId() { Id = modelGrower.AccountId, Source = "RetailerERPAccount", IdType = IdTypeEnum.String };
                         grower.Id.UniqueIds.Add(id);
                     }
                     Catalog.Growers.Add(grower);

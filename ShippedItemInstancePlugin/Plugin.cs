@@ -97,7 +97,12 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             foreach (string fileName in fileNames)
             {
                 string jsonText = File.ReadAllText(fileName);
+
+                //  This node will not be present, why did this exist?  
+                //  could be replaced with item or other properties
+                //
                 if (jsonText.Contains("shippedItemInstance"))
+
                 {
                     return true;
                 }
