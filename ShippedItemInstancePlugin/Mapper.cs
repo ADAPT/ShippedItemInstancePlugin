@@ -225,6 +225,19 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             // This one has it's own nested items
             if (shippedItemInstance.ShipmentReference?.Id != null)
+
+            //  Retailer GLN Id
+            if (shippedItemInstance.ShipmentReference.ShipFromParty.Location?.Glnid != null)
+            {
+                contextItem.NestedItems.Add(CreateContextItem("ShipFromGLN", shippedItemInstance.ShipmentReference.ShipFromParty.Location?.Glnid.ToString()));
+            }
+
+            if (contextItem.NestedItems.Count > 0)
+            {
+                items.Add(contextItem);
+            }
+
+            // Retailer generated Shipment Id
             {
                 nestedContextItem.NestedItems.Add(CreateContextItem("ShipmentId", shippedItemInstance.ShipmentReference?.Id));
             }
@@ -242,17 +255,17 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             {
                 items.Add(contextItem);
             }
-            //  Retailer GLN Id
-            if (shippedItemInstance.ShipmentReference.ShipFromParty.Location?.Glnid != null)
+
+            // Carrier SCAC code
+            if (shippedItemInstance.ShipmentReference.CarrierParty?.Scacid != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("ShipFromGLN", shippedItemInstance.ShipmentReference.ShipFromParty.Location?.Glnid.ToString()));
+                contextItem.NestedItems.Add(CreateContextItem("CarrierSCAC", shippedItemInstance.ShipmentReference.CarrierParty?.Scacid));
             }
 
             if (contextItem.NestedItems.Count > 0)
             {
                 items.Add(contextItem);
             }
-
             // 
             //  Unclear why this is not mapped to Crop 
             // id
@@ -272,7 +285,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 items.Add(contextItem);
             }
 
-            // ItemIdSet
+            // Item.Retailed is the link to AGIIS
             if (shippedItemInstance.Item.RelatedId?.Count > 0)
             {
                 contextItem = CreateRelatedIdsContextItem(shippedItemInstance);
@@ -282,20 +295,28 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 }
             }
 
-            // Uid
+            // Uid is the barcode, RFID tag or whatever is need for identify the product
+
             contextItem = CreateContextItem("uid", null);
+            
+            //  content contains the actual value
+
             if (shippedItemInstance.Uid?.Content != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem("content", shippedItemInstance.Uid.Content));
             }
+            // schemeId identifies the encoding schema, such as DataMatrix
             if (shippedItemInstance.Uid?.SchemeId != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem("schemaId", shippedItemInstance.Uid.SchemeId));
             }
+            // Scheme Agency is who manages the encoding scheme
             if (shippedItemInstance.Uid?.SchemeAgencyId != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem("schemaAgencyId", shippedItemInstance.Uid.SchemeAgencyId));
             }
+
+            // type code is provide qualification that this scheme is adopted by AgGateway
             if (shippedItemInstance.Uid?.TypeCode != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Uid.TypeCode));
@@ -307,6 +328,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
 
             // Quantitative Results
+            // mapped to Observations and Measurements?
+            //
             if (shippedItemInstance.Results?.Quantitative.Measurement.Count > 0)
             {
                 contextItem = CreateQuantitativeResultsContextItem(shippedItemInstance);
@@ -537,6 +560,10 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     product = new GenericProduct();
                 }
 
+                // type code = seed, crop protection, etc.
+                // Cannot implicitly convert type 'string' to 'AgGateway.ADAPT.ApplicationDataModel.Products.ProductTypeEnum'CS0029
+                // product.ProductType = shippedItemInstance.TypeCode.ToString();
+                //
                 product.Description = shippedItemInstance.DisplayName;
                 product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
 
