@@ -16,7 +16,8 @@ namespace ShippedItemInstancePluginTests
             {
                 if (_models == null)
                 {
-                    AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin shippedItemInstancePlugin = new AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin();
+                    AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin shippedItemInstancePlugin = new 
+                        AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin();
 
                     // use Path.Combine to ensure proper OS directory separator chars are applied 
                     string sampleDataPath = Path.Combine("..", "..", "..", "..", "SampleData");

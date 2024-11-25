@@ -217,6 +217,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
 
             // ShipmentReference
+            // flatten this, as we only need the shipmentId.
             contextItem = CreateContextItem("ShipmentReference", null);
 
             // nested items
@@ -231,10 +232,20 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             {
                 contextItem.NestedItems.Add(nestedContextItem);
             }
-
-            if (shippedItemInstance.ShipmentReference?.ActualShipDateTime != null)
+            //  semi-trailer Id
+            if (shippedItemInstance.ShipmentReference.ShipUnitReference?.Id != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("ActualShipDateTime", shippedItemInstance.ShipmentReference.ActualShipDateTime.ToString()));
+                contextItem.NestedItems.Add(CreateContextItem("ShippingContainer", shippedItemInstance.ShipmentReference.ShipUnitReference?.Id.ToString()));
+            }
+
+            if (contextItem.NestedItems.Count > 0)
+            {
+                items.Add(contextItem);
+            }
+            //  Retailer GLN Id
+            if (shippedItemInstance.ShipmentReference.ShipFromParty.Location?.Glnid != null)
+            {
+                contextItem.NestedItems.Add(CreateContextItem("ShipFromGLN", shippedItemInstance.ShipmentReference.ShipFromParty.Location?.Glnid.ToString()));
             }
 
             if (contextItem.NestedItems.Count > 0)
@@ -242,7 +253,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 items.Add(contextItem);
             }
 
-            // Id
+            // 
+            //  Unclear why this is not mapped to Crop 
+            // id
             contextItem = CreateContextItem("Id", null);
 
             // nested items
@@ -628,6 +641,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         private void SetManufacturerAndBrand(ShippedItemInstance shippedItemInstance)
         {
             //Set Manufacturer & Brand as available
+
             var product = GetProduct(shippedItemInstance);
             if (product != null)
             {
@@ -636,7 +650,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     var manufacturer = Catalog.Manufacturers.FirstOrDefault(m => m.Description == shippedItemInstance.Item.ManufacturingParty.Name);
                     if (manufacturer == null)
                     {
-                        manufacturer = new Manufacturer() { Description = shippedItemInstance.Item.ManufacturingParty.Name };
+                        manufacturer = new Manufacturer() 
+                            { Description = shippedItemInstance.Item.ManufacturingParty.Name };
                         Catalog.Manufacturers.Add(manufacturer);
                     }
                     product.ManufacturerId = manufacturer.Id.ReferenceId;
@@ -644,18 +659,38 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                 if (shippedItemInstance.Item?.BrandName != null)
                 {
-                    var brand = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
-                    if (brand == null)
+                    var brandName = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
+                    if (brandName == null)
                     {
-                        brand = new Brand() { Description = shippedItemInstance.Item.BrandName, ManufacturerId = product.ManufacturerId ?? 0};
-                        Catalog.Brands.Add(brand);
+                        brandName = new Brand() 
+                            { Description = shippedItemInstance.Item.BrandName, ManufacturerId = product.ManufacturerId ?? 0};
+                        Catalog.Brands.Add(brandName);
                     }
-                    product.BrandId = brand.Id.ReferenceId;
+                    // where is this set?
+                    product.BrandId = brandName.Id.ReferenceId;
+
+                    product.Description = shippedItemInstance.Item.Description;
+                    
+                    // map to contentItems
+                    //
+                    // shippedItemInstance.Item.ItemTreatment.Substance.RegistrationStatus
+                    // gtin      
+                    var gtin = shippedItemInstance.Item.Gtinid;
+                    //
+                    // determine how to create a colleciton of Product components and add substatnce to it
+                    // var productComponents = shippedItemInstance.Item.ItemTreatment.Substance.FirstOrDefault(s => s.Name = )
+                    // product.ProductComponents = shippedItemInstance.Item.ItemTreatment.Substance
+                    //
+                    
+
+                    
+
                 }
 
-                var variety = Catalog.PackagedProductInstances.
-
-
+                if (shippedItemInstance.Item?.VarietyName != null)
+                {
+                    var varietyName = shippedItemInstance.Item.VarietyName;
+                }
             }
         }
 
