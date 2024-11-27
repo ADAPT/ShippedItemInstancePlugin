@@ -80,6 +80,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             // 
             //
             PackagedProductInstance packagedProductInstance = new PackagedProductInstance();
+        
 
             //Description and quantity are set on the related class properties
 
@@ -87,10 +88,34 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             packagedProductInstance.ProductQuantity = CreateRepresentationValue(quantity, shippedItemInstance.Quantity.UnitCode);
 
+            // this is also in packaged product; why duplicated?
+            //
             var perPackageWeight = (double)shippedItemInstance.Item.Packaging.PerPackageQuantity?.Content;
-            var grossWeight = perPackageWeight * quantity;
+            var perPackageWeightUOM = shippedItemInstance.Item.Packaging.PerPackageQuantity?.UnitCode;
+              
+            // if this is placed in the tender box the packaging is outside of item
 
-            packagedProductInstance.GrossWeight = CreateRepresentationValue((double)grossWeight,shippedItemInstance.Packaging.Quantity.UnitCode);
+            if (shippedItemInstance.Packaging?.TypeCode == "SeedBox"
+                && shippedItemInstance.Packaging.Quantity?.Content is not null
+                && shippedItemInstance.Packaging.Quantity?.TypeCode == "GrossWeight") {
+                
+                var seedBoxUID = shippedItemInstance.Packaging?.Id;
+                var tenderBoxGrossWeight  = shippedItemInstance.Packaging.Quantity?.Content;
+                var tenderBoxWeightUOM = shippedItemInstance.Packaging.Quantity?.UnitCode;
+
+                packagedProductInstance.GrossWeight = 
+                    CreateRepresentationValue((double)tenderBoxGrossWeight,tenderBoxWeightUOM);
+           
+            } 
+            else {
+                
+                // calculate total pounds as gross weight e.g., from example 55 LB/BG * 45 BG 
+                var grossWeightCalculated = perPackageWeight * quantity;
+                packagedProductInstance.GrossWeight = 
+                    CreateRepresentationValue((double)grossWeightCalculated,shippedItemInstance.Packaging.Quantity.UnitCode);
+
+            }
+            
             packagedProductInstance.Description = shippedItemInstance.Item?.Description;
             
 
@@ -199,7 +224,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //
 
 
-            // Packaging
+            // Tender Box e.g., Packaging
             ContextItem contextItem = CreateContextItem("Packaging", null);
 
             // Add Packaging nested items
@@ -209,7 +234,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
             if (shippedItemInstance.Packaging?.Id != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("identifier", shippedItemInstance.Packaging.Id));
+                contextItem.NestedItems.Add(CreateContextItem("seedBoxIdentifier", shippedItemInstance.Packaging.Id));
             }
             if (contextItem.NestedItems.Count > 0)
             {
@@ -267,7 +292,6 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 items.Add(contextItem);
             }
             // 
-            //  Unclear why this is not mapped to Crop 
             // id
             contextItem = CreateContextItem("Id", null);
 
@@ -399,11 +423,11 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                 if (measurement.TypeCode != null)
                 {
-                    measurementContextItem.NestedItems.Add(CreateContextItem("typeCode", measurement.TypeCode));
+                    measurementContextItem.NestedItems.Add(CreateContextItem("measurementTypeCode", measurement.TypeCode));
                 }
                 if (measurement.Name != null)
                 {
-                    measurementContextItem.NestedItems.Add(CreateContextItem("name", measurement.Name));
+                    measurementContextItem.NestedItems.Add(CreateContextItem("measurementName", measurement.Name));
                 }
 
                  if (measurement.Measure != null)
@@ -412,12 +436,12 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 }
                 if (measurement.UnitCode != null)
                 {
-                    measurementContextItem.NestedItems.Add(CreateContextItem("measure", measurement.UnitCode));
+                    measurementContextItem.NestedItems.Add(CreateContextItem("measureUOM", measurement.UnitCode));
                 }
                 // date time of measure
                 if (measurement.DateTime != null)
                 {
-                    measurementContextItem.NestedItems.Add(CreateContextItem("measurement timestamp", measurement.DateTime.ToString()));
+                    measurementContextItem.NestedItems.Add(CreateContextItem("measurementTimestamp", measurement.DateTime.ToString()));
                 }
 
                 if (measurementContextItem.NestedItems.Count > 0)

@@ -1,6 +1,6 @@
 [
     {
-      "typeCode": "seed",
+      "typeCode": "SEED",
       "id": "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce",
       "uid": {
         "content": "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce",
@@ -118,7 +118,7 @@
               "name": "Seed Count",
               "dateTime": "2021-02-08T13:17:45.034-05:00",
               "measure": 892,
-              "unitCode": ""
+              "unitCode": "count/bg"
             }
           ]
         }
