@@ -29,7 +29,7 @@ The rest of these elements must be mapped to ContextItems which many will be nes
 - Quantitative Measurement (e.g., seed size)
 - Item Composition to handle seed treatment, and nested CAS and EPA registration numbers
 
-It should be noted that the method to populate ProductComposition currently requires the creation of a Product and referencing its id.  That unfortunately does NOT work as we do NOT want these substance raw materials to show up in the product list in the display.  The Product Composition model in ADAPT needs to be reviewed as a result. 
+It should be noted that the method to populate ProductComposition currently requires the creation of a Product and referencing its id.  That unfortunately does NOT work as we do NOT want these substance raw materials to show up in the product list in the display.  The Product Composition model in ADAPT needs to be reviewed as a result, as it works for product mixes in the field only.
 
 From the ADM, either the ISOXML.zip (TASKDATA.XML and LINKLIST.XML) or the ADM.zip output can be generated.
 
