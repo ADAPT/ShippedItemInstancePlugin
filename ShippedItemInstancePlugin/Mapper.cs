@@ -66,91 +66,27 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             foreach (ShippedItemInstance shippedItemInstance in document.ShippedItemInstances)
             {
                 MapShippedItemInstance(shippedItemInstance);
+                //
+                // the primary goal is to create 
+                // Catalog.Products document 
+                // Catalog.Crops
+                // Catalog.Brands
+                // Catalog.Manufacturers
+                
             }
             return Errors;
         }
 
         private void MapShippedItemInstance(ShippedItemInstance shippedItemInstance)
         {
-            //-----------------------
-            //PackagedProductInstance
-            //-----------------------
-            // The PackagedProductInstance represents a single, unique product shipment line and maps 1:1 to the ShippedItemInstance
-            // The shipment line is typically a single seed lot or crop protection batch
-            // 
-            //
-            PackagedProductInstance packagedProductInstance = new PackagedProductInstance();
-        
 
-            //Description and quantity are set on the related class properties
-
-            var quantity = (double)shippedItemInstance.Packaging.Quantity?.Content;
-
-            packagedProductInstance.ProductQuantity = CreateRepresentationValue(quantity, shippedItemInstance.Quantity.UnitCode);
-
-            // this is also in packaged product; why duplicated?
-            //
-            var perPackageWeight = (double)shippedItemInstance.Item.Packaging.PerPackageQuantity?.Content;
-            var perPackageWeightUOM = shippedItemInstance.Item.Packaging.PerPackageQuantity?.UnitCode;
-              
-            // if this is placed in the tender box the packaging is outside of item
-
-            if (shippedItemInstance.Packaging?.TypeCode == "SeedBox"
-                && shippedItemInstance.Packaging.Quantity?.Content is not null
-                && shippedItemInstance.Packaging.Quantity?.TypeCode == "GrossWeight") {
-                
-                var seedBoxUID = shippedItemInstance.Packaging?.Id;
-                var tenderBoxGrossWeight  = shippedItemInstance.Packaging.Quantity?.Content;
-                var tenderBoxWeightUOM = shippedItemInstance.Packaging.Quantity?.UnitCode;
-
-                packagedProductInstance.GrossWeight = 
-                    CreateRepresentationValue((double)tenderBoxGrossWeight,tenderBoxWeightUOM);
-           
-            } 
-            else {
-                
-                // calculate total pounds as gross weight e.g., from example 55 LB/BG * 45 BG 
-                var grossWeightCalculated = perPackageWeight * quantity;
-                packagedProductInstance.GrossWeight = 
-                    CreateRepresentationValue((double)grossWeightCalculated,shippedItemInstance.Packaging.Quantity.UnitCode);
-
-            }
-            
-            packagedProductInstance.Description = shippedItemInstance.Item?.Description;
-            
-
-            //The remaining data is somewhat specific to the ShippedItemInstance and is persisted as ContextItems
-            //The ContextItem data generally is intended to be passed out of the ApplicationDataModel and passed back in unaltered,  
-            //in order that the data may return, e.g., on a logged planting operation and reconcile that planting operation 
-            //back to this ShippedItemInstance.
-         
-            packagedProductInstance.ContextItems.AddRange(CreatePackagedProductInstanceContextItems(shippedItemInstance));
-
-            //-----------------------
-            // PackagedProduct
-            //-----------------------
-            // Packaged product is defined a referenced product within a specific packaging or container
-            // 
-            // Multiple ShippedItemInstances may map to the same PackagedProduct -- this is not true
-            //
-         
-            PackagedProduct packagedProduct = GetPackagedProduct(shippedItemInstance);
-            
-            //
-            if (packagedProduct != null)
-            {
-                packagedProductInstance.PackagedProductId = packagedProduct.Id.ReferenceId;
-            }
-            else
-            {
-                Errors.Add(new Error(null, "Mapper.MapShippedItemInstance", $"Couldn't create PackagedProduct for PackageProductInstance {packagedProductInstance.Id.ReferenceId}", null));
-            }
-
-            //Add the PackagedProductInstance to the Catalog.   The PackagedProduct is added in the subroutine above.
-            Catalog.PackagedProductInstances.Add(packagedProductInstance);
 
             //Set other contextual information from the ShippedItemInstance into relevant ADAPT classes
             SetManufacturerAndBrand(shippedItemInstance);
+            //
+            // SetCrop is where the product is created -- seems a big overloaded being buried into Crop
+            // 
+            //
             SetCrop(shippedItemInstance);
             SetGrower(shippedItemInstance);
         }
@@ -191,7 +127,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             // Lot or Batch Id and type
             if (shippedItemInstance.Lot?.Id != null)
             {
-                // TODO:
+                // TODO:  Create parent as LotBatchInformation, nested identifier, type code, and optional serial numbers
+                // move this to ProductContextItems
  
                 items.Add(CreateContextItem("LotBatchIdentifier", shippedItemInstance.Lot?.Id));
 
@@ -623,6 +560,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
 
             // Classification
+            // this is already in Crop
+            //
             ContextItem classificationContextItem = CreateContextItem("Item.Classification", null);
             if (shippedItemInstance.Item.Classification.Codes.Code != null)
             {
@@ -748,12 +687,22 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         private void SetCrop(ShippedItemInstance shippedItemInstance)
         {
             //Set Crop as available
+            // for seed this will be available
+            // for crop protection, crop is important, but it is really an associated item
+            // the classification of crop protection moves to product type
+            //
+            // do we need a separate way to manage this?
+            //
             if (shippedItemInstance.Item.Classification?.TypeCode != null &&
                 shippedItemInstance.Item.Classification?.TypeCode.ToLower() == "crop")
             {
+                // this is where the product is created -- seems a big overloaded
+                //
                 var product = GetProduct(shippedItemInstance);
+                //
                 if (product != null && product is CropVarietyProduct)
                 {
+                    // this should be where cl
                     var cropInformation = shippedItemInstance.Item.Classification?.Codes?.Code?.FirstOrDefault();
                     if (cropInformation != null)
                     {

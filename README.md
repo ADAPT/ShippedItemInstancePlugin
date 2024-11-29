@@ -1,8 +1,11 @@
 # ShippedItemInstancePlugin
 This plugin reads the 'connectSpec' ShippedItemInstance V4 JSON and map the properties to the ADM classes, and the related ContextItems:
-- Product; including the product type and product composition
-- PackagedProductInstance == > should this be deprecated, and moved to Product?
-- PackagedProduct ==> should this be deprecated and moved to Products
+- Catalog.Products; including the product type and product composition
+- Catalog.Brands
+- Catalog.Manufacturers
+- Catalog.Crops
+- Catalog.PackagedProductInstance == > should this be deprecated, and moved to Product?
+- Catalog.PackagedProduct ==> should this be deprecated and moved to Products
 
 The above questions relate to the newly developed ADAPT Standard which does not include the PackagedProductInstance and PackagedProduct.  Also the PackagedProductInstance should have all the data elements that PackagedProductInstance plus lot identifiers, and quantitative measurements. In
 
