@@ -293,11 +293,11 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //
             if (shippedItemInstance.Results?.Quantitative.Measurement.Count > 0)
             {
-                contextItem = CreateQuantitativeResultsContextItem(shippedItemInstance);
-                if (contextItem.NestedItems.Count > 0)
-                {
+               contextItem = CreateQuantitativeResultsContextItem(shippedItemInstance);
+               if (contextItem.NestedItems.Count > 0)
+               {
                     items.Add(contextItem);
-                }
+               }
             }
 
             return items;
@@ -317,20 +317,15 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         private ContextItem CreateRelatedIdsContextItem(ShippedItemInstance shippedItemInstance)
         {
-            ContextItem itemRelatedIdsContextItem = CreateContextItem("ItemRelatedIds", null);
+            ContextItem itemRelatedIdsContextItem = CreateContextItem("RelatedIdentifiers", null);
 
-            int relateIdIndex = 0;
 
             foreach (RelatedId relatedId in shippedItemInstance.Item.RelatedId)
             {
-                ContextItem relatedIdContextItem = CreateContextItem((++relateIdIndex).ToString(), null);
+                ContextItem relatedIdContextItem = CreateContextItem(relatedId.TypeCode, null);
                 if (relatedId.Id != null)
                 {
                     relatedIdContextItem.NestedItems.Add(CreateContextItem("id", relatedId.Id));
-                }
-                if (relatedId.TypeCode != null)
-                {
-                    relatedIdContextItem.NestedItems.Add(CreateContextItem("typeCode", relatedId.TypeCode));
                 }
                 if (relatedId.SourceId != null)
                 {
@@ -350,32 +345,37 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         }
 
         private ContextItem CreateQuantitativeResultsContextItem(ShippedItemInstance shippedItemInstance)
-        {
+        {            
             ContextItem results = CreateContextItem("QuantitativeMeasurements", null);
-
-            int quantitateResultIndex = 0;
+  
+            // int quantitateResultIndex = 0;
             foreach (Measurement measurement in shippedItemInstance.Results.Quantitative.Measurement)
             {
-                ContextItem measurementContextItem = CreateContextItem((++quantitateResultIndex).ToString(), null);
+                // why isn't this the name instead of a numeric index?
+                // old: 
+                // ContextItem measurementContextItem = CreateContextItem((++quantitateResultIndex).ToString(), null);
 
-                if (measurement.TypeCode != null)
+                ContextItem measurementContextItem = CreateContextItem(measurement.Name, null);
+
+                // type code only classifies the measurement, and we discussed if there was value to field operations, such as equipment setup
+                // if so, it can be brought into the MICS but today this cannot be displayed to the farmer to assist equipment setup
+                // in an automated or semi-automated manner
+                //
+                if (measurement.TypeCode.ToLower() != null)
                 {
                     measurementContextItem.NestedItems.Add(CreateContextItem("measurementTypeCode", measurement.TypeCode));
-                }
-                if (measurement.Name != null)
-                {
-                    measurementContextItem.NestedItems.Add(CreateContextItem("measurementName", measurement.Name));
-                }
 
-                 if (measurement.Measure != null)
+                }
+                if (measurement.Measure != null)
                 {
                     measurementContextItem.NestedItems.Add(CreateContextItem("measure", measurement.Measure.ToString()));
                 }
+
                 if (measurement.UnitCode != null)
                 {
-                    measurementContextItem.NestedItems.Add(CreateContextItem("measureUOM", measurement.UnitCode));
+                    measurementContextItem.NestedItems.Add(CreateContextItem("unitOfMeasure", measurement.UnitCode));
                 }
-                // date time of measure
+
                 if (measurement.DateTime != null)
                 {
                     measurementContextItem.NestedItems.Add(CreateContextItem("measurementTimestamp", measurement.DateTime.ToString()));
@@ -385,8 +385,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 {
                     results.NestedItems.Add(measurementContextItem);
                 }
-            }          
-
+            } 
+ 
             return results;
         }
 
@@ -527,6 +527,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 //
                 product.Description = shippedItemInstance.DisplayName;
                 product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
+                // moved this to product
+                product.ContextItems.AddRange(CreatePackagedProductInstanceContextItems(shippedItemInstance));
 
                 Catalog.Products.Add(product);
             }
