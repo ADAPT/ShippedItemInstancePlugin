@@ -106,6 +106,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             //Value
             // Map bg to bag
+            // 
             string uomCode = inputUnitOfMeasure?.ToLower() == "bg" ? "bag" : inputUnitOfMeasure?.ToLower() ?? string.Empty;
             if (!UnitSystem.InternalUnitSystemManager.Instance.UnitOfMeasures.Contains(uomCode))
             {
@@ -118,6 +119,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             returnValue.Value = new ApplicationDataModel.Representations.NumericValue(uom, value);
   
             return returnValue;
+        }
+        private ProductTypeEnum LookupProductType(string productType)
+        {
+                ProductTypeEnum productTypeEntry = new ProductTypeEnum();
+                // what is the product type enum equivalent to UnitSystem.UnitSystemManager.GetUnitOfMeasure(uomCode)?
+                return productTypeEntry;
+
         }
 
         private List<ContextItem> CreatePackagedProductInstanceContextItems(ShippedItemInstance shippedItemInstance)
@@ -288,12 +296,29 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 items.Add(contextItem);
             }
 
-            // Quantitative Results
-            // mapped to Observations and Measurements?
+
             //
             if (shippedItemInstance.Results?.Quantitative.Measurement.Count > 0)
             {
                contextItem = CreateQuantitativeResultsContextItem(shippedItemInstance);
+               if (contextItem.NestedItems.Count > 0)
+               {
+                    items.Add(contextItem);
+               }
+            }
+
+            if (shippedItemInstance.Item.ItemTreatment.Substance.Count() > 0 && 
+                shippedItemInstance.Item.ItemTreatment.Name != null)
+            // seed treatment is defined, as well is the substances used
+            //
+            {
+               // create implementation for SubstanceContextItems
+               // Create implementation for ItemTreatment (id, name only, then array of Substances )
+               // can there be two levels of nestedContextItems?
+               //
+               // contextItem = CreateItemTreatmentContextItem(shippedItemInstance);
+               contextItem = CreateQuantitativeResultsContextItem(shippedItemInstance);
+               // 
                if (contextItem.NestedItems.Count > 0)
                {
                     items.Add(contextItem);
@@ -540,6 +565,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         {
             List<ContextItem> contextItems = new List<ContextItem>();
 
+            // typecode is ProductType = SEED
+            //
             if (shippedItemInstance.TypeCode != null)
             {
                 contextItems.Add(CreateContextItem("TypeCode", shippedItemInstance.TypeCode));
@@ -564,7 +591,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             // Classification
             // this is already in Crop
             //
-            ContextItem classificationContextItem = CreateContextItem("Item.Classification", null);
+            ContextItem classificationContextItem = CreateContextItem("Item.Classification", shippedItemInstance.TypeCode);
+
             if (shippedItemInstance.Item.Classification.Codes.Code != null)
             {
                 classificationContextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Item.Classification.TypeCode));
@@ -698,7 +726,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             if (shippedItemInstance.Item.Classification?.TypeCode != null &&
                 shippedItemInstance.Item.Classification?.TypeCode.ToLower() == "crop")
             {
-                // this is where the product is created -- seems a big overloaded
+                // this is where the product is created -- seems a bit overloaded
                 //
                 var product = GetProduct(shippedItemInstance);
                 //
