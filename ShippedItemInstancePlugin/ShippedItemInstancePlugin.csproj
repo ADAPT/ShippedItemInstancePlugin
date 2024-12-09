@@ -17,9 +17,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AgGatewayADAPTFramework" Version="3.2.0" />
+    <PackageReference Include="AgGatewayADAPTFramework" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r6" />
+    <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r7" />
   </ItemGroup>
   
 </Project>
