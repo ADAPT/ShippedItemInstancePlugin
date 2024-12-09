@@ -20,6 +20,6 @@
     </references>
   </metadata>
   <files>
-    <file src="ShippedItemInstancePlugin/bin/Release/netstandard2.0/AgGateway.ADAPT.ShippedItemInstancePlugin.dll" target="lib/netstandard2.0/AgGateway.ADAPT.ShippedItemInstancePlugin.dll"/>
+    <file src="ShippedItemInstancePlugin/bin/Release/net8.0/AgGateway.ADAPT.ShippedItemInstancePlugin.dll" target="lib/netstandard2.0/AgGateway.ADAPT.ShippedItemInstancePlugin.dll"/>
   </files>
 </package>

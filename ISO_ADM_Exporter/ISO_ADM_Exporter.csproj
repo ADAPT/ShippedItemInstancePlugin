@@ -2,14 +2,16 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AgGateway.ADAPT.ShippedItemInstancePlugin" Version="1.0.0" />
-    <PackageReference Include="AgGatewayADAPTFramework" Version="2.4.0" />
-    <PackageReference Include="AgGatewayADMPlugin" Version="2.0.6" />
-    <PackageReference Include="AgGatewayISOPlugin" Version="3.3.1" />
+    <!-- PackageReference Include="AgGateway.ADAPT.ShippedItemInstancePlugin" Version="4.0.0" / -->
+    <PackageReference Include="AgGatewayADAPTFramework" Version="3.1.0" />
+    <PackageReference Include="AgGatewayADMPlugin" Version="3.0.2" />
+    <PackageReference Include="AgGatewayISOPlugin" Version="5.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r6" />
   </ItemGroup>
 
 </Project>
