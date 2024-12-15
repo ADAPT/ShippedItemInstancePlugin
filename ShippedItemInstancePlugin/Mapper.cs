@@ -179,7 +179,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
             if (shippedItemInstance.Packaging?.Id != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("seedBoxIdentifier", shippedItemInstance.Packaging.Id));
+                contextItem.NestedItems.Add(CreateContextItem("seedTenderBoxIdentifier", shippedItemInstance.Packaging.Id));
             }
             if (contextItem.NestedItems.Count > 0)
             {

@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- How do I reference the local code vs what is in Nuget?
+      https://stackoverflow.com/questions/43400069/add-a-package-with-a-local-package-file-in-dotnet -->
     <!-- PackageReference Include="AgGateway.ADAPT.ShippedItemInstancePlugin" Version="4.0.0" / -->
     <PackageReference Include="AgGatewayADAPTFramework" Version="3.1.0" />
     <PackageReference Include="AgGatewayADMPlugin" Version="3.0.2" />
