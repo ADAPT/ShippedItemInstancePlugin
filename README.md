@@ -37,7 +37,7 @@ It should be noted that the method to populate ProductComposition currently requ
 From the ADM, either the ISOXML.zip (TASKDATA.XML and LINKLIST.XML) or the ADM.zip output can be generated.
 
 ## Removed PackagedProductInstance code
-A conversation around the weight and gross weight of the package product, such as that of individual bags and a tender box need discussion.  ADAPT standard does not provide this, and it needs to be determined if there is value such as automation that could benefit from this
+A conversation around the weight and gross weight of the package product, such as that of individual bags and a tender box needs further discussion.  ADAPT Standard does not provide this, and it needs to be determined if there is value such as automation that could benefit from this
 
 
             //-----------------------
