@@ -18,6 +18,25 @@
             "stopAtEntry": false
         },
         {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "ISO Exporter(console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/ISO_ADM_Exporter/bin/Debug/net8.0/ISO_ADM_Exporter.dll",
+            "args": [
+                "${workspaceFolder}/SampleData/v4",
+                "${workspaceFolder}/ISO_ADM_Exporter/output"
+            ],
+            "cwd": "${workspaceFolder}/ISO_ADM_Exporter",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
