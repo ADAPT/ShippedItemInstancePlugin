@@ -53,6 +53,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 try
                 {
                     string jsonText = File.ReadAllText(fileName);
+                    
+                    Console.WriteLine("Read JSON fileName =" + fileName);                    
+                    Console.WriteLine(jsonText);
 
                     Document.Document document = JsonConvert.DeserializeObject<Document.Document>(jsonText);
                     if (document.ShippedItemInstances != null)
