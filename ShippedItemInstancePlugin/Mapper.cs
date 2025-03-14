@@ -55,12 +55,12 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         /// <returns></returns>
         ///  
         ///
-        public IList<IError> MapDocument(Document.Document document)
+        public IList<IError> MapDocument(ShippedItemInstanceList items)
         {
             Errors = new List<IError>();
 
        
-            foreach (ShippedItemInstance shippedItemInstance in document.ShippedItemInstances)
+            foreach (ShippedItemInstance shippedItemInstance in items)
             {
                 MapShippedItemInstance(shippedItemInstance);
                 //
@@ -590,11 +590,12 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //
             ContextItem classificationContextItem = CreateContextItem("Item.Classification", shippedItemInstance.TypeCode);
 
-            if (shippedItemInstance.Item.Classification.Codes.Code != null)
+            if (shippedItemInstance.Item?.Classification?.Codes?.Code != null)
             {
                 classificationContextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Item.Classification.TypeCode));
             }
-            if (shippedItemInstance.Item.Classification.Codes?.Code?.Count > 0)
+            var count = shippedItemInstance.Item?.Classification?.Codes?.Code?.Count;
+            if (count != null && count > 0)
             {
                 ContextItem codesContextItem = CreateContextItem("codes", null);
                 int codeIndex = 0;

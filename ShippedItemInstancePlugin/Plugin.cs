@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AgGateway.ADAPT.ApplicationDataModel.ADM;
+using IO.Swagger.Models;
 using Newtonsoft.Json;
 
 namespace AgGateway.ADAPT.ShippedItemInstancePlugin
@@ -57,8 +58,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     Console.WriteLine("Read JSON fileName =" + fileName);                    
                     Console.WriteLine(jsonText);
 
-                    Document.Document document = JsonConvert.DeserializeObject<Document.Document>(jsonText);
-                    if (document.ShippedItemInstances != null)
+                   var items = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
+                    if (items != null)
                     {
                         //Each document will import as individual ApplicationDataModel
                         ApplicationDataModel.ADM.ApplicationDataModel adm = new ApplicationDataModel.ADM.ApplicationDataModel();
@@ -66,7 +67,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                         //Map the document data into the Catalog
                         Mapper mapper = new Mapper(adm.Catalog);
-                        errors.AddRange(mapper.MapDocument(document));
+                        errors.AddRange(mapper.MapDocument(items));
 
                         models.Add(adm);
                     }
