@@ -81,7 +81,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //Set other contextual information from the ShippedItemInstance into relevant ADAPT classes
             SetManufacturerAndBrand(shippedItemInstance);
             //
-            // SetCrop is where the product is created -- seems a big overloaded being buried into Crop
+            // SetCrop is where the product is created -- seems a bit overloaded being buried into Crop
             // 
             //
             SetCrop(shippedItemInstance);
@@ -137,7 +137,11 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
  
                 items.Add(CreateContextItem("LotBatchIdentifier", shippedItemInstance.Lot?.Id));
 
-                if (shippedItemInstance.Lot?.SerialNumberId.Count > 0)
+                // the following provides the ability to capture serialize jugs of crop protection related to a specific manufactured batch
+                // the serialNumberId array may not be present in the payload as seed will not have serialized instances  
+                // 
+                // 
+                if (shippedItemInstance.Lot.SerialNumberId.Count > 0) 
                 {
                     ContextItem lotSerialNumberIdsContextItem = CreateContextItem("SerialNumberIds", null);
                     int SerialNumberIdsIndex = 0;
