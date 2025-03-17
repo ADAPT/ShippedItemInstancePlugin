@@ -20,6 +20,8 @@ using RepresentationSystem = AgGateway.ADAPT.Representation.RepresentationSystem
 using UnitSystem = AgGateway.ADAPT.Representation.UnitSystem;
 using AgGateway.ADAPT.Representation.RepresentationSystem.ExtensionMethods;
 using IO.Swagger.Models;
+using System.Text.Json.Nodes;
+using System.Text.Json;
 
 namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 {
@@ -85,6 +87,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             // 
             //
             SetCrop(shippedItemInstance);
+            //
             SetGrower(shippedItemInstance);
         }
 
@@ -125,7 +128,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         }
 
-        private List<ContextItem> CreatePackagedProductInstanceContextItems(ShippedItemInstance shippedItemInstance)
+        private List<ContextItem> CreateProductInstanceSpecificContextItems(ShippedItemInstance shippedItemInstance)
         {
             List<ContextItem> items = new List<ContextItem>();
 
@@ -140,7 +143,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 // the following provides the ability to capture serialize jugs of crop protection related to a specific manufactured batch
                 // the serialNumberId array may not be present in the payload as seed will not have serialized instances  
                 // 
-                // 
+                //  if(!json.ContainsKey(field.Name))
+                //  however json is not in context, what alternative is
+                //  from
+                //  https://stackoverflow.com/questions/55712367/json-net-detect-an-absence-of-a-property-on-json-which-appears-to-be-a-member
+                //
+                //
+                //
                 if (shippedItemInstance.Lot.SerialNumberId.Count > 0) 
                 {
                     ContextItem lotSerialNumberIdsContextItem = CreateContextItem("SerialNumberIds", null);
@@ -415,122 +424,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
  
             return results;
         }
-
-        private PackagedProduct GetPackagedProduct(ShippedItemInstance shippedItemInstance)
-        {
-            PackagedProduct packagedProduct = null;
-            Item item = shippedItemInstance.Item;
-            if (item?.ManufacturerItemIdentification?.Id == null && item?.Gtinid == null && item?.Upcid == null)
-            {
-                // No ids specified so use the descriptionn to find a PackageProduct that matches
-                packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.Description == item?.Description);
-            }
-            else
-            {
-                // Try to find a matching PackagedProduct based on the ManufacturerItemIdentifier, UPC Id or GTIN Id
-                if (!string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.TypeCode) 
-                    && !string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.Id))
-                {
-                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == item?.ManufacturerItemIdentification?.TypeCode && 
-                        i.Value == item?.ManufacturerItemIdentification?.Id)));
-                }
-                else if (!string.IsNullOrEmpty(item?.Gtinid) && !string.IsNullOrEmpty(item?.Upcid))
-                {
-                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == "UPC" && i.Value == item?.Upcid) 
-                        || (i.Code == "GTIN" && i.Value == item?.Gtinid)));
-                }
-            }
-
-            if (packagedProduct == null && item?.Description != null)
-            {
-                // Didn't find a match so create a new object
-                packagedProduct = new PackagedProduct();
-
-                packagedProduct.Description = item?.Description;
-
-                // Set context items
-                
-                //Set description so that it can in theory persist as data for models (e.g., ISO) that do not have the PackagedProduct object.
-                if (item?.Description != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = "Description",
-                                    Value = item?.Description
-                                });
-
-                }
-                if (item?.Packaging?.PerPackageQuantity?.Content != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = "PerPackageQuantity",
-                                    Value = item.Packaging.PerPackageQuantity.Content.ToString()
-                                });
-
-                }
-                if (item?.Packaging?.PerPackageQuantity?.UnitCode != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = "PerPackageQuantityUnitCode",
-                                    Value = item.Packaging.PerPackageQuantity.UnitCode
-                                });
-
-                }
-                //The below identifiers are set as ContextItems vs. UniqueIDs so that they can import/export hierarchically
-                //based on the logic in the ISO plugin to handle hierarchical PackagedProducts & PackagedProductInstances
-                if (item?.ManufacturerItemIdentification?.Id != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = item?.ManufacturerItemIdentification?.TypeCode,
-                                    Value = item?.ManufacturerItemIdentification?.Id
-                                });
-
-                }
-
-                if (item?.Upcid != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = "UPC",
-                                    Value = item?.Upcid
-                                });
-                }
-
-                if (item?.Gtinid != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = "GTIN",
-                                    Value = item?.Gtinid
-                                });
-                }
-
-                Catalog.PackagedProducts.Add(packagedProduct);
-
-                // Tie to a Product object
-                Product product = GetProduct(shippedItemInstance);
-                if (product != null)
-                {
-                    packagedProduct.ProductId = product.Id.ReferenceId;
-                }
-                else
-                {
-                    Errors.Add(new Error(null, "Mapper.GetPackagedProduct", $"Unable to create Product for Packaged Product {packagedProduct.Id.ReferenceId}", null));
-                }
-            }
-
-            return packagedProduct;
-        }
-
+        //  Both Crop and Manafucturer/ Brand call GetProduct.  This is historical and it intent is unclear.
+        //  Likely it was a simpler test to see it the product existed, whereas now GetProduct is the main feature
+        //  
         private Product GetProduct(ShippedItemInstance shippedItemInstance)
         {
             // Look for product with a description that matches the shipped item instance
@@ -554,7 +450,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 product.Description = shippedItemInstance.DisplayName;
                 product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
                 // moved this to product
-                product.ContextItems.AddRange(CreatePackagedProductInstanceContextItems(shippedItemInstance));
+                product.ContextItems.AddRange(CreateProductInstanceSpecificContextItems(shippedItemInstance));
 
                 Catalog.Products.Add(product);
             }
@@ -636,27 +532,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 contextItems.Add(classificationContextItem);
             }
 
-            // ManufacturingParty
-            ContextItem manufacturingPartyContextItem = CreateContextItem("manufacturingParty", null);
-            if (shippedItemInstance.Item.ManufacturingParty?.Name != null)
-            {
-                manufacturingPartyContextItem.NestedItems.Add(CreateContextItem("ManufacturerName", shippedItemInstance.Item.ManufacturingParty.Name));
-            }
-            ContextItem identifierContextItem = CreateContextItem("ManufacturerId", null);
-            if (shippedItemInstance.Item.ManufacturingParty?.Id != null)
-            {
-                identifierContextItem.NestedItems.Add(CreateContextItem("Id", shippedItemInstance.Item.ManufacturingParty.Id));
-            }
             
-            if (identifierContextItem.NestedItems.Count > 0)
-            {
-                manufacturingPartyContextItem.NestedItems.Add(identifierContextItem);
-            }
-            if (manufacturingPartyContextItem.NestedItems.Count > 0)
-            {
-               contextItems.Add(manufacturingPartyContextItem);
-            }
-
             return contextItems;
         }
 
@@ -699,13 +575,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     // gtin      
                     var gtin = shippedItemInstance.Item.Gtinid;
                     //
-                    // determine how to create a colleciton of Product components and add substatnce to it
+                    // create a colleciton of Product components and add substatnce to it
                     // var productComponents = shippedItemInstance.Item.ItemTreatment.Substance.FirstOrDefault(s => s.Name = )
                     // product.ProductComponents = shippedItemInstance.Item.ItemTreatment.Substance
-                    //
-                    
-
-                    
 
                 }
 
@@ -757,24 +629,30 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         private void SetGrower(ShippedItemInstance shippedItemInstance)
         {
-            //Set Grower as available
-            ShipToParty modelGrower = shippedItemInstance.ShipmentReference.ShipToParty;
-            if (modelGrower != null)
-            {
-                Grower grower = Catalog.Growers.FirstOrDefault(c => c.Name == modelGrower.Name);
-                if (grower == null)
+            //  Need to test the typeCode of the both the ShipToParty and ShipFromParty to see which is the grower
+            //  Shipments from the Retailer to the Grower is for Seed
+            //  Shipments from the Farmer to the elevator or processor are for commodity shipments
+            //
+
+            if (shippedItemInstance.ShipmentReference.ShipToParty.TypeCode == "Farmer")
                 {
-                    grower = new Grower() { Name = modelGrower.Name };
-                    // Previously GLN was used but most farmers lack a GLN, so the ERP account id for the farmer is best
-                    //
-                    if (modelGrower?.AccountId != null)
+                    ShipToParty modelGrower = shippedItemInstance.ShipmentReference.ShipToParty;
+                    
+                    Grower grower = Catalog.Growers.FirstOrDefault(c => c.Name == modelGrower.Name);
+                    if (grower == null)
                     {
-                        UniqueId id = new UniqueId() { Id = modelGrower.AccountId, Source = "RetailerERPAccount", IdType = IdTypeEnum.String };
-                        grower.Id.UniqueIds.Add(id);
+                        grower = new Grower() { Name = modelGrower.Name };
+                        // Previously GLN was used but most farmers lack a GLN, 
+                        // so the Retailer's ERP accountId for the farmer is best
+                        //
+                        if (modelGrower?.AccountId != null)
+                        {
+                            UniqueId id = new UniqueId() { Id = modelGrower.AccountId, Source = "RetailerERPAccount", IdType = IdTypeEnum.String };
+                            grower.Id.UniqueIds.Add(id);
+                        }
+                        Catalog.Growers.Add(grower);
                     }
-                    Catalog.Growers.Add(grower);
                 }
-            }
         }
 
         #endregion

@@ -58,7 +58,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     Console.WriteLine("Read JSON fileName =" + fileName);                    
                     Console.WriteLine(jsonText);
 
-                   var items = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
+                   ShippedItemInstanceList items = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
                     if (items != null)
                     {
                         //Each document will import as individual ApplicationDataModel
