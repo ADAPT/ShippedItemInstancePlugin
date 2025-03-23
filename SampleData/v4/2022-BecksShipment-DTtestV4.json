@@ -12,6 +12,27 @@
         "id": "34343401245"
       },
       "description": "3230Enlist SDBX ESCALATE SDS+ BEANS",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Soybeans",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "S",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Soybeans"
+            },
+            {
+              "content": "SDBX",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "3230Enlist",
       "productName": "3230Enlist",
@@ -44,22 +65,6 @@
       "content": 135
     },
     "displayName": "3230Enlist-E22388816X",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "S",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Soybeans"
-          },
-          {
-            "content": "SDBX",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "E22388816X"
@@ -124,6 +129,27 @@
         "id": "34343401245"
       },
       "description": "3510Enlist SDBX ESCALATE BEANS",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Soybeans",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "S",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Soybeans"
+            },
+            {
+              "content": "SDBX",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "3510Enlist",
       "productName": "3510Enlist",
@@ -156,22 +182,6 @@
       "content": 135
     },
     "displayName": "3510Enlist-F2212127X",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "S",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Soybeans"
-          },
-          {
-            "content": "SDBX",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "F2212127X"
@@ -236,6 +246,27 @@
         "id": "34343401245"
       },
       "description": "XL 6081AM BAG ESCALATE MED FLAT CORN",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Corn",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "C",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Corn"
+            },
+            {
+              "content": "XL",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "XL 6081AM ",
       "productName": "XL 6081AM ",
@@ -268,22 +299,6 @@
       "content": 8
     },
     "displayName": "XL 6081AM -S116FF",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "C",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Corn"
-          },
-          {
-            "content": "XL",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "S116FF"
@@ -348,6 +363,27 @@
         "id": "34343401245"
       },
       "description": "XL 6241QR BAG ESCALATE MED FLAT CORN",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Corn",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "C",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Corn"
+            },
+            {
+              "content": "XL",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "XL 6241QR ",
       "productName": "XL 6241QR ",
@@ -380,22 +416,6 @@
       "content": 24
     },
     "displayName": "XL 6241QR -S260FF",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "C",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Corn"
-          },
-          {
-            "content": "XL",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "S260FF"
@@ -460,6 +480,27 @@
         "id": "34343401245"
       },
       "description": "6374VT2P BAG ESCALATE MED FLAT CORN",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Corn",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "C",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Corn"
+            },
+            {
+              "content": "VT2P",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "6374VT2P B",
       "productName": "6374VT2P B",
@@ -492,22 +533,6 @@
       "content": 24
     },
     "displayName": "6374VT2P B-S65FF",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "C",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Corn"
-          },
-          {
-            "content": "VT2P",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "S65FF"
@@ -572,6 +597,22 @@
         "id": "34343401245"
       },
       "description": "6414VT2P BAG ESCALATE MED FLAT CORN",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "C",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Corn"
+            },
+            {
+              "content": "VT2P",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "6414VT2P B",
       "productName": "6414VT2P B",
@@ -604,22 +645,6 @@
       "content": 32
     },
     "displayName": "6414VT2P B-E181FF",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "C",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Corn"
-          },
-          {
-            "content": "VT2P",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "E181FF"
@@ -684,6 +709,27 @@
         "id": "34343401245"
       },
       "description": "3830Enlist SDBX ESCALATE SDS+ BEANS",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Soybeans",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "S",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Soybeans"
+            },
+            {
+              "content": "SDBX",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "3830Enlist",
       "productName": "3830Enlist",
@@ -716,22 +762,6 @@
       "content": 45
     },
     "displayName": "3830Enlist-F22121214X",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "S",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Soybeans"
-          },
-          {
-            "content": "SDBX",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "F22121214X"
@@ -796,6 +826,27 @@
         "id": "34343401245"
       },
       "description": "4320Enlist SDBX EXCALATE SDS+ BEANS",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Soybeans",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "S",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Soybeans"
+            },
+            {
+              "content": "SDBX",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "4320Enlist",
       "productName": "4320Enlist",
@@ -828,22 +879,6 @@
       "content": 225
     },
     "displayName": "4320Enlist-A22242312X",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "S",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Soybeans"
-          },
-          {
-            "content": "SDBX",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "A22242312X"
@@ -908,6 +943,31 @@
         "id": "34343401245"
       },
       "description": "4030Enlist SDBX ESCALATE SDS+ BEANS",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Soybeans",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "S",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Soybeans"
+            },
+            {
+              "content": "SDBX",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
+      "lot": {
+        "typeCode": "Lot",
+        "id": "B2227251X"
+      },
       "gtinid": "",
       "varietyName": "4030Enlist",
       "productName": "4030Enlist",
@@ -940,26 +1000,6 @@
       "content": 180
     },
     "displayName": "4030Enlist-B2227251X",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "S",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Soybeans"
-          },
-          {
-            "content": "SDBX",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
-    "lot": {
-      "typeCode": "Lot",
-      "id": "B2227251X"
-    },
     "shipmentReference": {
       "id": "7302",
       "lineNumberId": "7302-9",
@@ -1020,6 +1060,27 @@
         "id": "34343401245"
       },
       "description": "3030Enlist SDBX ESCALATE SDS+ BEANS",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Soybeans",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "S",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Soybeans"
+            },
+            {
+              "content": "SDBX",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "3030Enlist",
       "productName": "3030Enlist",
@@ -1052,22 +1113,6 @@
       "content": 90
     },
     "displayName": "3030Enlist-E2238579X",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "S",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Soybeans"
-          },
-          {
-            "content": "SDBX",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "E2238579X"
@@ -1132,6 +1177,27 @@
         "id": "34343401245"
       },
       "description": "4030Enlist SDBX ILEVO TWO BEANS",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Soybeans",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "S",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Soybeans"
+            },
+            {
+              "content": "SDBX",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "4030Enlist",
       "productName": "4030Enlist",
@@ -1164,22 +1230,6 @@
       "content": 45
     },
     "displayName": "4030Enlist-B2223136XI",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "S",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Soybeans"
-          },
-          {
-            "content": "SDBX",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "B2223136XI"
@@ -1244,6 +1294,27 @@
         "id": "34343401245"
       },
       "description": "A6544-VT2RIB",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Corn",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "C",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Corn"
+            },
+            {
+              "content": "VT2RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "A6544",
       "productName": "A6544",
@@ -1276,22 +1347,6 @@
       "content": 1
     },
     "displayName": "A6544-EF06466361",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "C",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Corn"
-          },
-          {
-            "content": "VT2RIB",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "EF06466361"
@@ -1356,6 +1411,27 @@
         "id": "34343401245"
       },
       "description": "A64516-VT2RIB",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Corn",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "C",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Corn"
+            },
+            {
+              "content": "VT2RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "A64516",
       "productName": "A64516",
@@ -1388,22 +1464,6 @@
       "content": 1
     },
     "displayName": "A64516-EF09168506",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "C",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Corn"
-          },
-          {
-            "content": "VT2RIB",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "EF09168506"
@@ -1468,6 +1528,27 @@
         "id": "34343401245"
       },
       "description": "A64259-VT2RIB",
+      "classification": {
+        "codes": {
+          "code": [
+            {
+              "content": "Corn",
+              "listAgencyId": "USDA",
+              "typeCode": "CropType"
+            },
+            {
+              "content": "C",
+              "listAgencyId": "AGIIS",
+              "typeCode": "Corn"
+            },
+            {
+              "content": "VT2RIB",
+              "typeCode": "Trait"
+            }
+          ]
+        },
+        "typeCode": "Crop"
+      },
       "gtinid": "",
       "varietyName": "A64259",
       "productName": "A64259",
@@ -1500,22 +1581,6 @@
       "content": 1
     },
     "displayName": "A64259-II36062097",
-    "classification": {
-      "codes": {
-        "code": [
-          {
-            "content": "C",
-            "listAgencyId": "AGIIS",
-            "typeCode": "Corn"
-          },
-          {
-            "content": "VT2RIB",
-            "typeCode": "Trait"
-          }
-        ]
-      },
-      "typeCode": "Crop"
-    },
     "lot": {
       "typeCode": "Lot",
       "id": "II36062097"

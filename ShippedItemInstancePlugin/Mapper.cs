@@ -79,17 +79,62 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         private void MapShippedItemInstance(ShippedItemInstance shippedItemInstance)
         {
 
-
-            //Set other contextual information from the ShippedItemInstance into relevant ADAPT classes
-            SetManufacturerAndBrand(shippedItemInstance);
-            //
-            // SetCrop is where the product is created -- seems a bit overloaded being buried into Crop
+            // capture the displayName and all this item instance context items
             // 
+            Product product = GetProduct(shippedItemInstance);
             //
-            SetCrop(shippedItemInstance);
+            SetCrop(shippedItemInstance, product);
+            //
+            SetManufacturerAndBrand (shippedItemInstance, product);
             //
             SetGrower(shippedItemInstance);
         }
+
+        private Product GetProduct(ShippedItemInstance shippedItemInstance)
+        {
+            // Look for product with a description that matches the shipped item instance
+            // Primarily need the displayName of the product 
+            // quick test
+            Product product = Catalog.Products.FirstOrDefault(p => p.Description == shippedItemInstance.DisplayName);
+
+            if (product == null && shippedItemInstance?.DisplayName != null)
+            {
+                if (shippedItemInstance.TypeCode == null || shippedItemInstance.TypeCode.ToLower() == "seed") 
+                {
+                    product = new CropVarietyProduct();
+                }
+                else
+                {
+                    product = new GenericProduct();
+                }
+
+                // type code = seed, crop protection, etc.
+                // Cannot implicitly convert type 'string' to 'AgGateway.ADAPT.ApplicationDataModel.Products.ProductTypeEnum'CS0029
+                // product.ProductType = shippedItemInstance.TypeCode.ToString();
+                //
+                product.Description = shippedItemInstance.DisplayName;
+                product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
+                // moved this to product
+                product.ContextItems.AddRange(CreateProductInstanceSpecificContextItems(shippedItemInstance));
+
+                Catalog.Products.Add(product);
+            }
+
+            return product;
+        }
+
+        private ContextItem CreateContextItem(string code, string value)
+        {
+            ContextItem item = new ContextItem() { Code = code };
+
+            if (value != null)
+            {
+                item.Value = value;
+            }
+
+            return item;
+        }
+
 
         private NumericRepresentationValue CreateRepresentationValue(double value, string inputUnitOfMeasure)
         {
@@ -120,6 +165,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
   
             return returnValue;
         }
+
+        // do we need this?  Why not reference in GetProduct
         private ProductTypeEnum LookupProductType(string productType)
         {
                 ProductTypeEnum productTypeEntry = new ProductTypeEnum();
@@ -338,18 +385,6 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             return items;
         }
 
-        private ContextItem CreateContextItem(string code, string value)
-        {
-            ContextItem item = new ContextItem() { Code = code };
-
-            if (value != null)
-            {
-                item.Value = value;
-            }
-
-            return item;
-        }
-
         private ContextItem CreateRelatedIdsContextItem(ShippedItemInstance shippedItemInstance)
         {
             ContextItem itemRelatedIdsContextItem = CreateContextItem("RelatedIdentifiers", null);
@@ -427,36 +462,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         //  Both Crop and Manafucturer/ Brand call GetProduct.  This is historical and it intent is unclear.
         //  Likely it was a simpler test to see it the product existed, whereas now GetProduct is the main feature
         //  
-        private Product GetProduct(ShippedItemInstance shippedItemInstance)
-        {
-            // Look for product with a description that matches the shipped item instance
-            Product product = Catalog.Products.FirstOrDefault(p => p.Description == shippedItemInstance.DisplayName);
 
-            if (product == null && shippedItemInstance?.DisplayName != null)
-            {
-                if (shippedItemInstance.TypeCode == null || shippedItemInstance.TypeCode.ToLower() == "seed") 
-                {
-                    product = new CropVarietyProduct();
-                }
-                else
-                {
-                    product = new GenericProduct();
-                }
-
-                // type code = seed, crop protection, etc.
-                // Cannot implicitly convert type 'string' to 'AgGateway.ADAPT.ApplicationDataModel.Products.ProductTypeEnum'CS0029
-                // product.ProductType = shippedItemInstance.TypeCode.ToString();
-                //
-                product.Description = shippedItemInstance.DisplayName;
-                product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
-                // moved this to product
-                product.ContextItems.AddRange(CreateProductInstanceSpecificContextItems(shippedItemInstance));
-
-                Catalog.Products.Add(product);
-            }
-
-            return product;
-        }
 
         private List<ContextItem> CreateProductContextItems(ShippedItemInstance shippedItemInstance)
         {
@@ -536,11 +542,10 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             return contextItems;
         }
 
-        private void SetManufacturerAndBrand(ShippedItemInstance shippedItemInstance)
+        private void SetManufacturerAndBrand(ShippedItemInstance shippedItemInstance, Product product)
         {
             //Set Manufacturer & Brand as available
 
-            var product = GetProduct(shippedItemInstance);
             if (product != null)
             {
                 if (shippedItemInstance.Item.ManufacturingParty?.Name != null)
@@ -555,7 +560,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     product.ManufacturerId = manufacturer.Id.ReferenceId;
                 }
 
-                if (shippedItemInstance.Item?.BrandName != null)
+                if (shippedItemInstance.Item.BrandName != null)
                 {
                     var brandName = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
                     if (brandName == null)
@@ -581,14 +586,14 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                 }
 
-                if (shippedItemInstance.Item?.VarietyName != null)
+                if (shippedItemInstance.Item.VarietyName != null)
                 {
                     var varietyName = shippedItemInstance.Item.VarietyName;
                 }
             }
         }
 
-        private void SetCrop(ShippedItemInstance shippedItemInstance)
+        private void SetCrop(ShippedItemInstance shippedItemInstance, Product product)
         {
             //Set Crop as available
             // for seed this will be available
@@ -602,22 +607,48 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             {
                 // this is where the product is created -- seems a bit overloaded
                 //
-                var product = GetProduct(shippedItemInstance);
                 //
                 if (product != null && product is CropVarietyProduct)
                 {
-                    // this should be where cl
-                    var cropInformation = shippedItemInstance.Item.Classification?.Codes?.Code?.FirstOrDefault();
+                    // this should not use First or Default but filter the array for specific typeCodes
+                    // Trait, CropType, AGIIS code for CropType value (content)
+                    //
+                    // The following will return the array of code entries
+                    //
+                    var cropInformation = shippedItemInstance.Item.Classification.Codes.Code;
+
                     if (cropInformation != null)
                     {
-                        string cropName = cropInformation?.TypeCode;
-                        string cropID = cropInformation?.Content;
-                        string idAgency = cropInformation?.ListAgencyId;
+                        // CropType 
+                        // should implement equivalent to this JSON PATH
+                        // $[0].item.classification.codes.code[?@.typeCode=='CropType'].content
+                        // 
+                        string cropName = cropInformation.FirstOrDefault(c => c.TypeCode == "cropType").Content;
+                        // string cropName = cropInformation.TypeCode;
+                        // Agency for CropType, e.g. USDA
+                        // should implement equivalent to this JSON PATH
+                        // $[0].item.classification.codes.code[?@.typeCode=='CropType'].listAgencyId
+                        //
+                        string idAgency = cropInformation.FirstOrDefault(c => c.TypeCode == "cropType").ListAgencyId;
+                        // 
+                        // AGISS code for CropType
+                        string cropID = cropInformation.FirstOrDefault(c => (c.TypeCode == cropName && c.ListAgencyId == "AGIIS")).Content;
+                        // 
+                        //  
+                        //
+                        // Unclear of this historical section of code 2025-03-22
+                        //
                         Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
+                        // 
+                        // 2025-03-22 Was this intended to be to default if no crop found above, or this should this be != null?
+                        //
                         if (crop == null)
                         {
+                            // 2025-03-22
+                            //
                             crop = new Crop() { Name = cropName };
-                            crop.Id.UniqueIds.Add(new UniqueId() { Source = idAgency, IdType = IdTypeEnum.String, Id = cropID });
+                            crop.Id.UniqueIds.Add(new UniqueId() 
+                                { Source = idAgency, IdType = IdTypeEnum.String, Id = cropID });
                             Catalog.Crops.Add(crop);
                         }
                         ((CropVarietyProduct)product).CropId = crop.Id.ReferenceId;
