@@ -56,18 +56,21 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     string jsonText = File.ReadAllText(fileName);
                     
                     Console.WriteLine("Read JSON fileName =" + fileName);                    
-                    Console.WriteLine(jsonText);
+                    // Console.WriteLine(jsonText);
 
-                   ShippedItemInstanceList items = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
-                    if (items != null)
+                   ShippedItemInstanceList ShippedItems = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
+                   if (ShippedItems != null)
                     {
                         //Each document will import as individual ApplicationDataModel
+                        Console.WriteLine("deserialized into ShippedItemInstanceList");  
+
                         ApplicationDataModel.ADM.ApplicationDataModel adm = new ApplicationDataModel.ADM.ApplicationDataModel();
                         adm.Catalog = new Catalog() { Description = fileName };
 
                         //Map the document data into the Catalog
+
                         Mapper mapper = new Mapper(adm.Catalog);
-                        errors.AddRange(mapper.MapDocument(items));
+                        errors.AddRange(mapper.MapDocument(ShippedItems));
 
                         models.Add(adm);
                     }

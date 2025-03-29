@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ISO11783_TaskData VersionMajor="4" VersionMinor="2" ManagementSoftwareManufacturer="AgGateway" ManagementSoftwareVersion="1.0" TaskControllerManufacturer="" TaskControllerVersion="" DataTransferOrigin="1">
+  <!--Export created 3/28/2025 7:36:25 PM-->
+  <PGP A="PGP1" B="CropType" C="2" />
+  <PDT A="PDT1" B="VT DoublePro RIB Complete Relative Maturity 85 days" C="PGP1" F="1" />
+  <CTR A="CTR1" B="Farmer Bob" />
+  <AFE A="LINKLIST.XML" B="2" C="" D="1" />
+</ISO11783_TaskData>
