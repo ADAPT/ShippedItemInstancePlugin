@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ISO11783LinkList VersionMajor="4" VersionMinor="2" ManagementSoftwareManufacturer="AgGateway" ManagementSoftwareVersion="1.0" TaskControllerManufacturer="" TaskControllerVersion="" DataTransferOrigin="1" FileVersion="">
-  <LGP A="LGP1" B="2" C="1100046503738" E="ADAPT_Context_Items:Product">
+  <LGP A="LGP1" B="2" C="1100046503738" E="ADAPT_UniqueIds">
+    <LNK A="CTP1" B="C" C="USDA" />
+    <LNK A="CTR1" B="12345" C="RetailerERPAccount" />
+  </LGP>
+  <LGP A="LGP2" B="2" C="1100046503738" E="ADAPT_Context_Items:Product">
     <LNK A="PDT1" B="ItemDescription|VT DoublePro RIB Complete Relative Maturity 85 days" />
     <LNK A="PDT1" B="ItemProductName|CP2585" />
     <LNK A="PDT1" B="ItemBrandName|CROPLAN" />
@@ -12,31 +16,24 @@
     <LNK A="PDT1" B="ProductTypeCode.classification.Codes.2.listAgencyIdentifier|AGIIS" />
     <LNK A="PDT1" B="ProductTypeCode.classification.Codes.3.Trait|VT2RIB" />
     <LNK A="PDT1" B="LotIdentifier|769MXJ4JX" />
-    <LNK A="PDT1" B="Packaging.PackagngTypeCode|SeedBox" />
+    <LNK A="PDT1" B="Packaging.ShipUnitTypeCode|SeedBox" />
     <LNK A="PDT1" B="Packaging.SeedBoxIdentifier|844f95ac-422a-406a-91c5-65d017de2f09" />
+    <LNK A="PDT1" B="Packaging.GrossWeight|2475" />
+    <LNK A="PDT1" B="Packaging.shippedItemInstance.Packaging.Quantity.UnitCode|LB" />
     <LNK A="PDT1" B="ShipmentReference.ShipFromGLN|1100028417954" />
     <LNK A="PDT1" B="ShipmentReference.ShipmentReference.ShipmentId|34343535" />
-    <LNK A="PDT1" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
+    <LNK A="PDT1" B="ShipmentReference.ShippingContainerType|Semi-Trailer" />
+    <LNK A="PDT1" B="ShipmentReference.ShippingContainerIdentifer.USDOT_Number|12345678" />
     <LNK A="PDT1" B="ShipmentReference.CarrierSCAC|NA" />
-    <LNK A="PDT1" B="ShipmentReference.ShipFromGLN|1100028417954" />
-    <LNK A="PDT1" B="ShipmentReference.ShipmentReference.ShipmentId|34343535" />
-    <LNK A="PDT1" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
-    <LNK A="PDT1" B="ShipmentReference.CarrierSCAC|NA" />
-    <LNK A="PDT1" B="ShipmentReference.ShipFromGLN|1100028417954" />
-    <LNK A="PDT1" B="ShipmentReference.ShipmentReference.ShipmentId|34343535" />
-    <LNK A="PDT1" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
-    <LNK A="PDT1" B="ShipmentReference.CarrierSCAC|NA" />
-    <LNK A="PDT1" B="shippedItemInstance.db.id|0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" />
+    <LNK A="PDT1" B="InFieldProductID.API.Path.id|0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" />
     <LNK A="PDT1" B="RelatedIdentifiers.AgGateway.GTIN_URI|https://api.agiis.org/?gtinid=00888346580291" />
     <LNK A="PDT1" B="EncodedIdentification.encodingSchemaId|DataMatrix" />
     <LNK A="PDT1" B="EncodedIdentification.DataMatrixId|0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" />
     <LNK A="PDT1" B="EncodedIdentification.schemaAgencyId|GS1" />
-    <LNK A="PDT1" B="QuantitativeMeasurements.measurementClassificationTypeCode.Seed Count|892" />
+    <LNK A="PDT1" B="QuantitativeMeasurements.measurementClassificationTypeCode.SeedCount|892" />
     <LNK A="PDT1" B="QuantitativeMeasurements.measurementClassificationTypeCode.unitOfMeasure|count/bg" />
     <LNK A="PDT1" B="QuantitativeMeasurements.measurementClassificationTypeCode.measurementTimestamp|2/8/2021 12:17:45 PM" />
-    <LNK A="PDT1" B="QuantitativeMeasurements.measurementClassificationTypeCode.Seed Count|892" />
-    <LNK A="PDT1" B="QuantitativeMeasurements.measurementClassificationTypeCode.unitOfMeasure|count/bg" />
-    <LNK A="PDT1" B="QuantitativeMeasurements.measurementClassificationTypeCode.measurementTimestamp|2/8/2021 12:17:45 PM" />
-    <LNK A="CTR1" B="12345" C="RetailerERPAccount" />
+    <LNK A="PDT1" B="SeedTreatment.seedTreatmentId|1001339" />
+    <LNK A="PDT1" B="SeedTreatment.substance.TypeCode.substance.Name|Ethaboxam Fungicide" />
   </LGP>
 </ISO11783LinkList>
