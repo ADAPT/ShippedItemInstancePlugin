@@ -6,8 +6,11 @@
     <LNK A="PDT1" B="ItemBrandName|CROPLAN" />
     <LNK A="PDT1" B="ItemVarietyName|VT2P/RIB" />
     <LNK A="PDT1" B="ProductTypeCode.ProductClassificationTypeCode|Crop" />
-    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.1.Corn For Grain|11199199" />
+    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.1.CropType|Corn" />
     <LNK A="PDT1" B="ProductTypeCode.classification.Codes.1.listAgencyIdentifier|USDA" />
+    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.2.Corn|C" />
+    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.2.listAgencyIdentifier|AGIIS" />
+    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.3.Trait|VT2RIB" />
     <LNK A="PDT1" B="LotIdentifier|769MXJ4JX" />
     <LNK A="PDT1" B="Packaging.PackagngTypeCode|SeedBox" />
     <LNK A="PDT1" B="Packaging.SeedBoxIdentifier|844f95ac-422a-406a-91c5-65d017de2f09" />

@@ -36,9 +36,18 @@
           "codes": {
             "code": [
               {
-                "content": "11199199",
+                "content": "Corn",
                 "listAgencyId": "USDA",
-                "typeCode": "Corn For Grain"
+                "typeCode": "CropType"
+              },
+              {
+                "content": "C",
+                "listAgencyId": "AGIIS",
+                "typeCode": "Corn"
+              },
+              {
+                "content": "VT2RIB",
+                "typeCode": "Trait"
               }
             ]
           }
