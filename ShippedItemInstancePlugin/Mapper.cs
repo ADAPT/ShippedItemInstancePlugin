@@ -94,7 +94,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             Console.WriteLine("MapShippedItemInstance -- calling SetManufacturerAndBrand");
             SetManufacturerAndBrand (shippedItemInstance, product);
             //
-            Console.WriteLine("MapShippedItemInstance -- calling GetProduct");
+            Console.WriteLine("MapShippedItemInstance -- calling Set Grower");
             SetGrower(shippedItemInstance);
         }
 
@@ -536,18 +536,22 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     {
                         brandName = new Brand() 
                             { Description = shippedItemInstance.Item.BrandName, ManufacturerId = product.ManufacturerId ?? 0};
+                        Console.WriteLine("Brand Name = "+brandName);
+
                         Catalog.Brands.Add(brandName);
                     }
-                    // where is this set?
+                    // it appears that the Add method generates the Id.ReferenceId
                     product.BrandId = brandName.Id.ReferenceId;
-
-                    product.Description = shippedItemInstance.Item.Description;
-                    
+                   
                     // map to contentItems
                     //
                     // shippedItemInstance.Item.ItemTreatment.Substance.RegistrationStatus
                     // gtin      
                     var gtin = shippedItemInstance.Item.Gtinid;
+
+                    Console.WriteLine("GTIN = " + gtin);
+                    //
+                    // Where is gtin used?
                     //
                     // create a colleciton of Product components and add substatnce to it
                     // var productComponents = shippedItemInstance.Item.ItemTreatment.Substance.FirstOrDefault(s => s.Name = )
@@ -650,18 +654,18 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             if (shippedItemInstance.ShipmentReference.ShipToParty.TypeCode == "Farmer")
                 {
-                    ShipToParty modelGrower = shippedItemInstance.ShipmentReference.ShipToParty;
+                    ShipToParty Farmer = shippedItemInstance.ShipmentReference.ShipToParty;
                     
-                    Grower grower = Catalog.Growers.FirstOrDefault(c => c.Name == modelGrower.Name);
+                    Grower grower = Catalog.Growers.FirstOrDefault(c => c.Name == Farmer.Name);
                     if (grower == null)
                     {
-                        grower = new Grower() { Name = modelGrower.Name };
+                        grower = new Grower() { Name = Farmer.Name };
                         // Previously GLN was used but most farmers lack a GLN, 
                         // so the Retailer's ERP accountId for the farmer is best
                         //
-                        if (modelGrower?.AccountId != null)
+                        if (Farmer.AccountId != null)
                         {
-                            UniqueId id = new UniqueId() { Id = modelGrower.AccountId, Source = "RetailerERPAccount", IdType = IdTypeEnum.String };
+                            UniqueId id = new UniqueId() { Id = Farmer.AccountId, Source = "RetailerERPAccount", IdType = IdTypeEnum.String };
                             grower.Id.UniqueIds.Add(id);
                         }
                         Catalog.Growers.Add(grower);
