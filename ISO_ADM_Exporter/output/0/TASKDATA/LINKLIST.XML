@@ -5,21 +5,26 @@
     <LNK A="CTR1" B="12345" C="RetailerERPAccount" />
   </LGP>
   <LGP A="LGP2" B="2" C="1100046503738" E="ADAPT_Context_Items:Product">
-    <LNK A="PDT1" B="ItemDescription|VT DoublePro RIB Complete Relative Maturity 85 days" />
-    <LNK A="PDT1" B="ItemProductName|CP2585" />
-    <LNK A="PDT1" B="ItemBrandName|CROPLAN" />
-    <LNK A="PDT1" B="ItemVarietyName|VT2P/RIB" />
-    <LNK A="PDT1" B="ProductTypeCode.ProductClassificationTypeCode|Crop" />
-    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.1.CropType|Corn" />
-    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.1.listAgencyIdentifier|USDA" />
-    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.2.Corn|C" />
-    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.2.listAgencyIdentifier|AGIIS" />
-    <LNK A="PDT1" B="ProductTypeCode.classification.Codes.3.Trait|VT2RIB" />
+    <LNK A="PDT1" B="Product.Type|SEED" />
+    <LNK A="PDT1" B="Product.Description|VT DoublePro RIB Complete Relative Maturity 85 days" />
+    <LNK A="PDT1" B="Product.Name|CP2585" />
+    <LNK A="PDT1" B="Product.BrandName|CROPLAN" />
+    <LNK A="PDT1" B="Product.VarietyName|VT2P/RIB" />
+    <LNK A="PDT1" B="Product.PerPackageQuantity|55" />
+    <LNK A="PDT1" B="Product.PerPackageQuantity.UOM|LB" />
+    <LNK A="PDT1" B="Product.Classification.Type|Crop" />
+    <LNK A="PDT1" B="Product.Classification.Codes.1.CropType|Corn" />
+    <LNK A="PDT1" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
+    <LNK A="PDT1" B="Product.Classification.Codes.2.Corn|C" />
+    <LNK A="PDT1" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
+    <LNK A="PDT1" B="Product.Classification.Codes.3.Trait|VT2RIB" />
     <LNK A="PDT1" B="LotIdentifier|769MXJ4JX" />
     <LNK A="PDT1" B="Packaging.ShipUnitTypeCode|SeedBox" />
-    <LNK A="PDT1" B="Packaging.SeedBoxIdentifier|844f95ac-422a-406a-91c5-65d017de2f09" />
-    <LNK A="PDT1" B="Packaging.GrossWeight|2475" />
-    <LNK A="PDT1" B="Packaging.shippedItemInstance.Packaging.Quantity.UnitCode|LB" />
+    <LNK A="PDT1" B="Packaging.SeedBox.Id|844f95ac-422a-406a-91c5-65d017de2f09" />
+    <LNK A="PDT1" B="Packaging.SeedBox.GrossWeight|2475" />
+    <LNK A="PDT1" B="Packaging.SeedBox.GrossWeight.UOM|LB" />
+    <LNK A="PDT1" B="Packaging.SeedBox.PackageQuantity|45" />
+    <LNK A="PDT1" B="Packaging.SeedBox.PackageQuantity.UOM|BG" />
     <LNK A="PDT1" B="ShipmentReference.ShipFromGLN|1100028417954" />
     <LNK A="PDT1" B="ShipmentReference.ShipmentReference.ShipmentId|34343535" />
     <LNK A="PDT1" B="ShipmentReference.ShippingContainerType|Semi-Trailer" />

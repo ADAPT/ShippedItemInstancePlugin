@@ -243,16 +243,33 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
             if (shippedItemInstance.Packaging?.Id != null && shippedItemInstance.Packaging.TypeCode != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + "Identifier", shippedItemInstance.Packaging.Id));
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + ".Id", shippedItemInstance.Packaging.Id));
             }
-            if (shippedItemInstance.Packaging.Quantity.TypeCode != null && shippedItemInstance.Packaging.Quantity.Content != null)
+            if (shippedItemInstance.Packaging.TypeCode != null && shippedItemInstance.Packaging.Quantity.TypeCode != null
+                && shippedItemInstance.Packaging.Quantity.Content != null && shippedItemInstance.Packaging.Quantity.UnitCode != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.Quantity.TypeCode, shippedItemInstance.Packaging.Quantity.Content.ToString()));
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + "." + shippedItemInstance.Packaging.Quantity.TypeCode, shippedItemInstance.Packaging.Quantity.Content.ToString()));
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + "." +
+                    shippedItemInstance.Packaging.Quantity.TypeCode + ".UOM", shippedItemInstance.Packaging.Quantity.UnitCode));
             }
-            if (shippedItemInstance.Packaging.Quantity.UnitCode != null )
+
+            // how many bags went into the the seed box
+            // what is the weight of each bag
+            //
+            if (shippedItemInstance.Packaging.TypeCode != null &&
+                shippedItemInstance.Packaging.Quantity.Content != null &&
+                shippedItemInstance.Packaging.Quantity.UnitCode != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("shippedItemInstance.Packaging.Quantity.UnitCode", shippedItemInstance.Packaging.Quantity.UnitCode));
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
+                    ".PackageQuantity"
+                    , shippedItemInstance.Quantity.Content.ToString()));
+                // need SII change - Quantity.TypeCode added (preferred)
+                // or Package.Quantity as an array
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
+                    ".PackageQuantity.UOM"
+                    , shippedItemInstance.Quantity.UnitCode));
             }
+
             if (contextItem.NestedItems.Count > 0)
             {
                 items.Add(contextItem);
@@ -276,9 +293,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
 
             // Retailer generated Shipment Id
-            
+
             nestedContextItem.NestedItems.Add(CreateContextItem("ShipmentId", shippedItemInstance.ShipmentReference?.Id));
-            
+
             if (nestedContextItem.NestedItems.Count > 0)
             {
                 contextItem.NestedItems.Add(nestedContextItem);
@@ -295,7 +312,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     shippedItemInstance.ShipmentReference.ShipUnitReference.Id.Content.ToString()));
             }
 
-              // Carrier SCAC code
+            // Carrier SCAC code
             if (shippedItemInstance.ShipmentReference.CarrierParty?.Scacid != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem("CarrierSCAC", shippedItemInstance.ShipmentReference.CarrierParty?.Scacid));
@@ -376,7 +393,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", seedTreatment.Name);
             try
             {
-                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("seedTreatmentId",seedTreatment.Id));
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("seedTreatmentId", seedTreatment.Id));
 
                 foreach (ItemItemTreatmentSubstance substance in shippedItemInstance.Item.ItemTreatment.Substance)
                 {
@@ -389,7 +406,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                         {
                             seedTreatmentContextItem.NestedItems.Add(seedTreatmentSubstanceContextItem);
                         }
- 
+
                         // Create foreach on ItemTreatmentSubstanceRegistrationStatus
 
                     }
@@ -472,36 +489,50 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         {
             List<ContextItem> contextItems = new List<ContextItem>();
 
+            if (shippedItemInstance.TypeCode != null)
+            {
+                contextItems.Add(CreateContextItem("Product.Type", shippedItemInstance.TypeCode));
+            }
             if (shippedItemInstance.Item.Description != null)
             {
-                contextItems.Add(CreateContextItem("ItemDescription", shippedItemInstance.Item.Description));
+                contextItems.Add(CreateContextItem("Product.Description", shippedItemInstance.Item.Description));
             }
             if (shippedItemInstance.Item.ProductName != null)
             {
-                contextItems.Add(CreateContextItem("ItemProductName", shippedItemInstance.Item.ProductName));
+                contextItems.Add(CreateContextItem("Product.Name", shippedItemInstance.Item.ProductName));
             }
             if (shippedItemInstance.Item.BrandName != null)
             {
-                contextItems.Add(CreateContextItem("ItemBrandName", shippedItemInstance.Item.BrandName));
+                contextItems.Add(CreateContextItem("Product.BrandName", shippedItemInstance.Item.BrandName));
             }
             if (shippedItemInstance.Item.VarietyName != null)
             {
-                contextItems.Add(CreateContextItem("ItemVarietyName", shippedItemInstance.Item.VarietyName));
+                contextItems.Add(CreateContextItem("Product.VarietyName", shippedItemInstance.Item.VarietyName));
             }
 
+            // item perPackage quantity, e.g., weight of a bag
+            //
+            if (shippedItemInstance.Item.Packaging.PerPackageQuantity.Content != null &&
+                shippedItemInstance.Item.Packaging.PerPackageQuantity.UnitCode != null)
+            {
+                contextItems.Add(CreateContextItem("Product.PerPackageQuantity",
+                    shippedItemInstance.Item.Packaging.PerPackageQuantity.Content.ToString()));
+                contextItems.Add(CreateContextItem("Product.PerPackageQuantity.UOM",
+                    shippedItemInstance.Item.Packaging.PerPackageQuantity.UnitCode));
+            }
             // Classification
             // this is already in Crop
             //
-            ContextItem classificationContextItem = CreateContextItem("ProductTypeCode", shippedItemInstance.TypeCode);
+            ContextItem classificationContextItem = CreateContextItem("Product.Classification", "");
 
             if (shippedItemInstance.Item?.Classification?.Codes?.Code != null)
             {
-                classificationContextItem.NestedItems.Add(CreateContextItem("ProductClassificationTypeCode", shippedItemInstance.Item.Classification.TypeCode));
+                classificationContextItem.NestedItems.Add(CreateContextItem("Type", shippedItemInstance.Item.Classification.TypeCode));
             }
             var count = shippedItemInstance.Item?.Classification?.Codes?.Code?.Count;
             if (count != null && count > 0)
             {
-                ContextItem codesContextItem = CreateContextItem("classification.Codes", null);
+                ContextItem codesContextItem = CreateContextItem("Codes", null);
 
                 int codeIndex = 0;
 
@@ -515,7 +546,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     }
                     if (code.ListAgencyId != null)
                     {
-                        codeContextItem.NestedItems.Add(CreateContextItem("listAgencyIdentifier", code.ListAgencyId));
+                        codeContextItem.NestedItems.Add(CreateContextItem("ListAgencyId", code.ListAgencyId));
                     }
 
                     if (codeContextItem.NestedItems.Count > 0)
@@ -524,11 +555,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     }
                 }
 
+
                 if (codesContextItem.NestedItems.Count > 0)
                 {
                     classificationContextItem.NestedItems.Add(codesContextItem);
                 }
             }
+
             if (classificationContextItem.NestedItems.Count > 0)
             {
                 contextItems.Add(classificationContextItem);
@@ -559,7 +592,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 if (shippedItemInstance.Item.BrandName != null)
                 {
                     var brandName = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
-                    
+
                     if (brandName == null)
                     {
                         brandName = new Brand()
@@ -587,13 +620,6 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                 }
 
-                if (shippedItemInstance.Item.VarietyName != null)
-                {
-                    var varietyName = shippedItemInstance.Item.VarietyName;
-                    Console.WriteLine("varietyName = " + varietyName);
-                    // how does this get mapped to CVT in ISO?
-                    // CVT seems to be coming from product.Description
-                }
             }
         }
 
@@ -647,6 +673,16 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                                 Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
 
                                 // 
+                                if (shippedItemInstance.Item.VarietyName != null)
+                                {
+
+                                    var varietyName = shippedItemInstance.Item.VarietyName;
+
+                                    Console.WriteLine("varietyName = " + varietyName);
+
+                                    // how does this get mapped to CVT in ISO?
+                                    // CVT seems to be coming from product.Description
+                                }
                                 // 2025-03-22 Was this intended to be to default if no crop found above, or this should this be != null?
                                 //
                                 if (crop == null)
@@ -654,6 +690,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                                     // 2025-03-22
                                     //
                                     crop = new Crop() { Name = cropName };
+
                                     crop.Id.UniqueIds.Add(new UniqueId()
                                     { Source = idAgency, IdType = IdTypeEnum.String, Id = cropID });
                                     Catalog.Crops.Add(crop);
