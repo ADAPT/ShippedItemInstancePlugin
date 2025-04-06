@@ -373,6 +373,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 }
             }
 
+
             if (shippedItemInstance.Item.ItemTreatment.Substance.Count() > 0 &&
                 shippedItemInstance.Item.ItemTreatment.Name != null)
             // seed treatment is defined, as well is the substances used
@@ -395,14 +396,14 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", seedTreatment.Name);
             try
             {
-                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("seedTreatmentId", seedTreatment.Id));
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Id", seedTreatment.Id));
 
                 foreach (ItemItemTreatmentSubstance substance in shippedItemInstance.Item.ItemTreatment.Substance)
                 {
                     if (substance.Name != null && substance.RegistrationStatus != null)
                     {
-                        ContextItem seedTreatmentSubstanceContextItem = CreateContextItem("substance.TypeCode", substance.TypeCode);
-                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("substance.Name", substance.Name));
+                        ContextItem seedTreatmentSubstanceContextItem = CreateContextItem("Substance", "");
+                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("Name", substance.Name));
 
                         if (seedTreatmentSubstanceContextItem.NestedItems.Count > 0)
                         {
@@ -410,6 +411,26 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                         }
 
                         // Create foreach on ItemTreatmentSubstanceRegistrationStatus
+                        if (substance.RegistrationStatus != null)
+                        {
+                            foreach (ItemItemTreatmentRegistrationStatus registrationStatus in substance.RegistrationStatus)
+                            {
+                                if (registrationStatus.Id.Content != null &&
+                                    registrationStatus.EffectiveTimePeriod != null &&
+                                    registrationStatus.Id.TypeCode != null)
+                                {
+                                    seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus.EffectiveEndDateTime",
+                                        registrationStatus.EffectiveTimePeriod.EndDateTime.ToString()));
+                                    seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus." + registrationStatus.Id.TypeCode + ".Id",
+                                        registrationStatus.Id.Content.ToString()));
+                                }
+                                if (registrationStatus.Id.SchemeAgencyId != null)
+                                {
+                                    seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus.Agency",
+                                        registrationStatus.Id.SchemeAgencyId));
+                                }
+                            }
+                        }
 
                     }
                 }
@@ -447,35 +468,33 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         private ContextItem CreateQuantitativeResultsContextItem(ShippedItemInstance shippedItemInstance)
         {
-            ContextItem results = CreateContextItem("QuantitativeMeasurements", null);
+            ContextItem results = CreateContextItem("Results", null);
 
-            // int quantitateResultIndex = 0;
+            int quantitateResultIndex = 0;
+            
             foreach (Measurement measurement in shippedItemInstance.Results.Quantitative.Measurement)
             {
-                // why isn't this the name instead of a numeric index?
-                // old: 
-                // ContextItem measurementContextItem = CreateContextItem((++quantitateResultIndex).ToString(), null);
+         
+                ContextItem measurementContextItem = CreateContextItem("QuantitativeMeasurements." + (++quantitateResultIndex).ToString(), null);
 
-                ContextItem measurementContextItem = CreateContextItem("measurementClassificationTypeCode", measurement.TypeCode);
-
-                // type code only classifies the measurement, and we discussed if there was value to field operations, such as equipment setup
-                // if so, it can be brought into the MICS but today this cannot be displayed to the farmer to assist equipment setup
-                // in an automated or semi-automated manner
                 //
                 if (measurement.Name != null && measurement.Measure != null)
                 {
+                    Console.WriteLine("Measurement name = " +  measurement.Name + " Value = " + measurement.Measure);
                     measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name, measurement.Measure.ToString()));
 
                 }
 
-                if (measurement.UnitCode != null)
+                if (measurement.Name != null && measurement.UnitCode != null)
                 {
-                    measurementContextItem.NestedItems.Add(CreateContextItem("unitOfMeasure", measurement.UnitCode));
+                    Console.WriteLine("Measurement UOM = " +  measurement.UnitCode );
+                    measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name+ ".UOM", measurement.UnitCode));
                 }
 
-                if (measurement.DateTime != null)
+                if (measurement.Name != null && measurement.DateTime != null)
                 {
-                    measurementContextItem.NestedItems.Add(CreateContextItem("measurementTimestamp", measurement.DateTime.ToString()));
+                    Console.WriteLine("Measurement temestamp = " +  measurement.DateTime );
+                    measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name + ".Timestamp", measurement.DateTime.ToString()));
                 }
 
                 if (measurementContextItem.NestedItems.Count > 0)
