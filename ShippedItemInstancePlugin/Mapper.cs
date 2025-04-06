@@ -260,11 +260,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 shippedItemInstance.Packaging.Quantity.Content != null &&
                 shippedItemInstance.Packaging.Quantity.UnitCode != null)
             {
+                // 
+                // need SII model point release change - Quantity.TypeCode added (preferred)
+                // or Package.Quantity as an array
+                //
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
                     ".PackageQuantity"
                     , shippedItemInstance.Quantity.Content.ToString()));
-                // need SII change - Quantity.TypeCode added (preferred)
-                // or Package.Quantity as an array
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
                     ".PackageQuantity.UOM"
                     , shippedItemInstance.Quantity.UnitCode));
