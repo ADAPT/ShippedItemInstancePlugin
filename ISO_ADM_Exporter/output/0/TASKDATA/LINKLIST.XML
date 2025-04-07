@@ -24,11 +24,6 @@
     <LNK A="PDT1" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT1" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT1" B="InFieldProductID.API.Path.id|6af79ed0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT1" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT1" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT2" B="Product.Type|seed" />
     <LNK A="PDT2" B="Product.Description|3510Enlist SDBX ESCALATE BEANS" />
     <LNK A="PDT2" B="Product.Name|3510Enlist" />
@@ -47,11 +42,6 @@
     <LNK A="PDT2" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT2" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT2" B="InFieldProductID.API.Path.id|6b072f30-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT2" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT2" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT2" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT2" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT2" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT3" B="Product.Type|seed" />
     <LNK A="PDT3" B="Product.Description|XL 6081AM BAG ESCALATE MED FLAT CORN" />
     <LNK A="PDT3" B="Product.Name|XL 6081AM " />
@@ -70,11 +60,6 @@
     <LNK A="PDT3" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT3" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT3" B="InFieldProductID.API.Path.id|6b167170-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT3" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT3" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT3" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT3" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT3" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT4" B="Product.Type|seed" />
     <LNK A="PDT4" B="Product.Description|XL 6241QR BAG ESCALATE MED FLAT CORN" />
     <LNK A="PDT4" B="Product.Name|XL 6241QR " />
@@ -93,11 +78,6 @@
     <LNK A="PDT4" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT4" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT4" B="InFieldProductID.API.Path.id|6b25dac0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT4" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT4" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT4" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT4" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT4" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT5" B="Product.Type|seed" />
     <LNK A="PDT5" B="Product.Description|6374VT2P BAG ESCALATE MED FLAT CORN" />
     <LNK A="PDT5" B="Product.Name|6374VT2P B" />
@@ -116,11 +96,6 @@
     <LNK A="PDT5" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT5" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT5" B="InFieldProductID.API.Path.id|6b354410-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT5" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT5" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT5" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT5" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT5" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT6" B="Product.Type|seed" />
     <LNK A="PDT6" B="Product.Description|6414VT2P BAG ESCALATE MED FLAT CORN" />
     <LNK A="PDT6" B="Product.Name|6414VT2P B" />
@@ -137,11 +112,6 @@
     <LNK A="PDT6" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT6" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT6" B="InFieldProductID.API.Path.id|6b44ad60-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT6" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT6" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT6" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT6" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT6" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT7" B="Product.Type|seed" />
     <LNK A="PDT7" B="Product.Description|3830Enlist SDBX ESCALATE SDS+ BEANS" />
     <LNK A="PDT7" B="Product.Name|3830Enlist" />
@@ -160,11 +130,6 @@
     <LNK A="PDT7" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT7" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT7" B="InFieldProductID.API.Path.id|6b53efa0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT7" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT7" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT7" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT7" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT7" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT8" B="Product.Type|seed" />
     <LNK A="PDT8" B="Product.Description|4320Enlist SDBX EXCALATE SDS+ BEANS" />
     <LNK A="PDT8" B="Product.Name|4320Enlist" />
@@ -183,11 +148,6 @@
     <LNK A="PDT8" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT8" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT8" B="InFieldProductID.API.Path.id|6b6358f0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT8" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT8" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT8" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT8" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT8" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT9" B="Product.Type|seed" />
     <LNK A="PDT9" B="Product.Description|4030Enlist SDBX ESCALATE SDS+ BEANS" />
     <LNK A="PDT9" B="Product.Name|4030Enlist" />
@@ -205,11 +165,6 @@
     <LNK A="PDT9" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT9" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT9" B="InFieldProductID.API.Path.id|6b729b30-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT9" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT9" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT9" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT9" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT9" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT10" B="Product.Type|seed" />
     <LNK A="PDT10" B="Product.Description|3030Enlist SDBX ESCALATE SDS+ BEANS" />
     <LNK A="PDT10" B="Product.Name|3030Enlist" />
@@ -228,11 +183,6 @@
     <LNK A="PDT10" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT10" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT10" B="InFieldProductID.API.Path.id|6b820480-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT10" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT10" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT10" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT10" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT10" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT11" B="Product.Type|seed" />
     <LNK A="PDT11" B="Product.Description|4030Enlist SDBX ILEVO TWO BEANS" />
     <LNK A="PDT11" B="Product.Name|4030Enlist" />
@@ -251,11 +201,6 @@
     <LNK A="PDT11" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT11" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT11" B="InFieldProductID.API.Path.id|6b9194e0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT11" B="SeedTreatment.Id|ILEVO" />
-    <LNK A="PDT11" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT11" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT11" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT11" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT12" B="Product.Type|seed" />
     <LNK A="PDT12" B="Product.Description|A6544-VT2RIB" />
     <LNK A="PDT12" B="Product.Name|A6544" />
@@ -274,11 +219,6 @@
     <LNK A="PDT12" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT12" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT12" B="InFieldProductID.API.Path.id|6ba0d720-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT12" B="SeedTreatment.Id|NA" />
-    <LNK A="PDT12" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT12" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT12" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT12" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT13" B="Product.Type|seed" />
     <LNK A="PDT13" B="Product.Description|A64516-VT2RIB" />
     <LNK A="PDT13" B="Product.Name|A64516" />
@@ -297,11 +237,6 @@
     <LNK A="PDT13" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT13" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT13" B="InFieldProductID.API.Path.id|6bb04070-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT13" B="SeedTreatment.Id|NA" />
-    <LNK A="PDT13" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT13" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT13" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT13" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
     <LNK A="PDT14" B="Product.Type|seed" />
     <LNK A="PDT14" B="Product.Description|A64259-VT2RIB" />
     <LNK A="PDT14" B="Product.Name|A64259" />
@@ -320,10 +255,5 @@
     <LNK A="PDT14" B="ShipmentReference.ShippingContainerIdentifer. USDOT_Number|12345678" />
     <LNK A="PDT14" B="ShipmentReference.CarrierSCAC|NA" />
     <LNK A="PDT14" B="InFieldProductID.API.Path.id|6bbf82b0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT14" B="SeedTreatment.Id|NA" />
-    <LNK A="PDT14" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
-    <LNK A="PDT14" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
-    <LNK A="PDT14" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
-    <LNK A="PDT14" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
   </LGP>
 </ISO11783LinkList>

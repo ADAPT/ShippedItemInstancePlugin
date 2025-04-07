@@ -349,14 +349,16 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             contextItem = CreateContextItem("EncodedIdentification", null);
 
             //  content contains the actual value
-
-            if (shippedItemInstance.Uid?.Content != null && shippedItemInstance.Uid.SchemeId != null)
+            Console.WriteLine("Uid  content and SchemeId test");
+            if (shippedItemInstance.Uid?.Content?.ToString() != null && shippedItemInstance.Uid?.SchemeId?.ToString() != null)
             {
+                Console.WriteLine("Uid passed");
                 contextItem.NestedItems.Add(CreateContextItem("encodingSchemaId", shippedItemInstance.Uid.SchemeId));
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Uid.SchemeId + "Id", shippedItemInstance.Uid.Content));
             }
             // Scheme Agency is who manages the encoding scheme
-            if (shippedItemInstance.Uid?.SchemeAgencyId != null)
+            Console.WriteLine("Uid schemeAgency Test");
+            if (shippedItemInstance.Uid?.SchemeAgencyId?.ToString() != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem("schemaAgencyId", shippedItemInstance.Uid.SchemeAgencyId));
             }
@@ -367,8 +369,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
 
 
-            //
-            if (shippedItemInstance.Results?.Quantitative.Measurement.Count > 0)
+            Console.WriteLine("Results test ");
+            if (shippedItemInstance?.Results?.Quantitative?.Measurement?.Count > 0)
             {
                 contextItem = CreateQuantitativeResultsContextItem(shippedItemInstance);
                 if (contextItem.NestedItems.Count > 0)
@@ -377,13 +379,14 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 }
             }
 
-
-            if (shippedItemInstance.Item.ItemTreatment.Substance.Count() > 0 &&
-                shippedItemInstance.Item.ItemTreatment.Name != null)
+             Console.WriteLine ("Item Treatment Test");
+            if (shippedItemInstance.Item?.ItemTreatment?.Substance?.Count() > 0 &&
+                shippedItemInstance.Item?.ItemTreatment?.Name != null)
             // seed treatment is defined, as well is the substances used
+
             //
             {
-
+                Console.WriteLine("Item Treatment Test passed entering CreateItemTreatmentContextItem");
                 contextItem = CreateItemTreatmentContextItem(shippedItemInstance);
                 // 
                 if (contextItem.NestedItems.Count > 0)

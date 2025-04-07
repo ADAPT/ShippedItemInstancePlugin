@@ -38,26 +38,7 @@
       "productName": "3230Enlist",
       "itemTreatment": {
         "id": "ESCALATE SDS+",
-        "name": "ESCALATE SDS+",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE SDS+"
       }
     },
     "quantity": {
@@ -155,26 +136,7 @@
       "productName": "3510Enlist",
       "itemTreatment": {
         "id": "ESCALATE",
-        "name": "ESCALATE",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE"
       }
     },
     "quantity": {
@@ -272,26 +234,7 @@
       "productName": "XL 6081AM ",
       "itemTreatment": {
         "id": "ESCALATE",
-        "name": "ESCALATE",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE"
       }
     },
     "quantity": {
@@ -389,26 +332,7 @@
       "productName": "XL 6241QR ",
       "itemTreatment": {
         "id": "ESCALATE",
-        "name": "ESCALATE",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE"
       }
     },
     "quantity": {
@@ -506,26 +430,7 @@
       "productName": "6374VT2P B",
       "itemTreatment": {
         "id": "ESCALATE",
-        "name": "ESCALATE",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE"
       }
     },
     "quantity": {
@@ -618,26 +523,7 @@
       "productName": "6414VT2P B",
       "itemTreatment": {
         "id": "ESCALATE",
-        "name": "ESCALATE",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE"
       }
     },
     "quantity": {
@@ -735,26 +621,7 @@
       "productName": "3830Enlist",
       "itemTreatment": {
         "id": "ESCALATE SDS+",
-        "name": "ESCALATE SDS+",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE SDS+"
       }
     },
     "quantity": {
@@ -852,26 +719,7 @@
       "productName": "4320Enlist",
       "itemTreatment": {
         "id": "ESCALATE SDS+",
-        "name": "ESCALATE SDS+",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE SDS+"
       }
     },
     "quantity": {
@@ -973,26 +821,7 @@
       "productName": "4030Enlist",
       "itemTreatment": {
         "id": "ESCALATE SDS+",
-        "name": "ESCALATE SDS+",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE SDS+"
       }
     },
     "quantity": {
@@ -1086,26 +915,7 @@
       "productName": "3030Enlist",
       "itemTreatment": {
         "id": "ESCALATE SDS+",
-        "name": "ESCALATE SDS+",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ESCALATE SDS+"
       }
     },
     "quantity": {
@@ -1203,26 +1013,7 @@
       "productName": "4030Enlist",
       "itemTreatment": {
         "id": "ILEVO",
-        "name": "ILEVO",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
+        "name": "ILEVO"
       }
     },
     "quantity": {
@@ -1317,30 +1108,7 @@
       },
       "gtinid": "",
       "varietyName": "A6544",
-      "productName": "A6544",
-      "itemTreatment": {
-        "id": "NA",
-        "name": "NA",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
-      }
+      "productName": "A6544"
     },
     "quantity": {
       "unitCode": "Bags",
@@ -1434,30 +1202,7 @@
       },
       "gtinid": "",
       "varietyName": "A64516",
-      "productName": "A64516",
-      "itemTreatment": {
-        "id": "NA",
-        "name": "NA",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
-      }
+      "productName": "A64516"
     },
     "quantity": {
       "unitCode": "Bags",
@@ -1551,30 +1296,7 @@
       },
       "gtinid": "",
       "varietyName": "A64259",
-      "productName": "A64259",
-      "itemTreatment": {
-        "id": "NA",
-        "name": "NA",
-        "substance": [
-          {
-            "typeCode": "active_ingredient",
-            "id": "Ethaboxam",
-            "name": "Ethaboxam Fungicide",
-            "registrationStatus": [
-              {
-                "id": {
-                  "content": "162650-77-3",
-                  "schemeAgencyId": "Chemical Abstracts Service",
-                  "typeCode": "CAS"
-                },
-                "effectiveTimePeriod": {
-                  "endDateTime": "2030-07-01"
-                }
-              }
-            ]
-          }
-        ]
-      }
+      "productName": "A64259"
     },
     "quantity": {
       "unitCode": "Bags",
