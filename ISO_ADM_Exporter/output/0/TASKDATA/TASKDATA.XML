@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ISO11783_TaskData VersionMajor="4" VersionMinor="2" ManagementSoftwareManufacturer="AgGateway" ManagementSoftwareVersion="1.0" TaskControllerManufacturer="" TaskControllerVersion="" DataTransferOrigin="1">
-  <!--Export created 4/6/2025 12:25:33 AM-->
+  <!--Export created 4/6/2025 7:54:17 PM-->
   <PGP A="PGP1" B="CropType" C="2" />
-  <CTP A="CTP1" B="Corn" C="PGP1">
-    <CVT A="CVT1" B="CP2585-769MXJ4JX" C="PDT1" />
+  <CTP A="CTP1" B="Soybeans" C="PGP1">
+    <CVT A="CVT1" B="3230Enlist-E22388816X" C="PDT1" />
+    <CVT A="CVT2" B="3510Enlist-F2212127X" C="PDT2" />
+    <CVT A="CVT3" B="3830Enlist-F22121214X" C="PDT7" />
+    <CVT A="CVT4" B="4320Enlist-A22242312X" C="PDT8" />
+    <CVT A="CVT5" B="4030Enlist-B2227251X" C="PDT9" />
+    <CVT A="CVT6" B="3030Enlist-E2238579X" C="PDT10" />
+    <CVT A="CVT7" B="4030Enlist-B2223136XI" C="PDT11" />
   </CTP>
-  <PDT A="PDT1" B="CP2585-769MXJ4JX" C="PGP1" F="1" />
-  <CTR A="CTR1" B="Farmer Bob" />
+  <CTP A="CTP2" B="Corn" C="PGP1">
+    <CVT A="CVT8" B="XL 6081AM -S116FF" C="PDT3" />
+    <CVT A="CVT9" B="XL 6241QR -S260FF" C="PDT4" />
+    <CVT A="CVT10" B="6374VT2P B-S65FF" C="PDT5" />
+    <CVT A="CVT11" B="A6544-EF06466361" C="PDT12" />
+    <CVT A="CVT12" B="A64516-EF09168506" C="PDT13" />
+    <CVT A="CVT13" B="A64259-II36062097" C="PDT14" />
+  </CTP>
+  <PDT A="PDT1" B="3230Enlist-E22388816X" C="PGP1" F="1" />
+  <PDT A="PDT2" B="3510Enlist-F2212127X" C="PGP1" F="1" />
+  <PDT A="PDT3" B="XL 6081AM -S116FF" C="PGP1" F="1" />
+  <PDT A="PDT4" B="XL 6241QR -S260FF" C="PGP1" F="1" />
+  <PDT A="PDT5" B="6374VT2P B-S65FF" C="PGP1" F="1" />
+  <PDT A="PDT6" B="6414VT2P B-E181FF" C="PGP1" F="1" />
+  <PDT A="PDT7" B="3830Enlist-F22121214X" C="PGP1" F="1" />
+  <PDT A="PDT8" B="4320Enlist-A22242312X" C="PGP1" F="1" />
+  <PDT A="PDT9" B="4030Enlist-B2227251X" C="PGP1" F="1" />
+  <PDT A="PDT10" B="3030Enlist-E2238579X" C="PGP1" F="1" />
+  <PDT A="PDT11" B="4030Enlist-B2223136XI" C="PGP1" F="1" />
+  <PDT A="PDT12" B="A6544-EF06466361" C="PGP1" F="1" />
+  <PDT A="PDT13" B="A64516-EF09168506" C="PGP1" F="1" />
+  <PDT A="PDT14" B="A64259-II36062097" C="PGP1" F="1" />
+  <CTR A="CTR1" B="Jeremy Wilson" />
   <AFE A="LINKLIST.XML" B="2" C="" D="1" />
 </ISO11783_TaskData>

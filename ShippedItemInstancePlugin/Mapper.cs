@@ -195,7 +195,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             // TODO:  Create parent as LotBatchInformation, nested identifier, type code, and optional serial numbers
             // move this to ProductContextItems
 
-            if (shippedItemInstance.Lot?.TypeCode != null && shippedItemInstance.Lot.Id != null)
+            if (shippedItemInstance.Lot?.TypeCode != null && shippedItemInstance.Lot?.Id != null)
             {
                 items.Add(CreateContextItem(shippedItemInstance.Lot.TypeCode + "Identifier", shippedItemInstance.Lot.Id));
 
@@ -211,7 +211,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 //
                 //
                 //
-                if (shippedItemInstance.Lot.SerialNumberId != null)
+                Console.WriteLine("Testing serial number id");
+                if (shippedItemInstance.Lot?.SerialNumberId != null)
                 {
                     Console.WriteLine(" //// serial numbers found  /////");
                     ContextItem lotSerialNumberIdsContextItem = CreateContextItem("SerialNumberIds", null);
@@ -237,16 +238,18 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             ContextItem contextItem = CreateContextItem("Packaging", null);
 
             // Add Packaging nested items
-            if (shippedItemInstance.Packaging?.TypeCode != null)
+            Console.WriteLine("Test sii.packaging.typeCode");
+            if (shippedItemInstance?.Packaging?.TypeCode != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem("ShipUnitTypeCode", shippedItemInstance.Packaging.TypeCode));
             }
-            if (shippedItemInstance.Packaging?.Id != null && shippedItemInstance.Packaging.TypeCode != null)
+
+            if (shippedItemInstance?.Packaging?.Id != null && shippedItemInstance?.Packaging?.TypeCode != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + ".Id", shippedItemInstance.Packaging.Id));
             }
-            if (shippedItemInstance.Packaging.TypeCode != null && shippedItemInstance.Packaging.Quantity.TypeCode != null
-                && shippedItemInstance.Packaging.Quantity.Content != null && shippedItemInstance.Packaging.Quantity.UnitCode != null)
+            if (shippedItemInstance?.Packaging?.TypeCode != null && shippedItemInstance?.Packaging?.Quantity?.TypeCode != null
+                && shippedItemInstance?.Packaging?.Quantity?.Content != null && shippedItemInstance?.Packaging?.Quantity?.UnitCode != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + "." + shippedItemInstance.Packaging.Quantity.TypeCode, shippedItemInstance.Packaging.Quantity.Content.ToString()));
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + "." +
@@ -256,9 +259,10 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             // how many bags went into the the seed box
             // what is the weight of each bag
             //
-            if (shippedItemInstance.Packaging.TypeCode != null &&
-                shippedItemInstance.Packaging.Quantity.Content != null &&
-                shippedItemInstance.Packaging.Quantity.UnitCode != null)
+            Console.WriteLine("Test package quantity");
+            if (shippedItemInstance?.Packaging?.TypeCode != null &&
+                shippedItemInstance?.Packaging?.Quantity?.Content != null &&
+                shippedItemInstance?.Packaging?.Quantity?.UnitCode != null)
             {
                 // 
                 // need SII model point release change - Quantity.TypeCode added (preferred)
@@ -471,29 +475,29 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             ContextItem results = CreateContextItem("Results", null);
 
             int quantitateResultIndex = 0;
-            
+
             foreach (Measurement measurement in shippedItemInstance.Results.Quantitative.Measurement)
             {
-         
+
                 ContextItem measurementContextItem = CreateContextItem("QuantitativeMeasurements." + (++quantitateResultIndex).ToString(), null);
 
                 //
                 if (measurement.Name != null && measurement.Measure != null)
                 {
-                    Console.WriteLine("Measurement name = " +  measurement.Name + " Value = " + measurement.Measure);
+                    Console.WriteLine("Measurement name = " + measurement.Name + " Value = " + measurement.Measure);
                     measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name, measurement.Measure.ToString()));
 
                 }
 
                 if (measurement.Name != null && measurement.UnitCode != null)
                 {
-                    Console.WriteLine("Measurement UOM = " +  measurement.UnitCode );
-                    measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name+ ".UOM", measurement.UnitCode));
+                    Console.WriteLine("Measurement UOM = " + measurement.UnitCode);
+                    measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name + ".UOM", measurement.UnitCode));
                 }
 
                 if (measurement.Name != null && measurement.DateTime != null)
                 {
-                    Console.WriteLine("Measurement temestamp = " +  measurement.DateTime );
+                    Console.WriteLine("Measurement temestamp = " + measurement.DateTime);
                     measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name + ".Timestamp", measurement.DateTime.ToString()));
                 }
 
@@ -533,8 +537,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             // item perPackage quantity, e.g., weight of a bag
             //
-            if (shippedItemInstance.Item.Packaging.PerPackageQuantity.Content != null &&
-                shippedItemInstance.Item.Packaging.PerPackageQuantity.UnitCode != null)
+            if (shippedItemInstance.Item?.Packaging?.PerPackageQuantity?.Content != null &&
+                shippedItemInstance.Item?.Packaging?.PerPackageQuantity?.UnitCode != null)
             {
                 contextItems.Add(CreateContextItem("Product.PerPackageQuantity",
                     shippedItemInstance.Item.Packaging.PerPackageQuantity.Content.ToString()));
@@ -550,7 +554,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             {
                 classificationContextItem.NestedItems.Add(CreateContextItem("Type", shippedItemInstance.Item.Classification.TypeCode));
             }
-            var count = shippedItemInstance.Item?.Classification?.Codes?.Code?.Count;
+            var count = shippedItemInstance.Item?.Classification.Codes?.Code.Count;
             if (count != null && count > 0)
             {
                 ContextItem codesContextItem = CreateContextItem("Codes", null);
@@ -598,7 +602,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             if (product != null)
             {
-                if (shippedItemInstance.Item.ManufacturingParty?.Name != null)
+                if (shippedItemInstance.Item?.ManufacturingParty?.Name != null)
                 {
                     var manufacturer = Catalog.Manufacturers.FirstOrDefault(m => m.Description == shippedItemInstance.Item.ManufacturingParty.Name);
                     if (manufacturer == null)
@@ -610,7 +614,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     product.ManufacturerId = manufacturer.Id.ReferenceId;
                 }
 
-                if (shippedItemInstance.Item.BrandName != null)
+                if (shippedItemInstance.Item?.BrandName != null)
                 {
                     var brandName = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
 
@@ -653,7 +657,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //
             // do we need a separate way to manage this?
             //
-            if (shippedItemInstance.Item.Classification.TypeCode.ToLower() == "crop")
+            if (shippedItemInstance.Item.Classification.TypeCode?.ToLower() == "crop")
             {
                 // this is where the product is created -- seems a bit overloaded
                 //
@@ -697,7 +701,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                                 if (shippedItemInstance.Item.VarietyName != null)
                                 {
 
-                                    var varietyName = shippedItemInstance.Item.VarietyName;
+                                    var varietyName = shippedItemInstance?.Item?.VarietyName;
 
                                     Console.WriteLine("varietyName = " + varietyName);
 
@@ -740,8 +744,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //  Shipments from the Retailer to the Grower is for Seed
             //  Shipments from the Farmer to the elevator or processor are for commodity shipments
             //
-
-            if (shippedItemInstance.ShipmentReference.ShipToParty.TypeCode == "Farmer")
+            if (shippedItemInstance.ShipmentReference?.ShipToParty?.TypeCode == "Farmer")
             {
                 ShipToParty Farmer = shippedItemInstance.ShipmentReference.ShipToParty;
 
