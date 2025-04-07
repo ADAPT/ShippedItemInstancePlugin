@@ -689,48 +689,50 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                         // 
                         try
                         {
-                            
-                            string cropName = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").Content.ToString();
-                            Console.WriteLine("cropName = " + cropName);
-
-                            if (cropName.ToString() != null)
+                            if (cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype")?.Content.ToString() != null)
                             {
+                                string cropName = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").Content.ToString();
+                                Console.WriteLine("cropName = " + cropName);
 
-                                string idAgency = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").ListAgencyId;
-                                Console.WriteLine("idAgency = " + idAgency);
-                                //  
-                                //
-                                string cropID = cropInformation.FirstOrDefault(c => c.TypeCode == cropName && c.ListAgencyId == "AGIIS").Content;
-                                Console.WriteLine("cropID = " + cropID);
-                                //  
-                                //
-                                Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
-
-                                // 
-                                if (shippedItemInstance?.Item?.VarietyName?.ToString() != null)
+                                if (cropName.ToString() != null)
                                 {
 
-                                    var varietyName = shippedItemInstance?.Item?.VarietyName;
-
-                                    Console.WriteLine("varietyName = " + varietyName);
-
-                                    // how does this get mapped to CVT in ISO?
-                                    // CVT seems to be coming from product.Description
-                                }
-                                // 2025-03-22 Was this intended to be to default if no crop found above, or this should this be != null?
-                                //
-                                if (crop == null)
-                                {
-                                    // 2025-03-22
+                                    string idAgency = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").ListAgencyId;
+                                    Console.WriteLine("idAgency = " + idAgency);
+                                    //  
                                     //
-                                    crop = new Crop() { Name = cropName };
+                                    string cropID = cropInformation.FirstOrDefault(c => c.TypeCode == cropName && c.ListAgencyId == "AGIIS").Content;
+                                    Console.WriteLine("cropID = " + cropID);
+                                    //  
+                                    //
+                                    Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
 
-                                    crop.Id.UniqueIds.Add(new UniqueId()
-                                    { Source = idAgency, IdType = IdTypeEnum.String, Id = cropID });
-                                    Catalog.Crops.Add(crop);
+                                    // 
+                                    if (shippedItemInstance?.Item?.VarietyName?.ToString() != null)
+                                    {
+
+                                        var varietyName = shippedItemInstance?.Item?.VarietyName;
+
+                                        Console.WriteLine("varietyName = " + varietyName);
+
+                                        // how does this get mapped to CVT in ISO?
+                                        // CVT seems to be coming from product.Description
+                                    }
+                                    // 2025-03-22 Was this intended to be to default if no crop found above, or this should this be != null?
+                                    //
+                                    if (crop == null)
+                                    {
+                                        // 2025-03-22
+                                        //
+                                        crop = new Crop() { Name = cropName };
+
+                                        crop.Id.UniqueIds.Add(new UniqueId()
+                                        { Source = idAgency, IdType = IdTypeEnum.String, Id = cropID });
+                                        Catalog.Crops.Add(crop);
+                                    }
+
+                                    ((CropVarietyProduct)product).CropId = crop.Id.ReferenceId;
                                 }
-
-                                ((CropVarietyProduct)product).CropId = crop.Id.ReferenceId;
                             }
                         }
                         catch (Exception e)
