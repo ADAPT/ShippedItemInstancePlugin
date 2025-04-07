@@ -379,9 +379,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 }
             }
 
-             Console.WriteLine ("Item Treatment Test");
-            if (shippedItemInstance.Item?.ItemTreatment?.Substance?.Count() > 0 &&
-                shippedItemInstance.Item?.ItemTreatment?.Name != null)
+            Console.WriteLine("Item Treatment Test");
+            if (shippedItemInstance.Item?.ItemTreatment?.ToString() != null)
             // seed treatment is defined, as well is the substances used
 
             //
@@ -400,45 +399,51 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         private ContextItem CreateItemTreatmentContextItem(ShippedItemInstance shippedItemInstance)
         {
             ItemItemTreatment seedTreatment = shippedItemInstance.Item.ItemTreatment;
-            ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", seedTreatment.Name);
+            ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", null);
+            if (seedTreatment.Name != null && seedTreatment.Id != null)
+            {
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Name", seedTreatment.Name));
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Id", seedTreatment.Id));
+            }
             try
             {
-                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Id", seedTreatment.Id));
-
-                foreach (ItemItemTreatmentSubstance substance in shippedItemInstance.Item.ItemTreatment.Substance)
+                Console.WriteLine("Testing substance before foreach");
+                if (shippedItemInstance.Item.ItemTreatment?.Substance?.ToString() != null)
                 {
-                    if (substance.Name != null && substance.RegistrationStatus != null)
+                    foreach (ItemItemTreatmentSubstance substance in shippedItemInstance.Item.ItemTreatment.Substance)
                     {
-                        ContextItem seedTreatmentSubstanceContextItem = CreateContextItem("Substance", "");
-                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("Name", substance.Name));
-
-                        if (seedTreatmentSubstanceContextItem.NestedItems.Count > 0)
+                        if (substance.Name != null)
                         {
-                            seedTreatmentContextItem.NestedItems.Add(seedTreatmentSubstanceContextItem);
-                        }
+                            ContextItem seedTreatmentSubstanceContextItem = CreateContextItem("Substance", "");
+                            seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("Name", substance.Name));
 
-                        // Create foreach on ItemTreatmentSubstanceRegistrationStatus
-                        if (substance.RegistrationStatus != null)
-                        {
-                            foreach (ItemItemTreatmentRegistrationStatus registrationStatus in substance.RegistrationStatus)
+                            if (seedTreatmentSubstanceContextItem.NestedItems.Count > 0)
                             {
-                                if (registrationStatus.Id.Content != null &&
-                                    registrationStatus.EffectiveTimePeriod != null &&
-                                    registrationStatus.Id.TypeCode != null)
+                                seedTreatmentContextItem.NestedItems.Add(seedTreatmentSubstanceContextItem);
+                            }
+
+                            // Create foreach on ItemTreatmentSubstanceRegistrationStatus
+                            if (substance?.RegistrationStatus != null)
+                            {
+                                foreach (ItemItemTreatmentRegistrationStatus registrationStatus in substance.RegistrationStatus)
                                 {
-                                    seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus.EffectiveEndDateTime",
-                                        registrationStatus.EffectiveTimePeriod.EndDateTime.ToString()));
-                                    seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus." + registrationStatus.Id.TypeCode + ".Id",
-                                        registrationStatus.Id.Content.ToString()));
-                                }
-                                if (registrationStatus.Id.SchemeAgencyId != null)
-                                {
-                                    seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus.Agency",
-                                        registrationStatus.Id.SchemeAgencyId));
+                                    if (registrationStatus?.Id?.Content != null &&
+                                        registrationStatus?.EffectiveTimePeriod != null &&
+                                        registrationStatus?.Id?.TypeCode != null)
+                                    {
+                                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus.EffectiveEndDateTime",
+                                            registrationStatus.EffectiveTimePeriod.EndDateTime.ToString()));
+                                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus." + registrationStatus.Id.TypeCode + ".Id",
+                                            registrationStatus.Id.Content.ToString()));
+                                    }
+                                    if (registrationStatus?.Id?.SchemeAgencyId != null)
+                                    {
+                                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus.Agency",
+                                            registrationStatus.Id.SchemeAgencyId));
+                                    }
                                 }
                             }
                         }
-
                     }
                 }
 
@@ -673,21 +678,22 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     //
                     // The following will return the array of code entries
                     //
-                    var cropInformation = shippedItemInstance.Item.Classification.Codes.Code;
+                    List<ClassificationCodesCode> cropInformation = shippedItemInstance.Item.Classification.Codes.Code;
 
-                    if (cropInformation != null)
+                    if (cropInformation.Count() > 0)
                     {
                         // CropType 
-                        Console.WriteLine("cropInformation is not null");
+                        Console.WriteLine("cropInformation is not null, count = " + cropInformation.Count().ToString());
                         // should implement equivalent to this JSON PATH
                         // $[0].item.classification.codes.code[?@.typeCode=='CropType'].content
                         // 
                         try
                         {
+                            
                             string cropName = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").Content.ToString();
                             Console.WriteLine("cropName = " + cropName);
 
-                            if (cropName != null)
+                            if (cropName.ToString() != null)
                             {
 
                                 string idAgency = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").ListAgencyId;
@@ -701,7 +707,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                                 Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
 
                                 // 
-                                if (shippedItemInstance.Item.VarietyName != null)
+                                if (shippedItemInstance?.Item?.VarietyName?.ToString() != null)
                                 {
 
                                     var varietyName = shippedItemInstance?.Item?.VarietyName;
