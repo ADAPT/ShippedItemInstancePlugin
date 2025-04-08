@@ -286,7 +286,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             contextItem = CreateContextItem("ShipmentReference", null);
 
             // nested items
-            ContextItem nestedContextItem = CreateContextItem("ShipmentReference", null);
+            // ContextItem nestedContextItem = CreateContextItem("ShipmentReference", null);
 
             // This one has it's own nested items
             if (shippedItemInstance.ShipmentReference?.Id != null)
@@ -300,20 +300,16 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             // Retailer generated Shipment Id
 
-            nestedContextItem.NestedItems.Add(CreateContextItem("ShipmentId", shippedItemInstance.ShipmentReference?.Id));
+            contextItem.NestedItems.Add(CreateContextItem("ShipmentId", shippedItemInstance.ShipmentReference?.Id));
 
-            if (nestedContextItem.NestedItems.Count > 0)
-            {
-                contextItem.NestedItems.Add(nestedContextItem);
-            }
             //  semi-trailer Id
             if (shippedItemInstance.ShipmentReference.ShipUnitReference.Id.Content != null &&
                 shippedItemInstance.ShipmentReference.ShipUnitReference.Id.TypeCode != null &&
                 shippedItemInstance.ShipmentReference.ShipUnitReference.TypeCode != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("ShippingContainerType",
+                contextItem.NestedItems.Add(CreateContextItem("ShippingContainer.Type",
                     shippedItemInstance.ShipmentReference.ShipUnitReference.TypeCode));
-                contextItem.NestedItems.Add(CreateContextItem("ShippingContainerIdentifer." +
+                contextItem.NestedItems.Add(CreateContextItem("ShippingContainer.Id." +
                     shippedItemInstance.ShipmentReference.ShipUnitReference.Id.TypeCode,
                     shippedItemInstance.ShipmentReference.ShipUnitReference.Id.Content.ToString()));
             }
@@ -321,7 +317,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             // Carrier SCAC code
             if (shippedItemInstance.ShipmentReference.CarrierParty?.Scacid != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("CarrierSCAC", shippedItemInstance.ShipmentReference.CarrierParty?.Scacid));
+                contextItem.NestedItems.Add(CreateContextItem("Carrier.SCAC", shippedItemInstance.ShipmentReference.CarrierParty?.Scacid));
             }
 
             if (contextItem.NestedItems.Count > 0)

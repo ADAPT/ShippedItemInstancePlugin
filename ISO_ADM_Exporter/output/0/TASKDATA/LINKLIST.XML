@@ -26,10 +26,10 @@
     <LNK A="PDT1" B="Packaging.SeedBox.PackageQuantity|45" />
     <LNK A="PDT1" B="Packaging.SeedBox.PackageQuantity.UOM|BG" />
     <LNK A="PDT1" B="ShipmentReference.ShipFromGLN|1100028417954" />
-    <LNK A="PDT1" B="ShipmentReference.ShipmentReference.ShipmentId|34343535" />
-    <LNK A="PDT1" B="ShipmentReference.ShippingContainerType|Semi-Trailer" />
-    <LNK A="PDT1" B="ShipmentReference.ShippingContainerIdentifer.USDOT_Number|12345678" />
-    <LNK A="PDT1" B="ShipmentReference.CarrierSCAC|NA" />
+    <LNK A="PDT1" B="ShipmentReference.ShipmentId|34343535" />
+    <LNK A="PDT1" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
+    <LNK A="PDT1" B="ShipmentReference.ShippingContainer.Id.USDOT_Number|12345678" />
+    <LNK A="PDT1" B="ShipmentReference.Carrier.SCAC|NA" />
     <LNK A="PDT1" B="InFieldProductID.API.Path.id|0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" />
     <LNK A="PDT1" B="RelatedIdentifiers.AgGateway.GTIN_URI|https://api.agiis.org/?gtinid=00888346580291" />
     <LNK A="PDT1" B="EncodedIdentification.encodingSchemaId|DataMatrix" />
