@@ -1,12 +1,10 @@
 ﻿/*******************************************************************************
-  * Copyright (C) 2021 AgGateway and ADAPT Contributors
+  * Copyright (C) 2025 AgGateway and ADAPT Contributors
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html <http://www.eclipse.org/legal/epl-v10.html> 
   *
-  * Contributors:
-  *    Rob Cederberg, Kelly Nelson - initial implementation
   *******************************************************************************/
 
 using System;
@@ -14,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AgGateway.ADAPT.ApplicationDataModel.ADM;
+using IO.Swagger.Models;
 using Newtonsoft.Json;
 
 namespace AgGateway.ADAPT.ShippedItemInstancePlugin
@@ -23,7 +22,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         #region IPlugin implementation
         public string Name => "Shipped_Item_Instance-Plugin";
 
-        public string Version => "1.0";
+        public string Version => "4.0";
 
         public string Owner => "AgGateway";
 
@@ -55,17 +54,23 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 try
                 {
                     string jsonText = File.ReadAllText(fileName);
+                    
+                    Console.WriteLine("Read JSON fileName =" + fileName);                    
+                    // Console.WriteLine(jsonText);
 
-                    Model.Document document = JsonConvert.DeserializeObject<Model.Document>(jsonText);
-                    if (document.ShippedItemInstances != null)
+                   ShippedItemInstanceList ShippedItems = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
+                   if (ShippedItems != null)
                     {
                         //Each document will import as individual ApplicationDataModel
+                        Console.WriteLine("deserialized into ShippedItemInstanceList");  
+
                         ApplicationDataModel.ADM.ApplicationDataModel adm = new ApplicationDataModel.ADM.ApplicationDataModel();
                         adm.Catalog = new Catalog() { Description = fileName };
 
                         //Map the document data into the Catalog
+
                         Mapper mapper = new Mapper(adm.Catalog);
-                        errors.AddRange(mapper.MapDocument(document));
+                        errors.AddRange(mapper.MapDocument(ShippedItems));
 
                         models.Add(adm);
                     }
@@ -97,7 +102,12 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             foreach (string fileName in fileNames)
             {
                 string jsonText = File.ReadAllText(fileName);
+
+                //  This node will not be present, why did this exist?  
+                //  could be replaced with item or other properties
+                //
                 if (jsonText.Contains("shippedItemInstance"))
+
                 {
                     return true;
                 }

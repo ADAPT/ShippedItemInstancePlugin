@@ -26,9 +26,12 @@ namespace ISO_ADM_Exporter
                 Properties p = new Properties();
                 string folder = Path.Combine(outputPath, i.ToString());
                 Directory.CreateDirectory(folder);
-                isoPlugin.Export(models[i], folder, p);
 
+                isoPlugin.Export(models[i], folder, p);
+                Console.WriteLine("Wrote ISO file to " + folder);
                 admPlugin.Export(models[i], folder, p);
+                Console.WriteLine("Wrote ADM file to " + folder);
+            
             }
 
         }

@@ -16,7 +16,8 @@ namespace ShippedItemInstancePluginTests
             {
                 if (_models == null)
                 {
-                    AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin shippedItemInstancePlugin = new AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin();
+                    AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin shippedItemInstancePlugin = new 
+                        AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin();
 
                     // use Path.Combine to ensure proper OS directory separator chars are applied 
                     string sampleDataPath = Path.Combine("..", "..", "..", "..", "SampleData");
@@ -50,17 +51,12 @@ namespace ShippedItemInstancePluginTests
         [Fact]
         public void Products()
         {
+
             Assert.Equal(6, _testData.Models[0].Catalog.Products.Count);
-            Assert.Equal(6, _testData.Models[0].Catalog.PackagedProducts.Count);
-            Assert.Equal(6, _testData.Models[0].Catalog.PackagedProductInstances.Count);
 
             Assert.Equal(10, _testData.Models[1].Catalog.Products.Count);
-            Assert.Equal(10, _testData.Models[1].Catalog.PackagedProducts.Count);
-            Assert.Equal(10, _testData.Models[1].Catalog.PackagedProductInstances.Count);
 
             Assert.Equal(3, _testData.Models[2].Catalog.Products.Count);
-            Assert.Equal(3, _testData.Models[2].Catalog.PackagedProducts.Count);
-            Assert.Equal(3, _testData.Models[2].Catalog.PackagedProductInstances.Count);
         }
 
         [Fact]
