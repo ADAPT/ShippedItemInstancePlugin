@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ISO11783LinkList VersionMajor="4" VersionMinor="2" ManagementSoftwareManufacturer="AgGateway" ManagementSoftwareVersion="1.0" TaskControllerManufacturer="" TaskControllerVersion="" DataTransferOrigin="1" FileVersion="">
+  <LGP A="LGP1" B="2" C="1100046503738" E="ADAPT_UniqueIds">
+    <LNK A="CTP1" B="C" C="USDA" />
+    <LNK A="CTR1" B="12345" C="RetailerERPAccount" />
+  </LGP>
+  <LGP A="LGP2" B="2" C="1100046503738" E="ADAPT_Context_Items:Product">
+    <LNK A="PDT1" B="Product.Type|SEED" />
+    <LNK A="PDT1" B="Product.Description|VT DoublePro RIB Complete Relative Maturity 85 days" />
+    <LNK A="PDT1" B="Product.Name|CP2585" />
+    <LNK A="PDT1" B="Product.BrandName|CROPLAN" />
+    <LNK A="PDT1" B="Product.VarietyName|VT2P/RIB" />
+    <LNK A="PDT1" B="Product.PerPackageQuantity|55" />
+    <LNK A="PDT1" B="Product.PerPackageQuantity.UOM|LB" />
+    <LNK A="PDT1" B="Product.Classification.Type|Crop" />
+    <LNK A="PDT1" B="Product.Classification.Codes.1.CropType|Corn" />
+    <LNK A="PDT1" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
+    <LNK A="PDT1" B="Product.Classification.Codes.2.Corn|C" />
+    <LNK A="PDT1" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
+    <LNK A="PDT1" B="Product.Classification.Codes.3.Trait|VT2RIB" />
+    <LNK A="PDT1" B="LotIdentifier|769MXJ4JX" />
+    <LNK A="PDT1" B="Packaging.ShipUnitTypeCode|SeedBox" />
+    <LNK A="PDT1" B="Packaging.SeedBox.Id|844f95ac-422a-406a-91c5-65d017de2f09" />
+    <LNK A="PDT1" B="Packaging.SeedBox.GrossWeight|2475" />
+    <LNK A="PDT1" B="Packaging.SeedBox.GrossWeight.UOM|LB" />
+    <LNK A="PDT1" B="Packaging.SeedBox.PackageQuantity|45" />
+    <LNK A="PDT1" B="Packaging.SeedBox.PackageQuantity.UOM|BG" />
+    <LNK A="PDT1" B="ShipmentReference.ShipFromGLN|1100028417954" />
+    <LNK A="PDT1" B="ShipmentReference.ShipmentId|34343535" />
+    <LNK A="PDT1" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
+    <LNK A="PDT1" B="ShipmentReference.ShippingContainer.Id.USDOT_Number|12345678" />
+    <LNK A="PDT1" B="ShipmentReference.Carrier.SCAC|NA" />
+    <LNK A="PDT1" B="InFieldProductID.API.Path.id|0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" />
+    <LNK A="PDT1" B="RelatedIdentifiers.AgGateway.GTIN_URI|https://api.agiis.org/?gtinid=00888346580291" />
+    <LNK A="PDT1" B="EncodedIdentification.encodingSchemaId|DataMatrix" />
+    <LNK A="PDT1" B="EncodedIdentification.DataMatrixId|0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" />
+    <LNK A="PDT1" B="EncodedIdentification.schemaAgencyId|GS1" />
+    <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount|892" />
+    <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount.UOM|count/bg" />
+    <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount.Timestamp|2/8/2021 12:17:45 PM" />
+    <LNK A="PDT1" B="SeedTreatment.Name|Fortivent® Plus" />
+    <LNK A="PDT1" B="SeedTreatment.Id|1001339" />
+    <LNK A="PDT1" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
+    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
+    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
+    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
+  </LGP>
+</ISO11783LinkList>
