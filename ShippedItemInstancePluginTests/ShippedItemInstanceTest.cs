@@ -54,7 +54,9 @@ namespace ShippedItemInstancePluginTests
         {
 
             Assert.Equal(14, _testData.Models[0].Catalog.Products.Count);
-            Assert.Equal(1, _testData.Models[1].Catalog.Products.Count);
+            Assert.Single(_testData.Models[1].Catalog.Products);
+
+            // Assert.Equal(1, _testData.Models[1].Catalog.Products.Count);
             // there are only two v4 files (vs 3) and the product count is not the same
             // Assert.Equal(3, _testData.Models[2].Catalog.Products.Count);
         }
@@ -64,6 +66,7 @@ namespace ShippedItemInstancePluginTests
         {
             // there are more than one Brand in the first file
             // Assert.Single(_testData.Models[0].Catalog.Brands);
+            Assert.Equal(2, _testData.Models[0].Catalog.Brands.Count);
             Assert.Single(_testData.Models[1].Catalog.Brands);
             // Assert.Single(_testData.Models[2].Catalog.Brands);
         }
