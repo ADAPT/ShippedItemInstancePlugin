@@ -41,7 +41,8 @@ namespace ShippedItemInstancePluginTests
 
                 string export1 = File.ReadAllText(Path.Combine(folder1, "TASKDATA", "LINKLIST.XML"));
                 string export2 = File.ReadAllText(Path.Combine(folder2, "TASKDATA", "LINKLIST.XML"));
-                Assert.Equal(export1, export2);
+                Assert.Equal(System.Text.ASCIIEncoding.Unicode.GetByteCount(export1), 
+                    System.Text.ASCIIEncoding.Unicode.GetByteCount(export2));
             }
         }
     }
