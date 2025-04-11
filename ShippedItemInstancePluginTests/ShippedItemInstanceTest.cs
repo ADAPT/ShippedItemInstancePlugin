@@ -21,7 +21,6 @@ namespace ShippedItemInstancePluginTests
 
                     // use Path.Combine to ensure proper OS directory separator chars are applied 
                     string sampleDataPath = Path.Combine("..", "..", "..", "..", "SampleData/v4");
-                    string sampleDataPath = Path.Combine("..", "..", "..", "..", "SampleData/v4");
                     _models = shippedItemInstancePlugin.Import(sampleDataPath);
                 }
                 return _models;
