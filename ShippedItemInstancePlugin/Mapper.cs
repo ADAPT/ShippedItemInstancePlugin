@@ -107,7 +107,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             Console.WriteLine("MapShippedItemInstance -- created product");
 
-            if (shippedItemInstance.TypeCode.ToLower() == "seed")
+            if (shippedItemInstance.TypeCode.ToUpper() == "SEED")
             {
                 product = new CropVarietyProduct();
                 Console.WriteLine("MapShippedItemInstance -- CropVarietyProduct");
@@ -175,7 +175,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             return returnValue;
         }
 
-        // do we need this?  Why not reference in GetProduct
+        // This was never previously referenced in GetProduct
+
         private ProductTypeEnum LookupProductType(string productType)
         {
             ProductTypeEnum productTypeEntry = new ProductTypeEnum();
@@ -654,7 +655,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         private void SetCrop(ShippedItemInstance shippedItemInstance, Product product)
         {
-            //Set Crop as available
+            // Set Crop as available
             // for seed this will be available
             // for crop protection, crop is important, but it is really an associated item
             // the classification of crop protection moves to product type
