@@ -9,11 +9,10 @@
     <Company>AgGateway</Company>
     <Description>AgGateway ShippedItemInstancePlugin</Description>
     <Copyright>Copyright (C) 2024 AgGateway and ADAPT Contributors</Copyright>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</RepositoryUrl>
     <PackageProjectUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</PackageProjectUrl>
     <PackageLicenseExpression>EPL-1.0</PackageLicenseExpression>
-    <IsPackable>false</IsPackable>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
