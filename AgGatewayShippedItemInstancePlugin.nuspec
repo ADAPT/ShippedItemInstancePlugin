@@ -2,24 +2,26 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>AgGatewayShippedItemInstancePlugin</id>
-    <version>0.0.0</version>
+    <version>4.0.0</version>
     <authors>AgGateway and ADAPT Contributors</authors>
-    <owners>AgGateway and ADAPT Contributors</owners>
+    <owners>AgGateway and ADAPT Contributors; Nieman, S.T.</owners>
     <licenseUrl>https://www.eclipse.org/legal/epl-v10.html</licenseUrl>
     <projectUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>AgGateway Shipped Item Instance Plugin for the ADAPT framework</description>
-    <copyright>Copyright (C) 2015-21 AgGateway and ADAPT Contributors</copyright>
-    <tags>agriculture aggateway adapt shippediteminstance</tags>
+    <releaseNotes>Upgrade to v4 Model approved in Standards and Guidelines; removed PackagedProduct and PackagedProductInstance ADM classes to allow easier migration to ADAPT Standard; retain key data element identifiers only for context items, no quantities, weights or other measures.</releaseNotes>
+    <description>AgGateway Shipped Item Instance Plugin for the ADAPT framework allows transformation of the advance ship notice from a retailer to be loaded into the tractor MICS as a product list for improved product identification of seed, fertilizer and crop protection product instances.</description>
+    <copyright>Copyright (C) 2015-24 AgGateway and ADAPT Contributors</copyright>
+    <tags>agriculture aggateway adapt shippediteminstance productidentification in-fieldproductid</tags>
     <dependencies>
-      <dependency id="AgGatewayADAPTFramework" version="[2.3.0,3)" />
-      <dependency id="Newtonsoft.Json" version="[12.0.3,13)" />
+      <dependency id="AgGatewayADAPTFramework" version="[3.1.0,3)" />
+      <dependency id="Newtonsoft.Json" version="[13.0.3,13)" />
+      <dependency id="CoreCompat.System.ComponentModel.DataAnnotations" version="4.2.3-r7" />
     </dependencies>
     <references>
       <reference file="AgGateway.ADAPT.ShippedItemInstancePlugin.dll"/>
     </references>
   </metadata>
   <files>
-    <file src="ShippedItemInstancePlugin/bin/Release/netstandard2.0/AgGateway.ADAPT.ShippedItemInstancePlugin.dll" target="lib/netstandard2.0/AgGateway.ADAPT.ShippedItemInstancePlugin.dll"/>
+    <file src="ShippedItemInstancePlugin/bin/Release/net8.0/AgGateway.ADAPT.ShippedItemInstancePlugin.dll" target="lib/netstandard2.0/AgGateway.ADAPT.ShippedItemInstancePlugin.dll"/>
   </files>
 </package>

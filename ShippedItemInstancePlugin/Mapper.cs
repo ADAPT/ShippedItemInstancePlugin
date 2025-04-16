@@ -1,12 +1,10 @@
 ﻿/*******************************************************************************
-  * Copyright (C) 2021 AgGateway and ADAPT Contributors
+  * Copyright (C) 2025 AgGateway and ADAPT Contributors
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html <http://www.eclipse.org/legal/epl-v10.html> 
   *
-  * Contributors:
-  *    Rob Cederberg, Kelly Nelson - initial implementation
   *******************************************************************************/
 
 using System;
@@ -21,6 +19,9 @@ using AgGateway.ADAPT.ApplicationDataModel.Logistics;
 using RepresentationSystem = AgGateway.ADAPT.Representation.RepresentationSystem;
 using UnitSystem = AgGateway.ADAPT.Representation.UnitSystem;
 using AgGateway.ADAPT.Representation.RepresentationSystem.ExtensionMethods;
+using IO.Swagger.Models;
+using System.Text.Json.Nodes;
+using System.Text.Json;
 
 namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 {
@@ -54,65 +55,95 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         /// </summary>
         /// <param name="document"></param>
         /// <returns></returns>
-        public IList<IError> MapDocument(Model.Document document)
+        ///  
+        ///
+        public IList<IError> MapDocument(ShippedItemInstanceList shippedProducts)
         {
             Errors = new List<IError>();
 
-            foreach (Model.ShippedItemInstance shippedItemInstance in document.ShippedItemInstances)
+            Console.WriteLine("within mapper.MapDocument");
+
+            foreach (ShippedItemInstance shippedItemInstance in shippedProducts)
             {
+                Console.WriteLine("within mapper.MapDocument");
+
                 MapShippedItemInstance(shippedItemInstance);
+                //
+                // the primary goal is to create 
+                // Catalog.Products  
+                // Catalog.Crops
+                // Catalog.Brands
+                // Catalog.Manufacturers
+
             }
             return Errors;
         }
 
-        private void MapShippedItemInstance(Model.ShippedItemInstance shippedItemInstance)
+        private void MapShippedItemInstance(ShippedItemInstance shippedItemInstance)
         {
-            //-----------------------
-            //PackagedProductInstance
-            //-----------------------
-            //The PackagedProductInstance represents a single product shipment and maps 1:1 to the ShippedItemInstance
-            PackagedProductInstance packagedProductInstance = new PackagedProductInstance();
 
-            //Description and quantity are set on the related class properties
-            packagedProductInstance.Description = string.Format("Shipment {0}", shippedItemInstance.Identifier?.Content);
-            if (double.TryParse(shippedItemInstance.Quantity?.Content, out double quantity))
-            {
-                packagedProductInstance.ProductQuantity = CreateRepresentationValue(quantity, shippedItemInstance.Quantity.UnitCode);
-            }
-            else
-            {
-                Errors.Add(new Error(string.Empty, "ShippedItemInstanceMapper.MapShippedItemInstance", $"Quantity {shippedItemInstance.Quantity?.Content} is invalid.", string.Empty));
-            }
+            // capture the displayName and all this item instance context items
+            // 
+            Console.WriteLine("MapShippedItemInstance -- calling GetProduct");
 
-            //The remaining data is somewhat specific to the ShippedItemInstance and is persisted as ContextItems
-            //The ContextItem data generally is intended to be passed out of the ApplicationDataModel and passed back in unaltered,  
-            //in order that the data may return, e.g., on a logged planting operation and reconcile that planting operation 
-            //back to this ShippedItemInstance.
-            packagedProductInstance.ContextItems.AddRange(CreatePackagedProductInstanceContextItems(shippedItemInstance));
-
-            //-----------------------
-            //PackagedProduct
-            //-----------------------
-            //Packaged product is defined a product within a specific packaging.
-            //Multiple ShippedItemInstances may map to the same PackagedProduct
-            PackagedProduct packagedProduct = GetPackagedProduct(shippedItemInstance);
-            if (packagedProduct != null)
-            {
-                packagedProductInstance.PackagedProductId = packagedProduct.Id.ReferenceId;
-            }
-            else
-            {
-                Errors.Add(new Error(null, "Mapper.MapShippedItemInstance", $"Couldn't create PackagedProduct for PackageProductInstance {packagedProductInstance.Id.ReferenceId}", null));
-            }
-
-            //Add the PackagedProductInstance to the Catalog.   The PackagedProduct is added in the subroutine above.
-            Catalog.PackagedProductInstances.Add(packagedProductInstance);
-
-            //Set other contextual information from the ShippedItemInstance into relevant ADAPT classes
-            SetManufacturerAndBrand(shippedItemInstance);
-            SetCrop(shippedItemInstance);
+            Product product = GetProduct(shippedItemInstance);
+            //
+            Console.WriteLine("MapShippedItemInstance -- calling SetCrop");
+            SetCrop(shippedItemInstance, product);
+            //
+            Console.WriteLine("MapShippedItemInstance -- calling SetManufacturerAndBrand");
+            SetManufacturerAndBrand(shippedItemInstance, product);
+            //
+            Console.WriteLine("MapShippedItemInstance -- calling Set Grower");
             SetGrower(shippedItemInstance);
         }
+
+        private Product GetProduct(ShippedItemInstance shippedItemInstance)
+        {
+            // Look for product with a description that matches the shipped item instance
+            // Primarily need the displayName of the product 
+            // quick test
+            Product product = Catalog.Products.FirstOrDefault(p => p.Description == shippedItemInstance.DisplayName);
+
+            Console.WriteLine("MapShippedItemInstance -- created product");
+
+            if (shippedItemInstance.TypeCode.ToUpper() == "SEED")
+            {
+                product = new CropVarietyProduct();
+                Console.WriteLine("MapShippedItemInstance -- CropVarietyProduct");
+                product.Description = shippedItemInstance.DisplayName;
+                Console.WriteLine("MapShippedItemInstance displayName = " + shippedItemInstance.DisplayName);
+
+                product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
+
+                product.ContextItems.AddRange(CreateProductInstanceSpecificContextItems(shippedItemInstance));
+            }
+            else
+            {
+                product = new GenericProduct();
+                Console.WriteLine("MapShippedItemInstance -- GenericProduct");
+                product.Description = shippedItemInstance.DisplayName;
+            }
+
+
+            Catalog.Products.Add(product);
+
+            return product;
+        }
+
+        private ContextItem CreateContextItem(string code, string value)
+        {
+            Console.WriteLine("code = " + code + " and value = " + value);
+            ContextItem contextItem = new ContextItem() { Code = code };
+
+            if (value != null)
+            {
+                contextItem.Value = value;
+            }
+
+            return contextItem;
+        }
+
 
         private NumericRepresentationValue CreateRepresentationValue(double value, string inputUnitOfMeasure)
         {
@@ -129,6 +160,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             //Value
             // Map bg to bag
+            // 
             string uomCode = inputUnitOfMeasure?.ToLower() == "bg" ? "bag" : inputUnitOfMeasure?.ToLower() ?? string.Empty;
             if (!UnitSystem.InternalUnitSystemManager.Instance.UnitOfMeasures.Contains(uomCode))
             {
@@ -139,115 +171,193 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
             UnitOfMeasure uom = UnitSystem.UnitSystemManager.GetUnitOfMeasure(uomCode);
             returnValue.Value = new ApplicationDataModel.Representations.NumericValue(uom, value);
-  
+
             return returnValue;
         }
 
-        private List<ContextItem> CreatePackagedProductInstanceContextItems(Model.ShippedItemInstance shippedItemInstance)
+        // This was never previously referenced in GetProduct
+
+        private ProductTypeEnum LookupProductType(string productType)
+        {
+            ProductTypeEnum productTypeEntry = new ProductTypeEnum();
+            // what is the product type enum equivalent to UnitSystem.UnitSystemManager.GetUnitOfMeasure(uomCode)?
+            return productTypeEntry;
+
+        }
+
+        private List<ContextItem> CreateProductInstanceSpecificContextItems(ShippedItemInstance shippedItemInstance)
         {
             List<ContextItem> items = new List<ContextItem>();
 
-            // Lot
-            if (shippedItemInstance.Lot?.Identifier?.Content != null)
+            Console.WriteLine(" //// CreateProductInstanceSpecificContextItems entered  /////");
+
+            // Lot or Batch Id and type
+
+            // TODO:  Create parent as LotBatchInformation, nested identifier, type code, and optional serial numbers
+            // move this to ProductContextItems
+
+            if (shippedItemInstance.Lot?.TypeCode != null && shippedItemInstance.Lot?.Id != null)
             {
-                items.Add(CreateContextItem("Lot", shippedItemInstance.Lot?.Identifier?.Content));
+                items.Add(CreateContextItem(shippedItemInstance.Lot.TypeCode + "Identifier", shippedItemInstance.Lot.Id));
+
+
+
+                // the following provides the ability to capture serialize jugs of crop protection related to a specific manufactured batch
+                // the serialNumberId array may not be present in the payload as seed will not have serialized instances  
+                // 
+                //  if(!json.ContainsKey(field.Name))
+                //  however json is not in context, what alternative is
+                //  from
+                //  https://stackoverflow.com/questions/55712367/json-net-detect-an-absence-of-a-property-on-json-which-appears-to-be-a-member
+                //
+                //
+                //
+                Console.WriteLine("Testing serial number id");
+                if (shippedItemInstance.Lot?.SerialNumberId != null)
+                {
+                    Console.WriteLine(" //// serial numbers found  /////");
+                    ContextItem lotSerialNumberIdsContextItem = CreateContextItem("SerialNumberIds", null);
+                    int SerialNumberIdsIndex = 0;
+
+                    foreach (String serialNumberId in shippedItemInstance.Lot.SerialNumberId)
+                    {
+                        ContextItem serialNumberIdContextItem = CreateContextItem((++SerialNumberIdsIndex).ToString(), null);
+                        if (serialNumberId != null)
+                        {
+                            serialNumberIdContextItem.NestedItems.Add(CreateContextItem("serialNumber", serialNumberId));
+                        }
+                        if (serialNumberIdContextItem.NestedItems.Count > 0)
+                        {
+                            lotSerialNumberIdsContextItem.NestedItems.Add(serialNumberIdContextItem);
+                        }
+                    }
+
+                }
             }
 
-            // Packaging
+            // Tender Box e.g., Packaging
             ContextItem contextItem = CreateContextItem("Packaging", null);
 
             // Add Packaging nested items
-            if (shippedItemInstance.Packaging?.TypeCode != null)
+            Console.WriteLine("Test sii.packaging.typeCode");
+            if (shippedItemInstance?.Packaging?.TypeCode != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Packaging.TypeCode));
+                contextItem.NestedItems.Add(CreateContextItem("ShipUnitTypeCode", shippedItemInstance.Packaging.TypeCode));
             }
-            if (shippedItemInstance.Packaging?.Identifier != null)
+
+            if (shippedItemInstance?.Packaging?.Id != null && shippedItemInstance?.Packaging?.TypeCode != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("identifier", shippedItemInstance.Packaging.Identifier));
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + ".Id", shippedItemInstance.Packaging.Id));
             }
+            if (shippedItemInstance?.Packaging?.TypeCode != null && shippedItemInstance?.Packaging?.Quantity?.TypeCode != null
+                && shippedItemInstance?.Packaging?.Quantity?.Content != null && shippedItemInstance?.Packaging?.Quantity?.UnitCode != null)
+            {
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + "." + shippedItemInstance.Packaging.Quantity.TypeCode, shippedItemInstance.Packaging.Quantity.Content.ToString()));
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode + "." +
+                    shippedItemInstance.Packaging.Quantity.TypeCode + ".UOM", shippedItemInstance.Packaging.Quantity.UnitCode));
+            }
+
+            // how many bags went into the the seed box
+            // what is the weight of each bag
+            //
+            Console.WriteLine("Test package quantity");
+            if (shippedItemInstance?.Packaging?.TypeCode != null &&
+                shippedItemInstance?.Packaging?.Quantity?.Content != null &&
+                shippedItemInstance?.Packaging?.Quantity?.UnitCode != null)
+            {
+                // 
+                // need SII model point release change - Quantity.TypeCode added (preferred)
+                // or Package.Quantity as an array
+                //
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
+                    ".PackageQuantity"
+                    , shippedItemInstance.Quantity.Content.ToString()));
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
+                    ".PackageQuantity.UOM"
+                    , shippedItemInstance.Quantity.UnitCode));
+            }
+
             if (contextItem.NestedItems.Count > 0)
             {
                 items.Add(contextItem);
             }
 
-            // DocumentReference
-            contextItem = CreateContextItem("DocumentReference", null);
+            // ShipmentReference
+            // flatten this, as we only need the shipmentId.
+            contextItem = CreateContextItem("ShipmentReference", null);
 
             // nested items
-            ContextItem nestedContextItem = CreateContextItem("Identifier", null);
+            // ContextItem nestedContextItem = CreateContextItem("ShipmentReference", null);
 
             // This one has it's own nested items
-            if (shippedItemInstance.DocumentReference?.Identifier?.Content != null)
+            if (shippedItemInstance.ShipmentReference?.Id != null)
+
+                //  Retailer GLN Id
+                if (shippedItemInstance.ShipmentReference.ShipFromParty.Location?.Glnid != null)
+                {
+                    contextItem.NestedItems.Add(CreateContextItem("ShipFromGLN", shippedItemInstance.ShipmentReference.ShipFromParty.Location?.Glnid.ToString()));
+                }
+
+
+            // Retailer generated Shipment Id
+
+            contextItem.NestedItems.Add(CreateContextItem("ShipmentId", shippedItemInstance.ShipmentReference?.Id));
+
+            //  semi-trailer Id
+            if (shippedItemInstance.ShipmentReference.ShipUnitReference.Id.Content != null &&
+                shippedItemInstance.ShipmentReference.ShipUnitReference.Id.TypeCode != null &&
+                shippedItemInstance.ShipmentReference.ShipUnitReference.TypeCode != null)
             {
-                nestedContextItem.NestedItems.Add(CreateContextItem("content", shippedItemInstance.DocumentReference?.Identifier?.Content));
-            }
-            if (shippedItemInstance.DocumentReference?.Identifier?.TypeCode != null)
-            {
-                nestedContextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.DocumentReference.Identifier.TypeCode));
-            }
-            if (nestedContextItem.NestedItems.Count > 0)
-            {
-                contextItem.NestedItems.Add(nestedContextItem);
+                contextItem.NestedItems.Add(CreateContextItem("ShippingContainer.Type",
+                    shippedItemInstance.ShipmentReference.ShipUnitReference.TypeCode));
+                contextItem.NestedItems.Add(CreateContextItem("ShippingContainer.Id." +
+                    shippedItemInstance.ShipmentReference.ShipUnitReference.Id.TypeCode,
+                    shippedItemInstance.ShipmentReference.ShipUnitReference.Id.Content.ToString()));
             }
 
-            if (shippedItemInstance.DocumentReference?.TypeCode != null)
+            // Carrier SCAC code
+            if (shippedItemInstance.ShipmentReference.CarrierParty?.Scacid != null)
             {
-                 contextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.DocumentReference.TypeCode));
+                contextItem.NestedItems.Add(CreateContextItem("Carrier.SCAC", shippedItemInstance.ShipmentReference.CarrierParty?.Scacid));
             }
 
-            if (shippedItemInstance.DocumentReference?.DocumentDateTime != null)
-            {
-                contextItem.NestedItems.Add(CreateContextItem("documentDateTime", shippedItemInstance.DocumentReference.DocumentDateTime));
-            }
             if (contextItem.NestedItems.Count > 0)
             {
                 items.Add(contextItem);
             }
+            // 
+            // id
+            contextItem = CreateContextItem("InFieldProductID.API.Path.id", shippedItemInstance.Id);
 
-            // Identifier
-            contextItem = CreateContextItem("Identifier", null);
+            items.Add(contextItem);
 
-            // nested items
-            if (shippedItemInstance.Identifier?.TypeCode != null)
+            // Item.Retailed is the link to AGIIS
+            if (shippedItemInstance.Item.RelatedId?.Count > 0)
             {
-                contextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Identifier.TypeCode));
-            }
-            if (shippedItemInstance.Identifier?.Content != null)
-            {
-                contextItem.NestedItems.Add(CreateContextItem("content", shippedItemInstance.Identifier.Content));
-            }
-            if (contextItem.NestedItems.Count > 0)
-            {
-                items.Add(contextItem);
-            }
-
-            // ItemIdentifierSet
-            if (shippedItemInstance.ItemIdentifierSets?.Count > 0)
-            {
-                contextItem = CreateItemIdentifierSetsContextItem(shippedItemInstance);
+                contextItem = CreateRelatedIdsContextItem(shippedItemInstance);
                 if (contextItem.NestedItems.Count > 0)
                 {
                     items.Add(contextItem);
                 }
             }
 
-            // Uid
-            contextItem = CreateContextItem("uid", null);
-            if (shippedItemInstance.Uid?.Content != null)
+            // Uid is the barcode, RFID tag or whatever is need for identify the product
+
+            contextItem = CreateContextItem("EncodedIdentification", null);
+
+            //  content contains the actual value
+            Console.WriteLine("Uid  content and SchemeId test");
+            if (shippedItemInstance.Uid?.Content?.ToString() != null && shippedItemInstance.Uid?.SchemeId?.ToString() != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("content", shippedItemInstance.Uid.Content));
+                Console.WriteLine("Uid passed");
+                contextItem.NestedItems.Add(CreateContextItem("encodingSchemaId", shippedItemInstance.Uid.SchemeId));
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Uid.SchemeId + "Id", shippedItemInstance.Uid.Content));
             }
-            if (shippedItemInstance.Uid?.SchemeIdentifier != null)
+            // Scheme Agency is who manages the encoding scheme
+            Console.WriteLine("Uid schemeAgency Test");
+            if (shippedItemInstance.Uid?.SchemeAgencyId?.ToString() != null)
             {
-                contextItem.NestedItems.Add(CreateContextItem("schemaIdentifier", shippedItemInstance.Uid.SchemeIdentifier));
-            }
-            if (shippedItemInstance.Uid?.SchemeAgencyIdentifier != null)
-            {
-                contextItem.NestedItems.Add(CreateContextItem("schemaAgencyIdentifier", shippedItemInstance.Uid.SchemeAgencyIdentifier));
-            }
-            if (shippedItemInstance.Uid?.TypeCode != null)
-            {
-                contextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Uid.TypeCode));
+                contextItem.NestedItems.Add(CreateContextItem("schemaAgencyId", shippedItemInstance.Uid.SchemeAgencyId));
             }
 
             if (contextItem.NestedItems.Count > 0)
@@ -255,8 +365,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 items.Add(contextItem);
             }
 
-            // Quantitative Results
-            if (shippedItemInstance.Results?.Quantitative.Count > 0)
+
+            Console.WriteLine("Results test ");
+            if (shippedItemInstance?.Results?.Quantitative?.Measurement?.Count > 0)
             {
                 contextItem = CreateQuantitativeResultsContextItem(shippedItemInstance);
                 if (contextItem.NestedItems.Count > 0)
@@ -265,334 +376,207 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 }
             }
 
+            Console.WriteLine("Item Treatment Test");
+            if (shippedItemInstance.Item?.ItemTreatment?.ToString() != null)
+            // seed treatment is defined, as well is the substances used
+
+            //
+            {
+                Console.WriteLine("Item Treatment Test passed entering CreateItemTreatmentContextItem");
+                contextItem = CreateItemTreatmentContextItem(shippedItemInstance);
+                // 
+                if (contextItem.NestedItems.Count > 0)
+                {
+                    items.Add(contextItem);
+                }
+            }
+
             return items;
         }
-
-        private ContextItem CreateContextItem(string code, string value)
+        private ContextItem CreateItemTreatmentContextItem(ShippedItemInstance shippedItemInstance)
         {
-            ContextItem item = new ContextItem() { Code = code };
-
-            if (value != null)
+            ItemItemTreatment seedTreatment = shippedItemInstance.Item.ItemTreatment;
+            ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", null);
+            if (seedTreatment.Name != null && seedTreatment.Id != null)
             {
-                item.Value = value;
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Name", seedTreatment.Name));
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Id", seedTreatment.Id));
             }
+            try
+            {
+                Console.WriteLine("Testing substance before foreach");
+                if (shippedItemInstance.Item.ItemTreatment?.Substance?.ToString() != null)
+                {
+                    foreach (ItemItemTreatmentSubstance substance in shippedItemInstance.Item.ItemTreatment.Substance)
+                    {
+                        if (substance.Name != null)
+                        {
+                            ContextItem seedTreatmentSubstanceContextItem = CreateContextItem("Substance", "");
+                            seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("Name", substance.Name));
 
-            return item;
+                            if (seedTreatmentSubstanceContextItem.NestedItems.Count > 0)
+                            {
+                                seedTreatmentContextItem.NestedItems.Add(seedTreatmentSubstanceContextItem);
+                            }
+
+                            // Create foreach on ItemTreatmentSubstanceRegistrationStatus
+                            if (substance?.RegistrationStatus != null)
+                            {
+                                foreach (ItemItemTreatmentRegistrationStatus registrationStatus in substance.RegistrationStatus)
+                                {
+                                    if (registrationStatus?.Id?.Content != null &&
+                                        registrationStatus?.EffectiveTimePeriod != null &&
+                                        registrationStatus?.Id?.TypeCode != null)
+                                    {
+                                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus.EffectiveEndDateTime",
+                                            registrationStatus.EffectiveTimePeriod.EndDateTime.ToString()));
+                                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus." + registrationStatus.Id.TypeCode + ".Id",
+                                            registrationStatus.Id.Content.ToString()));
+                                    }
+                                    if (registrationStatus?.Id?.SchemeAgencyId != null)
+                                    {
+                                        seedTreatmentSubstanceContextItem.NestedItems.Add(CreateContextItem("RegistrationStatus.Agency",
+                                            registrationStatus.Id.SchemeAgencyId));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+
+            }
+            return seedTreatmentContextItem;
+
+        }
+        private ContextItem CreateRelatedIdsContextItem(ShippedItemInstance shippedItemInstance)
+        {
+            ContextItem itemRelatedIdsContextItem = CreateContextItem("RelatedIdentifiers", null);
+
+
+            foreach (RelatedId relatedId in shippedItemInstance.Item.RelatedId)
+            {
+                if (relatedId.SourceId != null && relatedId.PartyId != null &&
+                    relatedId.Id != null && relatedId.TypeCode != null)
+                {
+                    ContextItem relatedIdContextItem = CreateContextItem(relatedId.PartyId, relatedId.SourceId);
+                    relatedIdContextItem.NestedItems.Add(CreateContextItem(relatedId.TypeCode, relatedId.Id));
+
+                    if (relatedIdContextItem.NestedItems.Count > 0)
+                    {
+                        itemRelatedIdsContextItem.NestedItems.Add(relatedIdContextItem);
+                    }
+                }
+            }
+            return itemRelatedIdsContextItem;
         }
 
-        private ContextItem CreateItemIdentifierSetsContextItem(Model.ShippedItemInstance shippedItemInstance)
+        private ContextItem CreateQuantitativeResultsContextItem(ShippedItemInstance shippedItemInstance)
         {
-            ContextItem itemIdentifierSetsContextItem = CreateContextItem("ItemIdentifierSets", null);
-
-            int identifierSetIndex = 0;
-            foreach (Model.ItemIdentifierSet itemIdentifierSet in shippedItemInstance.ItemIdentifierSets)
-            {
-                ContextItem itemIdentifierSetContextItem = CreateContextItem((++identifierSetIndex).ToString(), null);
-                if (itemIdentifierSet.SchemeIdentifier != null)
-                {
-                    itemIdentifierSetContextItem.NestedItems.Add(CreateContextItem("schemeIdentifier", itemIdentifierSet.SchemeIdentifier));
-                }
-                if (itemIdentifierSet.SchemeVersionIdentifier != null)
-                {
-                    itemIdentifierSetContextItem.NestedItems.Add(CreateContextItem("schemaVersionIdentifier", itemIdentifierSet.SchemeVersionIdentifier));
-                }
-                if (itemIdentifierSet.SchemeAgencyIdentifier != null)
-                {
-                    itemIdentifierSetContextItem.NestedItems.Add(CreateContextItem("schemaAgencyIdentifier", itemIdentifierSet.SchemeAgencyIdentifier));
-                }
-                if (itemIdentifierSet.TypeCode != null)
-                {
-                    itemIdentifierSetContextItem.NestedItems.Add(CreateContextItem("typeCode", itemIdentifierSet.TypeCode));
-                }
-
-                ContextItem identifiersContextItem = CreateContextItem("identifiers", null);
-                int identifierIndex = 0;
-                foreach (Model.ItemIdentifier identifier in itemIdentifierSet.Identifiers)
-                {
-                    ContextItem identifierContextItem = CreateContextItem((++identifierIndex).ToString(), null);
-                    if (identifier.Content != null)
-                    {
-                        identifierContextItem.NestedItems.Add(CreateContextItem("content", identifier.Content));
-                    }
-                    if (identifier.SchemeIdentifier != null)
-                    {
-                        identifierContextItem.NestedItems.Add(CreateContextItem("schemaIdentifier", identifier.SchemeIdentifier));
-                    }
-                    if (identifier.SchemeAgencyIdentifier != null)
-                    {
-                        identifierContextItem.NestedItems.Add(CreateContextItem("schemaAgencyIdentifier", identifier.SchemeAgencyIdentifier));
-                    }
-                    if (identifier.TypeCode != null)
-                    {
-                        identifierContextItem.NestedItems.Add(CreateContextItem("typeCode", identifier.TypeCode));
-                    }
-                    if (identifierContextItem.NestedItems.Count > 0)
-                    {
-                        identifiersContextItem.NestedItems.Add(identifierContextItem);
-                    }
-                }
-
-                if (identifiersContextItem.NestedItems.Count > 0)
-                {
-                    itemIdentifierSetContextItem.NestedItems.Add(identifiersContextItem);
-                }
-
-                if (itemIdentifierSetContextItem.NestedItems.Count > 0)
-                {
-                    itemIdentifierSetsContextItem.NestedItems.Add(itemIdentifierSetContextItem);
-                }
-            }
-
-            return itemIdentifierSetsContextItem;
-        }
-
-        private ContextItem CreateQuantitativeResultsContextItem(Model.ShippedItemInstance shippedItemInstance)
-        {
-            ContextItem results = CreateContextItem("QuantitativeResults", null);
+            ContextItem results = CreateContextItem("Results", null);
 
             int quantitateResultIndex = 0;
-            foreach (Model.Quantitative quantitativeResult in shippedItemInstance.Results.Quantitative)
+
+            foreach (Measurement measurement in shippedItemInstance.Results.Quantitative.Measurement)
             {
-                ContextItem quantitativeResultContextItem = CreateContextItem((++quantitateResultIndex).ToString(), null);
 
-                if (quantitativeResult.TypeCode != null)
-                {
-                    quantitativeResultContextItem.NestedItems.Add(CreateContextItem("typeCode", quantitativeResult.TypeCode));
-                }
-                if (quantitativeResult.Name != null)
-                {
-                    quantitativeResultContextItem.NestedItems.Add(CreateContextItem("name", quantitativeResult.Name));
-                }
+                ContextItem measurementContextItem = CreateContextItem("QuantitativeMeasurements." + (++quantitateResultIndex).ToString(), null);
 
-                // Unit of Measure
-                ContextItem uomCodeContextItem = CreateContextItem("uomCode", null);
-                if (quantitativeResult.UomCode?.Content != null)
+                //
+                if (measurement.Name != null && measurement.Measure != null)
                 {
-                    uomCodeContextItem.NestedItems.Add(CreateContextItem("content", quantitativeResult.UomCode.Content));
-                }
-                if (quantitativeResult.UomCode?.ListIdentifier != null)
-                {
-                    uomCodeContextItem.NestedItems.Add(CreateContextItem("listIdentifier", quantitativeResult.UomCode.ListIdentifier));
-                }
-                if (quantitativeResult.UomCode?.ListAgencyIdentifier != null)
-                {
-                    uomCodeContextItem.NestedItems.Add(CreateContextItem("listAgencyIdentifier", quantitativeResult.UomCode.ListAgencyIdentifier));
-                }
-                if (uomCodeContextItem.NestedItems.Count > 0)
-                {
-                    quantitativeResultContextItem.NestedItems.Add(uomCodeContextItem);
+                    Console.WriteLine("Measurement name = " + measurement.Name + " Value = " + measurement.Measure);
+                    measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name, measurement.Measure.ToString()));
+
                 }
 
-                //Significant Digits
-                if (quantitativeResult.SignificantDigitsNumber != null)
+                if (measurement.Name != null && measurement.UnitCode != null)
                 {
-                    quantitativeResultContextItem.NestedItems.Add(CreateContextItem("significantDigitsNumber", quantitativeResult.SignificantDigitsNumber));
+                    Console.WriteLine("Measurement UOM = " + measurement.UnitCode);
+                    measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name + ".UOM", measurement.UnitCode));
                 }
 
-                // Measurement
-                ContextItem measurementsContextItem = CreateContextItem("measurements", null);
-                int measurementIndex = 0;
-                foreach (Model.Measurement measurement in quantitativeResult.Measurements)
+                if (measurement.Name != null && measurement.DateTime != null)
                 {
-                    ContextItem measurementContextItem = CreateContextItem((++measurementIndex).ToString(), null);
-                    if (measurement.DateTime != null)
-                    {
-                        measurementContextItem.NestedItems.Add(CreateContextItem("dateTime", measurement.DateTime));
-                    }
-                    if (measurement.Measure != null)
-                    {
-                        measurementContextItem.NestedItems.Add(CreateContextItem("measure", measurement.Measure));
-                    }
-
-                    if (measurementContextItem.NestedItems.Count > 0)
-                    {
-                        measurementsContextItem.NestedItems.Add(measurementContextItem);
-                    }
+                    Console.WriteLine("Measurement temestamp = " + measurement.DateTime);
+                    measurementContextItem.NestedItems.Add(CreateContextItem(measurement.Name + ".Timestamp", measurement.DateTime.ToString()));
                 }
 
-                if (measurementsContextItem.NestedItems.Count > 0)
+                if (measurementContextItem.NestedItems.Count > 0)
                 {
-                    quantitativeResultContextItem.NestedItems.Add(measurementsContextItem);
+                    results.NestedItems.Add(measurementContextItem);
                 }
-
-                // Add to results if any nested items were added
-                if (quantitativeResultContextItem.NestedItems.Count > 0)
-                {
-                    results.NestedItems.Add(quantitativeResultContextItem);
-                }
-            }          
+            }
 
             return results;
         }
 
-        private PackagedProduct GetPackagedProduct(Model.ShippedItemInstance shippedItemInstance)
-        {
-            PackagedProduct packagedProduct = null;
-            Model.Item item = shippedItemInstance.Item;
-            if (item?.ManufacturerItemIdentification?.Identifier == null && item?.Gtinid == null && item?.Upcid == null)
-            {
-                // No ids specified so use the descriptionn to find a PackageProduct that matches
-                packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.Description == item?.Description);
-            }
-            else
-            {
-                // Try to find a matching PackagedProduct based on the ManufacturerItemIdentifier, UPC Id or GTIN Id
-                if (!string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.TypeCode) && !string.IsNullOrEmpty(item?.ManufacturerItemIdentification?.Identifier))
-                {
-                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == item?.ManufacturerItemIdentification?.TypeCode && i.Value == item?.ManufacturerItemIdentification?.Identifier)));
-                }
-                else if (!string.IsNullOrEmpty(item?.Gtinid) && !string.IsNullOrEmpty(item?.Upcid))
-                {
-                    packagedProduct = Catalog.PackagedProducts.FirstOrDefault(pp => pp.ContextItems.Any(i => (i.Code == "UPC" && i.Value == item?.Upcid) || (i.Code == "GTIN" && i.Value == item?.Gtinid)));
-                }
-            }
-
-            if (packagedProduct == null && item?.Description != null)
-            {
-                // Didn't find a match so create a new object
-                packagedProduct = new PackagedProduct();
-
-                packagedProduct.Description = item?.Description;
-
-                // Set context items
-                
-                //Set description so that it can in theory persist as data for models (e.g., ISO) that do not have the PackagedProduct object.
-                if (item?.Description != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = "Description",
-                                    Value = item?.Description
-                                });
-
-                }
-
-                //The below identifiers are set as ContextItems vs. UniqueIDs so that they can import/export hierarchically
-                //based on the logic in the ISO plugin to handle hierarchical PackagedProducts & PackagedProductInstances
-                if (item?.ManufacturerItemIdentification?.Identifier != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = item?.ManufacturerItemIdentification?.TypeCode,
-                                    Value = item?.ManufacturerItemIdentification?.Identifier
-                                });
-
-                }
-
-                if (item?.Upcid != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = "UPC",
-                                    Value = item?.Upcid
-                                });
-                }
-
-                if (item?.Gtinid != null)
-                {
-                    packagedProduct.ContextItems.Add(
-                                new ContextItem()
-                                {
-                                    Code = "GTIN",
-                                    Value = item?.Gtinid
-                                });
-                }
-
-                Catalog.PackagedProducts.Add(packagedProduct);
-
-                // Tie to a Product object
-                Product product = GetProduct(shippedItemInstance);
-                if (product != null)
-                {
-                    packagedProduct.ProductId = product.Id.ReferenceId;
-                }
-                else
-                {
-                    Errors.Add(new Error(null, "Mapper.GetPackagedProduct", $"Unable to create Product for Packaged Product {packagedProduct.Id.ReferenceId}", null));
-                }
-            }
-
-            return packagedProduct;
-        }
-
-        private Product GetProduct(Model.ShippedItemInstance shippedItemInstance)
-        {
-            // Look for product with a description that matches the shipped item instance
-            Product product = Catalog.Products.FirstOrDefault(p => p.Description == shippedItemInstance.Description?.Content);
-
-            if (product == null && shippedItemInstance.Description?.Content != null)
-            {
-                if (shippedItemInstance.TypeCode == null || shippedItemInstance.TypeCode.ToLower() == "seed") 
-                {
-                    product = new CropVarietyProduct();
-                }
-                else
-                {
-                    product = new GenericProduct();
-                }
-
-                product.Description = shippedItemInstance.Description?.Content;
-                product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
-
-                Catalog.Products.Add(product);
-            }
-
-            return product;
-        }
-
-        private List<ContextItem> CreateProductContextItems(Model.ShippedItemInstance shippedItemInstance)
+        private List<ContextItem> CreateProductContextItems(ShippedItemInstance shippedItemInstance)
         {
             List<ContextItem> contextItems = new List<ContextItem>();
 
             if (shippedItemInstance.TypeCode != null)
             {
-                contextItems.Add(CreateContextItem("TypeCode", shippedItemInstance.TypeCode));
+                contextItems.Add(CreateContextItem("Product.Type", shippedItemInstance.TypeCode));
             }
-            if (shippedItemInstance.Item?.Description != null)
+            if (shippedItemInstance.Item.Description != null)
             {
-                contextItems.Add(CreateContextItem("ItemDescription", shippedItemInstance.Item.Description));
+                contextItems.Add(CreateContextItem("Product.Description", shippedItemInstance.Item.Description));
             }
-            if (shippedItemInstance.Item?.ProductName != null)
+            if (shippedItemInstance.Item.ProductName != null)
             {
-                contextItems.Add(CreateContextItem("ItemProductName", shippedItemInstance.Item.ProductName));
+                contextItems.Add(CreateContextItem("Product.Name", shippedItemInstance.Item.ProductName));
             }
-            if (shippedItemInstance.Item?.BrandName != null)
+            if (shippedItemInstance.Item.BrandName != null)
             {
-                contextItems.Add(CreateContextItem("ItemBrandName", shippedItemInstance.Item.BrandName));
+                contextItems.Add(CreateContextItem("Product.BrandName", shippedItemInstance.Item.BrandName));
             }
-            if (shippedItemInstance.Item?.VarietyName != null)
+            if (shippedItemInstance.Item.VarietyName != null)
             {
-                contextItems.Add(CreateContextItem("ItemVarietyName", shippedItemInstance.Item.VarietyName));
+                contextItems.Add(CreateContextItem("Product.VarietyName", shippedItemInstance.Item.VarietyName));
             }
 
-            // Classification
-            ContextItem classificationContextItem = CreateContextItem("Classification", null);
-            if (shippedItemInstance.Classification?.TypeCode != null)
+            // item perPackage quantity, e.g., weight of a bag
+            //
+            if (shippedItemInstance.Item?.Packaging?.PerPackageQuantity?.Content != null &&
+                shippedItemInstance.Item?.Packaging?.PerPackageQuantity?.UnitCode != null)
             {
-                classificationContextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.Classification.TypeCode));
+                contextItems.Add(CreateContextItem("Product.PerPackageQuantity",
+                    shippedItemInstance.Item.Packaging.PerPackageQuantity.Content.ToString()));
+                contextItems.Add(CreateContextItem("Product.PerPackageQuantity.UOM",
+                    shippedItemInstance.Item.Packaging.PerPackageQuantity.UnitCode));
             }
-            if (shippedItemInstance.Classification?.Codes?.Codes?.Count > 0)
+            // Classification
+            // this is already in Crop
+            //
+            ContextItem classificationContextItem = CreateContextItem("Product.Classification", "");
+
+            if (shippedItemInstance.Item?.Classification?.Codes?.Code != null)
             {
-                ContextItem codesContextItem = CreateContextItem("codes", null);
+                classificationContextItem.NestedItems.Add(CreateContextItem("Type", shippedItemInstance.Item.Classification.TypeCode));
+            }
+            var count = shippedItemInstance.Item?.Classification.Codes?.Code.Count;
+            if (count != null && count > 0)
+            {
+                ContextItem codesContextItem = CreateContextItem("Codes", null);
+
                 int codeIndex = 0;
-                foreach (Model.Code code in shippedItemInstance.Classification.Codes.Codes)
+
+                foreach (ClassificationCodesCode code in shippedItemInstance.Item.Classification.Codes.Code)
                 {
                     ContextItem codeContextItem = CreateContextItem((++codeIndex).ToString(), null);
 
-                    if (code.Content != null)
+                    if (code.Content != null && code.TypeCode != null)
                     {
-                        codeContextItem.NestedItems.Add(CreateContextItem("content", code.Content));
+                        codeContextItem.NestedItems.Add(CreateContextItem(code.TypeCode, code.Content));
                     }
-                    if (code.ListAgencyIdentifier != null)
+                    if (code.ListAgencyId != null)
                     {
-                        codeContextItem.NestedItems.Add(CreateContextItem("listAgencyIdentifier", code.ListAgencyIdentifier));
-                    }
-                    if (code.TypeCode != null)
-                    {
-                        codeContextItem.NestedItems.Add(CreateContextItem("typeCode", code.TypeCode));
+                        codeContextItem.NestedItems.Add(CreateContextItem("ListAgencyId", code.ListAgencyId));
                     }
 
                     if (codeContextItem.NestedItems.Count > 0)
@@ -601,55 +585,35 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     }
                 }
 
+
                 if (codesContextItem.NestedItems.Count > 0)
                 {
                     classificationContextItem.NestedItems.Add(codesContextItem);
                 }
             }
+
             if (classificationContextItem.NestedItems.Count > 0)
             {
                 contextItems.Add(classificationContextItem);
             }
 
-            // ManufacturingParty
-            ContextItem manufacturingPartyContextItem = CreateContextItem("manufacturingParty", null);
-            if (shippedItemInstance.ManufacturingParty?.Name != null)
-            {
-                manufacturingPartyContextItem.NestedItems.Add(CreateContextItem("name", shippedItemInstance.ManufacturingParty.Name));
-            }
-            ContextItem identifierContextItem = CreateContextItem("identifier", null);
-            if (shippedItemInstance.ManufacturingParty?.Identifier?.Content != null)
-            {
-                identifierContextItem.NestedItems.Add(CreateContextItem("content", shippedItemInstance.ManufacturingParty.Identifier.Content));
-            }
-            if (shippedItemInstance.ManufacturingParty?.Identifier?.TypeCode != null)
-            {
-                identifierContextItem.NestedItems.Add(CreateContextItem("typeCode", shippedItemInstance.ManufacturingParty.Identifier.TypeCode));
-            }
-            if (identifierContextItem.NestedItems.Count > 0)
-            {
-                manufacturingPartyContextItem.NestedItems.Add(identifierContextItem);
-            }
-            if (manufacturingPartyContextItem.NestedItems.Count > 0)
-            {
-               contextItems.Add(manufacturingPartyContextItem);
-            }
 
             return contextItems;
         }
 
-        private void SetManufacturerAndBrand(Model.ShippedItemInstance shippedItemInstance)
+        private void SetManufacturerAndBrand(ShippedItemInstance shippedItemInstance, Product product)
         {
             //Set Manufacturer & Brand as available
-            var product = GetProduct(shippedItemInstance);
+
             if (product != null)
             {
-                if (shippedItemInstance.ManufacturingParty?.Name != null)
+                if (shippedItemInstance.Item?.ManufacturingParty?.Name != null)
                 {
-                    var manufacturer = Catalog.Manufacturers.FirstOrDefault(m => m.Description == shippedItemInstance.ManufacturingParty.Name);
+                    var manufacturer = Catalog.Manufacturers.FirstOrDefault(m => m.Description == shippedItemInstance.Item.ManufacturingParty.Name);
                     if (manufacturer == null)
                     {
-                        manufacturer = new Manufacturer() { Description = shippedItemInstance.ManufacturingParty.Name };
+                        manufacturer = new Manufacturer()
+                        { Description = shippedItemInstance.Item.ManufacturingParty.Name };
                         Catalog.Manufacturers.Add(manufacturer);
                     }
                     product.ManufacturerId = manufacturer.Id.ReferenceId;
@@ -657,59 +621,154 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                 if (shippedItemInstance.Item?.BrandName != null)
                 {
-                    var brand = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
-                    if (brand == null)
+                    var brandName = Catalog.Brands.FirstOrDefault(b => b.Description == shippedItemInstance.Item.BrandName);
+
+                    if (brandName == null)
                     {
-                        brand = new Brand() { Description = shippedItemInstance.Item.BrandName, ManufacturerId = product.ManufacturerId ?? 0};
-                        Catalog.Brands.Add(brand);
+                        brandName = new Brand()
+                        { Description = shippedItemInstance.Item.BrandName, ManufacturerId = product.ManufacturerId ?? 0 };
+                        Console.WriteLine("Brand Name = " + brandName.Description);
+
+
+                        Catalog.Brands.Add(brandName);
                     }
-                    product.BrandId = brand.Id.ReferenceId;
+                    // it appears that the Add method generates the Id.ReferenceId
+                    product.BrandId = brandName.Id.ReferenceId;
+
+                    // map to contentItems
+                    //
+                    // gtin , add this to unique identifer on product?
+                    //
+                    var gtin = shippedItemInstance.Item.Gtinid;
+                    Console.WriteLine("GTIN = " + gtin);
+                    //
+                    // Where is gtin used?
+                    //
+                    // create a colleciton of Product components and add substatnce to it
+                    // var productComponents = shippedItemInstance.Item.ItemTreatment.Substance.FirstOrDefault(s => s.Name = )
+                    // product.ProductComponents = shippedItemInstance.Item.ItemTreatment.Substance
+
                 }
+
             }
         }
 
-        private void SetCrop(Model.ShippedItemInstance shippedItemInstance)
+        private void SetCrop(ShippedItemInstance shippedItemInstance, Product product)
         {
-            //Set Crop as available
-            if (shippedItemInstance.Classification?.TypeCode != null &&
-                shippedItemInstance.Classification?.TypeCode.ToLower() == "crop")
+            // Set Crop as available
+            // for seed this will be available
+            // for crop protection, crop is important, but it is really an associated item
+            // the classification of crop protection moves to product type
+            //
+            // do we need a separate way to manage this?
+            //
+            if (shippedItemInstance.Item.Classification.TypeCode?.ToLower() == "crop")
             {
-                var product = GetProduct(shippedItemInstance);
-                if (product != null && product is CropVarietyProduct)
+                // this is where the product is created -- seems a bit overloaded
+                //
+                //
+                if (product is CropVarietyProduct)
                 {
-                    var cropInformation = shippedItemInstance.Classification?.Codes?.Codes?.FirstOrDefault();
-                    if (cropInformation != null)
+                    Console.WriteLine("product is CropVarietyProduct");
+                    // this should not use First or Default but filter the array for specific typeCodes
+                    // Trait, CropType, AGIIS code for CropType value (content)
+                    //
+                    // The following will return the array of code entries
+                    //
+                    List<ClassificationCodesCode> cropInformation = shippedItemInstance.Item.Classification.Codes.Code;
+
+                    if (cropInformation.Count() > 0)
                     {
-                        string cropName = cropInformation.TypeCode;
-                        string cropID = cropInformation.Content;
-                        string idAgency = cropInformation.ListAgencyIdentifier;
-                        Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
-                        if (crop == null)
+                        // CropType 
+                        Console.WriteLine("cropInformation is not null, count = " + cropInformation.Count().ToString());
+                        // should implement equivalent to this JSON PATH
+                        // $[0].item.classification.codes.code[?@.typeCode=='CropType'].content
+                        // 
+                        try
                         {
-                            crop = new Crop() { Name = cropName };
-                            crop.Id.UniqueIds.Add(new UniqueId() { Source = idAgency, IdType = IdTypeEnum.String, Id = cropID });
-                            Catalog.Crops.Add(crop);
+                            if (cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype")?.Content.ToString() != null)
+                            {
+                                string cropName = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").Content.ToString();
+                                Console.WriteLine("cropName = " + cropName);
+
+                                if (cropName.ToString() != null)
+                                {
+
+                                    string idAgency = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").ListAgencyId;
+                                    Console.WriteLine("idAgency = " + idAgency);
+                                    //  
+                                    //
+                                    string cropID = cropInformation.FirstOrDefault(c => c.TypeCode == cropName && c.ListAgencyId == "AGIIS").Content;
+                                    Console.WriteLine("cropID = " + cropID);
+                                    //  
+                                    //
+                                    Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
+
+                                    // 
+                                    if (shippedItemInstance?.Item?.VarietyName?.ToString() != null)
+                                    {
+
+                                        var varietyName = shippedItemInstance?.Item?.VarietyName;
+
+                                        Console.WriteLine("varietyName = " + varietyName);
+
+                                        // how does this get mapped to CVT in ISO?
+                                        // CVT seems to be coming from product.Description
+                                    }
+                                    // 2025-03-22 Was this intended to be to default if no crop found above, or this should this be != null?
+                                    //
+                                    if (crop == null)
+                                    {
+                                        // 2025-03-22
+                                        //
+                                        crop = new Crop() { Name = cropName };
+
+                                        crop.Id.UniqueIds.Add(new UniqueId()
+                                        { Source = idAgency, IdType = IdTypeEnum.String, Id = cropID });
+                                        Catalog.Crops.Add(crop);
+                                    }
+
+                                    ((CropVarietyProduct)product).CropId = crop.Id.ReferenceId;
+                                }
+                            }
                         }
-                        ((CropVarietyProduct)product).CropId = crop.Id.ReferenceId;
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+
+                        }
+                        // need to test to see if this is present first
+
+
                     }
                 }
             }
         }
 
 
-        private void SetGrower(Model.ShippedItemInstance shippedItemInstance)
+        private void SetGrower(ShippedItemInstance shippedItemInstance)
         {
-            //Set Grower as available
-            Model.Party modelGrower = shippedItemInstance.Parties.FirstOrDefault(p => p.TypeCode != null && p.TypeCode.ToLower() == "grower");
-            if (modelGrower != null)
+            //  Need to test the typeCode of the both the ShipToParty and ShipFromParty to see which is the grower
+            //  Shipments from the Retailer to the Grower is for Seed
+            //  Shipments from the Farmer to the elevator or processor are for commodity shipments
+            //
+            if (shippedItemInstance.ShipmentReference?.ShipToParty?.TypeCode == "Farmer")
             {
-                Grower grower = Catalog.Growers.FirstOrDefault(c => c.Name == modelGrower.Name);
+                ShipToParty Farmer = shippedItemInstance.ShipmentReference.ShipToParty;
+
+                Grower grower = Catalog.Growers.FirstOrDefault(c => c.Name == Farmer.Name);
                 if (grower == null)
                 {
-                    grower = new Grower() { Name = modelGrower.Name };
-                    if (modelGrower.Location?.Glnid != null)
+                    grower = new Grower() { Name = Farmer.Name };
+
+                    Console.WriteLine("grower.Name = " + grower.Name);
+
+                    // Previously GLN was used but most farmers lack a GLN, 
+                    // so the Retailer's ERP accountId for the farmer is best
+                    //
+                    if (Farmer.AccountId != null)
                     {
-                        UniqueId id = new UniqueId() { Id = modelGrower.Location.Glnid, Source = "GLN", IdType = IdTypeEnum.String };
+                        UniqueId id = new UniqueId() { Id = Farmer.AccountId, Source = "RetailerERPAccount", IdType = IdTypeEnum.String };
                         grower.Id.UniqueIds.Add(id);
                     }
                     Catalog.Growers.Add(grower);

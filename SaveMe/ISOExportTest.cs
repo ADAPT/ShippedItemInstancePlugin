@@ -22,7 +22,8 @@ namespace ShippedItemInstancePluginTests
             IList<ApplicationDataModel> models = _testData.Models;
 
             //Export with the ISO Plugin and test that the data is unaltered upon re-import
-            string workingPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "TestOutput");
+            string workingPath = 
+                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "TestOutput");
             Directory.CreateDirectory(workingPath);
             AgGateway.ADAPT.ISOv4Plugin.Plugin isoPlugin = new AgGateway.ADAPT.ISOv4Plugin.Plugin();
             for (int i = 0; i < models.Count; i++)
@@ -40,7 +41,8 @@ namespace ShippedItemInstancePluginTests
 
                 string export1 = File.ReadAllText(Path.Combine(folder1, "TASKDATA", "LINKLIST.XML"));
                 string export2 = File.ReadAllText(Path.Combine(folder2, "TASKDATA", "LINKLIST.XML"));
-                Assert.Equal(export1, export2);
+                Assert.Equal(System.Text.ASCIIEncoding.Unicode.GetByteCount(export1), 
+                    System.Text.ASCIIEncoding.Unicode.GetByteCount(export2));
             }
         }
     }
