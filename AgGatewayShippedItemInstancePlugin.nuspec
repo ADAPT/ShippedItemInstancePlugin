@@ -13,9 +13,9 @@
     <copyright>Copyright (C) 2015-24 AgGateway and ADAPT Contributors</copyright>
     <tags>agriculture aggateway adapt shippediteminstance productidentification in-fieldproductid</tags>
     <dependencies>
-      <dependency id="AgGatewayADAPTFramework" version="[3.1.0,3)" />
-      <dependency id="Newtonsoft.Json" version="[13.0.3,13)" />
-      <dependency id="CoreCompat.System.ComponentModel.DataAnnotations" version="4.2.3-r7" />
+      <dependency id="AgGatewayADAPTFramework" version="3.1.0" />
+      <dependency id="Newtonsoft.Json" version="13.0.3" />
+      <dependency id="System.ComponentModel.DataAnnotations" version="5.0.0" />
     </dependencies>
     <references>
       <reference file="AgGateway.ADAPT.ShippedItemInstancePlugin.dll"/>
