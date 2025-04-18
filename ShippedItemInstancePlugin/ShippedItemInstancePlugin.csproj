@@ -9,17 +9,16 @@
     <Company>AgGateway</Company>
     <Description>AgGateway ShippedItemInstancePlugin</Description>
     <Copyright>Copyright (C) 2024 AgGateway and ADAPT Contributors</Copyright>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</RepositoryUrl>
     <PackageProjectUrl>https://github.com/ADAPT/ShippedItemInstancePlugin</PackageProjectUrl>
     <PackageLicenseExpression>EPL-1.0</PackageLicenseExpression>
-    <IsPackable>false</IsPackable>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AgGatewayADAPTFramework" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r7" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
   
 </Project>
