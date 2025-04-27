@@ -14,6 +14,8 @@ using System.Linq;
 using AgGateway.ADAPT.ApplicationDataModel.ADM;
 using IO.Swagger.Models;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
+
 
 namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 {
@@ -24,7 +26,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         public string Version => "4.0";
 
+
         public string Owner => "AgGateway";
+
 
         public IList<IError> Errors { get; set; }
 
@@ -38,6 +42,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             throw new NotImplementedException();
         }
 
+
         public IList<ApplicationDataModel.ADM.ApplicationDataModel> Import(string dataPath, Properties properties = null)
         {
             IList<ApplicationDataModel.ADM.ApplicationDataModel> models = new List<ApplicationDataModel.ADM.ApplicationDataModel>();
@@ -45,6 +50,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             List<IError> errors = new List<IError>();
 
             List<string> fileNames = GetInputFiles(dataPath);
+
+            var loggerFactory = new LoggerFactory();
+            ILogger _logger = loggerFactory.CreateLogger<ShippedItemInstanceList>();
 
             fileNames.Sort(); // required to ensure OS file system sorting differences are handled
 
@@ -54,25 +62,16 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 try
                 {
                     string jsonText = File.ReadAllText(fileName);
-                    
-                    Console.WriteLine("Read JSON fileName =" + fileName);                    
+
+                    Console.WriteLine("Read JSON fileName =" + fileName);
                     // Console.WriteLine(jsonText);
 
-                   ShippedItemInstanceList ShippedItems = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
-                   if (ShippedItems != null)
+                    ShippedItemInstanceList ShippedItems = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
+                    if (ShippedItems != null)
                     {
                         //Each document will import as individual ApplicationDataModel
-                        Console.WriteLine("deserialized into ShippedItemInstanceList");  
+                        models = TransformSIIToADM(ShippedItems, _logger);
 
-                        ApplicationDataModel.ADM.ApplicationDataModel adm = new ApplicationDataModel.ADM.ApplicationDataModel();
-                        adm.Catalog = new Catalog() { Description = fileName };
-
-                        //Map the document data into the Catalog
-
-                        Mapper mapper = new Mapper(adm.Catalog);
-                        errors.AddRange(mapper.MapDocument(ShippedItems));
-
-                        models.Add(adm);
                     }
                     else
                     {
@@ -85,7 +84,31 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 }
             }
 
-            //Read the Errors property after import to inspect any diagnostic messages.
+            Errors = errors;
+
+            return models;
+        }
+
+        public IList<ApplicationDataModel.ADM.ApplicationDataModel> TransformSIIToADM(ShippedItemInstanceList ShippedItems, ILogger _logger)
+        {
+            IList<ApplicationDataModel.ADM.ApplicationDataModel> models = new List<ApplicationDataModel.ADM.ApplicationDataModel>();
+
+            List<IError> errors = new List<IError>();
+
+            ApplicationDataModel.ADM.ApplicationDataModel adm = new ApplicationDataModel.ADM.ApplicationDataModel();
+
+            adm.Catalog = new Catalog()
+            {
+                Description = "Retailer = " + ShippedItems[0].ShipmentReference.ShipFromParty.Id +
+                " ShipmentId = " + ShippedItems[0].ShipmentReference.Id
+            };
+
+            Mapper mapper = new Mapper(adm.Catalog);
+
+            errors.AddRange(mapper.MapDocument(ShippedItems));
+
+            models.Add(adm);
+
             Errors = errors;
 
             return models;
@@ -139,7 +162,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     return new List<string>();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Errors.Add(new Error(null, "Plugin.GetInputFiles", "Unable to find data files", ex.StackTrace));
                 return new List<string>();

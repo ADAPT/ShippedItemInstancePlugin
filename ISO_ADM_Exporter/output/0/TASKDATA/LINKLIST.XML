@@ -1,281 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ISO11783LinkList VersionMajor="4" VersionMinor="2" ManagementSoftwareManufacturer="AgGateway" ManagementSoftwareVersion="1.0" TaskControllerManufacturer="" TaskControllerVersion="" DataTransferOrigin="1" FileVersion="">
   <LGP A="LGP1" B="2" C="1100046503738" E="ADAPT_UniqueIds">
-    <LNK A="CTP1" B="S" C="USDA" />
-    <LNK A="CTP2" B="C" C="USDA" />
-    <LNK A="CTR1" B="13" C="RetailerERPAccount" />
+    <LNK A="CTP1" B="C" C="USDA" />
+    <LNK A="CTR1" B="12345" C="RetailerERPAccount" />
   </LGP>
   <LGP A="LGP2" B="2" C="1100046503738" E="ADAPT_Context_Items:Product">
-    <LNK A="PDT1" B="Product.Type|seed" />
-    <LNK A="PDT1" B="Product.Description|3230Enlist SDBX ESCALATE SDS+ BEANS" />
-    <LNK A="PDT1" B="Product.Name|3230Enlist" />
-    <LNK A="PDT1" B="Product.BrandName|Beck's" />
-    <LNK A="PDT1" B="Product.VarietyName|3230Enlist" />
+    <LNK A="PDT1" B="Product.Type|SEED" />
+    <LNK A="PDT1" B="Product.Description|VT DoublePro RIB Complete Relative Maturity 85 days" />
+    <LNK A="PDT1" B="Product.Name|CP2585" />
+    <LNK A="PDT1" B="Product.BrandName|CROPLAN" />
+    <LNK A="PDT1" B="Product.VarietyName|VT2P/RIB" />
+    <LNK A="PDT1" B="Product.PerPackageQuantity|55" />
+    <LNK A="PDT1" B="Product.PerPackageQuantity.UOM|LB" />
     <LNK A="PDT1" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT1" B="Product.Classification.Codes.1.CropType|Soybeans" />
+    <LNK A="PDT1" B="Product.Classification.Codes.1.CropType|Corn" />
     <LNK A="PDT1" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT1" B="Product.Classification.Codes.2.Soybeans|S" />
+    <LNK A="PDT1" B="Product.Classification.Codes.2.Corn|C" />
     <LNK A="PDT1" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT1" B="Product.Classification.Codes.3.Trait|SDBX" />
-    <LNK A="PDT1" B="LotIdentifier|E22388816X" />
-    <LNK A="PDT1" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT1" B="ShipmentReference.ShipmentId|7302" />
+    <LNK A="PDT1" B="Product.Classification.Codes.3.Trait|VT2RIB" />
+    <LNK A="PDT1" B="LotIdentifier|769MXJ4JX" />
+    <LNK A="PDT1" B="Packaging.ShipUnitTypeCode|SeedBox" />
+    <LNK A="PDT1" B="Packaging.SeedBox.Id|844f95ac-422a-406a-91c5-65d017de2f09" />
+    <LNK A="PDT1" B="Packaging.SeedBox.GrossWeight|2475" />
+    <LNK A="PDT1" B="Packaging.SeedBox.GrossWeight.UOM|LB" />
+    <LNK A="PDT1" B="Packaging.SeedBox.PackageQuantity|45" />
+    <LNK A="PDT1" B="Packaging.SeedBox.PackageQuantity.UOM|BG" />
+    <LNK A="PDT1" B="ShipmentReference.ShipFromGLN|1100028417954" />
+    <LNK A="PDT1" B="ShipmentReference.ShipmentId|34343535" />
     <LNK A="PDT1" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT1" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
+    <LNK A="PDT1" B="ShipmentReference.ShippingContainer.Id.USDOT_Number|12345678" />
     <LNK A="PDT1" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT1" B="InFieldProductID.API.Path.id|6af79ed0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT1" B="SeedTreatment.Name|ESCALATE SDS+" />
-    <LNK A="PDT1" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT2" B="Product.Type|seed" />
-    <LNK A="PDT2" B="Product.Description|3510Enlist SDBX ESCALATE BEANS" />
-    <LNK A="PDT2" B="Product.Name|3510Enlist" />
-    <LNK A="PDT2" B="Product.BrandName|Beck's" />
-    <LNK A="PDT2" B="Product.VarietyName|3510Enlist" />
-    <LNK A="PDT2" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT2" B="Product.Classification.Codes.1.CropType|Soybeans" />
-    <LNK A="PDT2" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT2" B="Product.Classification.Codes.2.Soybeans|S" />
-    <LNK A="PDT2" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT2" B="Product.Classification.Codes.3.Trait|SDBX" />
-    <LNK A="PDT2" B="LotIdentifier|F2212127X" />
-    <LNK A="PDT2" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT2" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT2" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT2" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT2" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT2" B="InFieldProductID.API.Path.id|6b072f30-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT2" B="SeedTreatment.Name|ESCALATE" />
-    <LNK A="PDT2" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT3" B="Product.Type|seed" />
-    <LNK A="PDT3" B="Product.Description|XL 6081AM BAG ESCALATE MED FLAT CORN" />
-    <LNK A="PDT3" B="Product.Name|XL 6081AM " />
-    <LNK A="PDT3" B="Product.BrandName|Beck's" />
-    <LNK A="PDT3" B="Product.VarietyName|XL 6081AM " />
-    <LNK A="PDT3" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT3" B="Product.Classification.Codes.1.CropType|Corn" />
-    <LNK A="PDT3" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT3" B="Product.Classification.Codes.2.Corn|C" />
-    <LNK A="PDT3" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT3" B="Product.Classification.Codes.3.Trait|XL" />
-    <LNK A="PDT3" B="LotIdentifier|S116FF" />
-    <LNK A="PDT3" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT3" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT3" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT3" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT3" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT3" B="InFieldProductID.API.Path.id|6b167170-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT3" B="SeedTreatment.Name|ESCALATE" />
-    <LNK A="PDT3" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT4" B="Product.Type|seed" />
-    <LNK A="PDT4" B="Product.Description|XL 6241QR BAG ESCALATE MED FLAT CORN" />
-    <LNK A="PDT4" B="Product.Name|XL 6241QR " />
-    <LNK A="PDT4" B="Product.BrandName|Beck's" />
-    <LNK A="PDT4" B="Product.VarietyName|XL 6241QR " />
-    <LNK A="PDT4" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT4" B="Product.Classification.Codes.1.CropType|Corn" />
-    <LNK A="PDT4" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT4" B="Product.Classification.Codes.2.Corn|C" />
-    <LNK A="PDT4" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT4" B="Product.Classification.Codes.3.Trait|XL" />
-    <LNK A="PDT4" B="LotIdentifier|S260FF" />
-    <LNK A="PDT4" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT4" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT4" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT4" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT4" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT4" B="InFieldProductID.API.Path.id|6b25dac0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT4" B="SeedTreatment.Name|ESCALATE" />
-    <LNK A="PDT4" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT5" B="Product.Type|seed" />
-    <LNK A="PDT5" B="Product.Description|6374VT2P BAG ESCALATE MED FLAT CORN" />
-    <LNK A="PDT5" B="Product.Name|6374VT2P B" />
-    <LNK A="PDT5" B="Product.BrandName|Beck's" />
-    <LNK A="PDT5" B="Product.VarietyName|6374VT2P B" />
-    <LNK A="PDT5" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT5" B="Product.Classification.Codes.1.CropType|Corn" />
-    <LNK A="PDT5" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT5" B="Product.Classification.Codes.2.Corn|C" />
-    <LNK A="PDT5" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT5" B="Product.Classification.Codes.3.Trait|VT2P" />
-    <LNK A="PDT5" B="LotIdentifier|S65FF" />
-    <LNK A="PDT5" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT5" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT5" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT5" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT5" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT5" B="InFieldProductID.API.Path.id|6b354410-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT5" B="SeedTreatment.Name|ESCALATE" />
-    <LNK A="PDT5" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT6" B="Product.Type|seed" />
-    <LNK A="PDT6" B="Product.Description|6414VT2P BAG ESCALATE MED FLAT CORN" />
-    <LNK A="PDT6" B="Product.Name|6414VT2P B" />
-    <LNK A="PDT6" B="Product.BrandName|Beck's" />
-    <LNK A="PDT6" B="Product.VarietyName|6414VT2P B" />
-    <LNK A="PDT6" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT6" B="Product.Classification.Codes.1.Corn|C" />
-    <LNK A="PDT6" B="Product.Classification.Codes.1.ListAgencyId|AGIIS" />
-    <LNK A="PDT6" B="Product.Classification.Codes.2.Trait|VT2P" />
-    <LNK A="PDT6" B="LotIdentifier|E181FF" />
-    <LNK A="PDT6" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT6" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT6" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT6" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT6" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT6" B="InFieldProductID.API.Path.id|6b44ad60-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT6" B="SeedTreatment.Name|ESCALATE" />
-    <LNK A="PDT6" B="SeedTreatment.Id|ESCALATE" />
-    <LNK A="PDT7" B="Product.Type|seed" />
-    <LNK A="PDT7" B="Product.Description|3830Enlist SDBX ESCALATE SDS+ BEANS" />
-    <LNK A="PDT7" B="Product.Name|3830Enlist" />
-    <LNK A="PDT7" B="Product.BrandName|Beck's" />
-    <LNK A="PDT7" B="Product.VarietyName|3830Enlist" />
-    <LNK A="PDT7" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT7" B="Product.Classification.Codes.1.CropType|Soybeans" />
-    <LNK A="PDT7" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT7" B="Product.Classification.Codes.2.Soybeans|S" />
-    <LNK A="PDT7" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT7" B="Product.Classification.Codes.3.Trait|SDBX" />
-    <LNK A="PDT7" B="LotIdentifier|F22121214X" />
-    <LNK A="PDT7" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT7" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT7" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT7" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT7" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT7" B="InFieldProductID.API.Path.id|6b53efa0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT7" B="SeedTreatment.Name|ESCALATE SDS+" />
-    <LNK A="PDT7" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT8" B="Product.Type|seed" />
-    <LNK A="PDT8" B="Product.Description|4320Enlist SDBX EXCALATE SDS+ BEANS" />
-    <LNK A="PDT8" B="Product.Name|4320Enlist" />
-    <LNK A="PDT8" B="Product.BrandName|Beck's" />
-    <LNK A="PDT8" B="Product.VarietyName|4320Enlist" />
-    <LNK A="PDT8" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT8" B="Product.Classification.Codes.1.CropType|Soybeans" />
-    <LNK A="PDT8" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT8" B="Product.Classification.Codes.2.Soybeans|S" />
-    <LNK A="PDT8" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT8" B="Product.Classification.Codes.3.Trait|SDBX" />
-    <LNK A="PDT8" B="LotIdentifier|A22242312X" />
-    <LNK A="PDT8" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT8" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT8" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT8" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT8" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT8" B="InFieldProductID.API.Path.id|6b6358f0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT8" B="SeedTreatment.Name|ESCALATE SDS+" />
-    <LNK A="PDT8" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT9" B="Product.Type|seed" />
-    <LNK A="PDT9" B="Product.Description|4030Enlist SDBX ESCALATE SDS+ BEANS" />
-    <LNK A="PDT9" B="Product.Name|4030Enlist" />
-    <LNK A="PDT9" B="Product.BrandName|Beck's" />
-    <LNK A="PDT9" B="Product.VarietyName|4030Enlist" />
-    <LNK A="PDT9" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT9" B="Product.Classification.Codes.1.CropType|Soybeans" />
-    <LNK A="PDT9" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT9" B="Product.Classification.Codes.2.Soybeans|S" />
-    <LNK A="PDT9" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT9" B="Product.Classification.Codes.3.Trait|SDBX" />
-    <LNK A="PDT9" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT9" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT9" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT9" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT9" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT9" B="InFieldProductID.API.Path.id|6b729b30-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT9" B="SeedTreatment.Name|ESCALATE SDS+" />
-    <LNK A="PDT9" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT10" B="Product.Type|seed" />
-    <LNK A="PDT10" B="Product.Description|3030Enlist SDBX ESCALATE SDS+ BEANS" />
-    <LNK A="PDT10" B="Product.Name|3030Enlist" />
-    <LNK A="PDT10" B="Product.BrandName|Beck's" />
-    <LNK A="PDT10" B="Product.VarietyName|3030Enlist" />
-    <LNK A="PDT10" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT10" B="Product.Classification.Codes.1.CropType|Soybeans" />
-    <LNK A="PDT10" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT10" B="Product.Classification.Codes.2.Soybeans|S" />
-    <LNK A="PDT10" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT10" B="Product.Classification.Codes.3.Trait|SDBX" />
-    <LNK A="PDT10" B="LotIdentifier|E2238579X" />
-    <LNK A="PDT10" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT10" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT10" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT10" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT10" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT10" B="InFieldProductID.API.Path.id|6b820480-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT10" B="SeedTreatment.Name|ESCALATE SDS+" />
-    <LNK A="PDT10" B="SeedTreatment.Id|ESCALATE SDS+" />
-    <LNK A="PDT11" B="Product.Type|seed" />
-    <LNK A="PDT11" B="Product.Description|4030Enlist SDBX ILEVO TWO BEANS" />
-    <LNK A="PDT11" B="Product.Name|4030Enlist" />
-    <LNK A="PDT11" B="Product.BrandName|Beck's" />
-    <LNK A="PDT11" B="Product.VarietyName|4030Enlist" />
-    <LNK A="PDT11" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT11" B="Product.Classification.Codes.1.CropType|Soybeans" />
-    <LNK A="PDT11" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT11" B="Product.Classification.Codes.2.Soybeans|S" />
-    <LNK A="PDT11" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT11" B="Product.Classification.Codes.3.Trait|SDBX" />
-    <LNK A="PDT11" B="LotIdentifier|B2223136XI" />
-    <LNK A="PDT11" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT11" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT11" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT11" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT11" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT11" B="InFieldProductID.API.Path.id|6b9194e0-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT11" B="SeedTreatment.Name|ILEVO" />
-    <LNK A="PDT11" B="SeedTreatment.Id|ILEVO" />
-    <LNK A="PDT12" B="Product.Type|seed" />
-    <LNK A="PDT12" B="Product.Description|A6544-VT2RIB" />
-    <LNK A="PDT12" B="Product.Name|A6544" />
-    <LNK A="PDT12" B="Product.BrandName|AgriGold" />
-    <LNK A="PDT12" B="Product.VarietyName|A6544" />
-    <LNK A="PDT12" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT12" B="Product.Classification.Codes.1.CropType|Corn" />
-    <LNK A="PDT12" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT12" B="Product.Classification.Codes.2.Corn|C" />
-    <LNK A="PDT12" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT12" B="Product.Classification.Codes.3.Trait|VT2RIB" />
-    <LNK A="PDT12" B="LotIdentifier|EF06466361" />
-    <LNK A="PDT12" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT12" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT12" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT12" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT12" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT12" B="InFieldProductID.API.Path.id|6ba0d720-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT13" B="Product.Type|seed" />
-    <LNK A="PDT13" B="Product.Description|A64516-VT2RIB" />
-    <LNK A="PDT13" B="Product.Name|A64516" />
-    <LNK A="PDT13" B="Product.BrandName|AgriGold" />
-    <LNK A="PDT13" B="Product.VarietyName|A64516" />
-    <LNK A="PDT13" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT13" B="Product.Classification.Codes.1.CropType|Corn" />
-    <LNK A="PDT13" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT13" B="Product.Classification.Codes.2.Corn|C" />
-    <LNK A="PDT13" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT13" B="Product.Classification.Codes.3.Trait|VT2RIB" />
-    <LNK A="PDT13" B="LotIdentifier|EF09168506" />
-    <LNK A="PDT13" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT13" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT13" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT13" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT13" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT13" B="InFieldProductID.API.Path.id|6bb04070-cc35-11ee-b08c-81db61397719" />
-    <LNK A="PDT14" B="Product.Type|seed" />
-    <LNK A="PDT14" B="Product.Description|A64259-VT2RIB" />
-    <LNK A="PDT14" B="Product.Name|A64259" />
-    <LNK A="PDT14" B="Product.BrandName|AgriGold" />
-    <LNK A="PDT14" B="Product.VarietyName|A64259" />
-    <LNK A="PDT14" B="Product.Classification.Type|Crop" />
-    <LNK A="PDT14" B="Product.Classification.Codes.1.CropType|Corn" />
-    <LNK A="PDT14" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
-    <LNK A="PDT14" B="Product.Classification.Codes.2.Corn|C" />
-    <LNK A="PDT14" B="Product.Classification.Codes.2.ListAgencyId|AGIIS" />
-    <LNK A="PDT14" B="Product.Classification.Codes.3.Trait|VT2RIB" />
-    <LNK A="PDT14" B="LotIdentifier|II36062097" />
-    <LNK A="PDT14" B="ShipmentReference.ShipFromGLN|1369458675000" />
-    <LNK A="PDT14" B="ShipmentReference.ShipmentId|7302" />
-    <LNK A="PDT14" B="ShipmentReference.ShippingContainer.Type|Semi-Trailer" />
-    <LNK A="PDT14" B="ShipmentReference.ShippingContainer.Id. USDOT_Number|12345678" />
-    <LNK A="PDT14" B="ShipmentReference.Carrier.SCAC|NA" />
-    <LNK A="PDT14" B="InFieldProductID.API.Path.id|6bbf82b0-cc35-11ee-b08c-81db61397719" />
+    <LNK A="PDT1" B="InFieldProductID.API.Path.id|0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" />
+    <LNK A="PDT1" B="RelatedIdentifiers.AgGateway.GTIN_URI|https://api.agiis.org/?gtinid=00888346580291" />
+    <LNK A="PDT1" B="EncodedIdentification.encodingSchemaId|DataMatrix" />
+    <LNK A="PDT1" B="EncodedIdentification.DataMatrixId|0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" />
+    <LNK A="PDT1" B="EncodedIdentification.schemaAgencyId|GS1" />
+    <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount|892" />
+    <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount.UOM|count/bg" />
+    <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount.Timestamp|2/8/2021 12:17:45 PM" />
+    <LNK A="PDT1" B="SeedTreatment.Name|Fortivent® Plus" />
+    <LNK A="PDT1" B="SeedTreatment.Id|1001339" />
+    <LNK A="PDT1" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />
+    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.EffectiveEndDateTime|7/1/2030 12:00:00 AM" />
+    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.CAS.Id|162650-77-3" />
+    <LNK A="PDT1" B="SeedTreatment.Substance.RegistrationStatus.Agency|Chemical Abstracts Service" />
   </LGP>
 </ISO11783LinkList>
