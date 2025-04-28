@@ -65,7 +65,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         {
             Errors = new List<IError>();
 
-            Console.WriteLine("within mapper.MapDocument");
+            string countShippedProductLines = shippedProducts.Count.ToString();
+            Console.WriteLine("within mapper.MapDocument, count of shipped item lines = " + countShippedProductLines);
 
             foreach (ShippedItemInstance shippedItemInstance in shippedProducts)
             {

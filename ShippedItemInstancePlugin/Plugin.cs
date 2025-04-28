@@ -64,13 +64,18 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     string jsonText = File.ReadAllText(fileName);
 
                     _logger.LogInformation("Read JSON fileName =" + fileName);
+                    Console.WriteLine("===============================================================================");
+                    Console.WriteLine("Read JSON fileName =" + fileName);
                     // Console.WriteLine(jsonText);
 
                     List<ShippedItemInstance> ShippedItems = JsonConvert.DeserializeObject<List<ShippedItemInstance>>(jsonText);
                     if (ShippedItems != null)
                     {
                         //Each document will import as individual ApplicationDataModel
-                        models = TransformSIIToADM(ShippedItems, _logger);
+                        string CatalogDescription = fileName;
+
+                        ApplicationDataModel.ADM.ApplicationDataModel adm = TransformSIIToADM(ShippedItems,CatalogDescription, _logger);
+                        models.Add(adm);
 
                     }
                     else
@@ -82,6 +87,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 {
                     errors.Add(new Error(null, $"Exception Importing {fileName}", ex.Message, ex.StackTrace));
                 }
+
             }
 
             Errors = errors;
@@ -89,30 +95,30 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             return models;
         }
 
-        public IList<ApplicationDataModel.ADM.ApplicationDataModel> TransformSIIToADM(List<ShippedItemInstance> ShippedItems, ILogger _logger)
+        public ApplicationDataModel.ADM.ApplicationDataModel TransformSIIToADM(List<ShippedItemInstance> ShippedItems, string CatalogDescription, ILogger _logger)
         {
-            IList<ApplicationDataModel.ADM.ApplicationDataModel> models = new List<ApplicationDataModel.ADM.ApplicationDataModel>();
-
+   
+            ApplicationDataModel.ADM.ApplicationDataModel adm = new ApplicationDataModel.ADM.ApplicationDataModel();
+            
             List<IError> errors = new List<IError>();
 
-            ApplicationDataModel.ADM.ApplicationDataModel adm = new ApplicationDataModel.ADM.ApplicationDataModel();
+            string countShippedItemLines = ShippedItems.Count.ToString();
+            Console.WriteLine("Within TransformSIIToADM - Count Shipped Item Lines = " + countShippedItemLines);
 
             adm.Catalog = new Catalog()
             {
-                Description = "Retailer = " + ShippedItems[0].ShipmentReference.ShipFromParty.Id +
-                " ShipmentId = " + ShippedItems[0].ShipmentReference.Id
+                Description = CatalogDescription
             };
 
             Mapper mapper = new Mapper(adm.Catalog);
 
             errors.AddRange(mapper.MapDocument(ShippedItems, _logger));
-            _logger.LogInformation("Completed Mapping of ShippedItems");
 
-            models.Add(adm);
+            _logger.LogInformation("Completed Mapping of ShippedItems");
   
             Errors = errors;
 
-            return models;
+            return adm;
         }
 
         public void Initialize(string args = null)
