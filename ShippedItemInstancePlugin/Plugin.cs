@@ -52,7 +52,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             List<string> fileNames = GetInputFiles(dataPath);
 
             var loggerFactory = new LoggerFactory();
-            ILogger _logger = loggerFactory.CreateLogger<ShippedItemInstanceList>();
+            ILogger _logger = loggerFactory.CreateLogger<List<ShippedItemInstance>>();
 
             fileNames.Sort(); // required to ensure OS file system sorting differences are handled
 
@@ -63,10 +63,10 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 {
                     string jsonText = File.ReadAllText(fileName);
 
-                    Console.WriteLine("Read JSON fileName =" + fileName);
+                    _logger.LogInformation("Read JSON fileName =" + fileName);
                     // Console.WriteLine(jsonText);
 
-                    ShippedItemInstanceList ShippedItems = JsonConvert.DeserializeObject<ShippedItemInstanceList>(jsonText);
+                    List<ShippedItemInstance> ShippedItems = JsonConvert.DeserializeObject<List<ShippedItemInstance>>(jsonText);
                     if (ShippedItems != null)
                     {
                         //Each document will import as individual ApplicationDataModel
@@ -89,7 +89,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             return models;
         }
 
-        public IList<ApplicationDataModel.ADM.ApplicationDataModel> TransformSIIToADM(ShippedItemInstanceList ShippedItems, ILogger _logger)
+        public IList<ApplicationDataModel.ADM.ApplicationDataModel> TransformSIIToADM(List<ShippedItemInstance> ShippedItems, ILogger _logger)
         {
             IList<ApplicationDataModel.ADM.ApplicationDataModel> models = new List<ApplicationDataModel.ADM.ApplicationDataModel>();
 
@@ -105,7 +105,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             Mapper mapper = new Mapper(adm.Catalog);
 
-            errors.AddRange(mapper.MapDocument(ShippedItems));
+            errors.AddRange(mapper.MapDocument(ShippedItems, _logger));
+            _logger.LogInformation("Completed Mapping of ShippedItems");
 
             models.Add(adm);
 
