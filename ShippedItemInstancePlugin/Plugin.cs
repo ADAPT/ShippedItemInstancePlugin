@@ -109,7 +109,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             _logger.LogInformation("Completed Mapping of ShippedItems");
 
             models.Add(adm);
-
+  
             Errors = errors;
 
             return models;

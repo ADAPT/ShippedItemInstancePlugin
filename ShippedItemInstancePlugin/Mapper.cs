@@ -121,7 +121,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                 product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
 
-                product.ContextItems.AddRange(CreateProductInstanceSpecificContextItems(shippedItemInstance));
+                product.ContextItems.AddRange(CreateProductInstanceSpecificContextItems(shippedItemInstance, _logger));
             }
             else
             {
@@ -190,7 +190,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         }
 
-        private List<ContextItem> CreateProductInstanceSpecificContextItems(ShippedItemInstance shippedItemInstance)
+        private List<ContextItem> CreateProductInstanceSpecificContextItems(ShippedItemInstance shippedItemInstance, ILogger _logger)
         {
             List<ContextItem> items = new List<ContextItem>();
 
@@ -388,7 +388,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //
             {
                 Console.WriteLine("Item Treatment Test passed entering CreateItemTreatmentContextItem");
-                contextItem = CreateItemTreatmentContextItem(shippedItemInstance);
+                contextItem = CreateItemTreatmentContextItem(shippedItemInstance, _logger);
                 // 
                 if (contextItem.NestedItems.Count > 0)
                 {
@@ -398,7 +398,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             return items;
         }
-        private ContextItem CreateItemTreatmentContextItem(ShippedItemInstance shippedItemInstance)
+        private ContextItem CreateItemTreatmentContextItem(ShippedItemInstance shippedItemInstance, ILogger _logger)
         {
             ItemItemTreatment seedTreatment = shippedItemInstance.Item.ItemTreatment;
             ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", null);
@@ -452,7 +452,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                _logger.LogError(e.Message);
 
             }
             return seedTreatmentContextItem;
@@ -739,7 +739,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                         }
                         catch (Exception e)
                         {
-                            _logger.LogInformation(e.Message);
+                            _logger.LogError(e.Message);
 
                         }
                         // need to test to see if this is present first
