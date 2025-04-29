@@ -22,6 +22,8 @@ using AgGateway.ADAPT.Representation.RepresentationSystem.ExtensionMethods;
 using IO.Swagger.Models;
 using System.Text.Json.Nodes;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
+
 
 namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 {
@@ -34,6 +36,8 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         public Mapper(Catalog catalog)
         {
             Catalog = catalog;
+            // var loggerFactory = new LoggerFactory();
+            // ILogger _logger = loggerFactory.CreateLogger<List<ShippedItemInstance>>();
         }
 
         #endregion
@@ -57,17 +61,19 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         /// <returns></returns>
         ///  
         ///
-        public IList<IError> MapDocument(ShippedItemInstanceList shippedProducts)
+        public IList<IError> MapDocument(List<ShippedItemInstance> shippedProducts, ILogger _logger)
         {
             Errors = new List<IError>();
 
-            Console.WriteLine("within mapper.MapDocument");
+            string countShippedProductLines = shippedProducts.Count.ToString();
+            Console.WriteLine("within mapper.MapDocument, count of shipped item lines = " + countShippedProductLines);
 
             foreach (ShippedItemInstance shippedItemInstance in shippedProducts)
             {
-                Console.WriteLine("within mapper.MapDocument");
+                string shipmentReferenceLineNumber = shippedItemInstance.ShipmentReference.LineNumberId;
+                _logger.LogInformation("Mapping shipmentReferenceLineNumber = " + shipmentReferenceLineNumber);
 
-                MapShippedItemInstance(shippedItemInstance);
+                MapShippedItemInstance(shippedItemInstance, _logger);
                 //
                 // the primary goal is to create 
                 // Catalog.Products  
@@ -79,49 +85,49 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             return Errors;
         }
 
-        private void MapShippedItemInstance(ShippedItemInstance shippedItemInstance)
+        private void MapShippedItemInstance(ShippedItemInstance shippedItemInstance, ILogger _logger)
         {
 
             // capture the displayName and all this item instance context items
             // 
-            Console.WriteLine("MapShippedItemInstance -- calling GetProduct");
+            _logger.LogInformation("MapShippedItemInstance -- calling GetProduct");
 
-            Product product = GetProduct(shippedItemInstance);
+            Product product = GetProduct(shippedItemInstance, _logger);
             //
-            Console.WriteLine("MapShippedItemInstance -- calling SetCrop");
-            SetCrop(shippedItemInstance, product);
+            _logger.LogInformation("MapShippedItemInstance -- calling SetCrop");
+            SetCrop(shippedItemInstance, product, _logger);
             //
-            Console.WriteLine("MapShippedItemInstance -- calling SetManufacturerAndBrand");
-            SetManufacturerAndBrand(shippedItemInstance, product);
+            _logger.LogInformation("MapShippedItemInstance -- calling SetManufacturerAndBrand");
+            SetManufacturerAndBrand(shippedItemInstance, product, _logger);
             //
-            Console.WriteLine("MapShippedItemInstance -- calling Set Grower");
-            SetGrower(shippedItemInstance);
+            _logger.LogInformation("MapShippedItemInstance -- calling Set Grower");
+            SetGrower(shippedItemInstance, _logger);
         }
 
-        private Product GetProduct(ShippedItemInstance shippedItemInstance)
+        private Product GetProduct(ShippedItemInstance shippedItemInstance, ILogger _logger)
         {
             // Look for product with a description that matches the shipped item instance
             // Primarily need the displayName of the product 
             // quick test
             Product product = Catalog.Products.FirstOrDefault(p => p.Description == shippedItemInstance.DisplayName);
 
-            Console.WriteLine("MapShippedItemInstance -- created product");
+            _logger.LogInformation("MapShippedItemInstance -- created product");
 
             if (shippedItemInstance.TypeCode.ToUpper() == "SEED")
             {
                 product = new CropVarietyProduct();
                 Console.WriteLine("MapShippedItemInstance -- CropVarietyProduct");
                 product.Description = shippedItemInstance.DisplayName;
-                Console.WriteLine("MapShippedItemInstance displayName = " + shippedItemInstance.DisplayName);
+                _logger.LogInformation("MapShippedItemInstance displayName = " + shippedItemInstance.DisplayName);
 
                 product.ContextItems.AddRange(CreateProductContextItems(shippedItemInstance));
 
-                product.ContextItems.AddRange(CreateProductInstanceSpecificContextItems(shippedItemInstance));
+                product.ContextItems.AddRange(CreateProductInstanceSpecificContextItems(shippedItemInstance, _logger));
             }
             else
             {
                 product = new GenericProduct();
-                Console.WriteLine("MapShippedItemInstance -- GenericProduct");
+                _logger.LogInformation("MapShippedItemInstance -- GenericProduct");
                 product.Description = shippedItemInstance.DisplayName;
             }
 
@@ -185,7 +191,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
         }
 
-        private List<ContextItem> CreateProductInstanceSpecificContextItems(ShippedItemInstance shippedItemInstance)
+        private List<ContextItem> CreateProductInstanceSpecificContextItems(ShippedItemInstance shippedItemInstance, ILogger _logger)
         {
             List<ContextItem> items = new List<ContextItem>();
 
@@ -383,7 +389,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             //
             {
                 Console.WriteLine("Item Treatment Test passed entering CreateItemTreatmentContextItem");
-                contextItem = CreateItemTreatmentContextItem(shippedItemInstance);
+                contextItem = CreateItemTreatmentContextItem(shippedItemInstance, _logger);
                 // 
                 if (contextItem.NestedItems.Count > 0)
                 {
@@ -393,7 +399,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
             return items;
         }
-        private ContextItem CreateItemTreatmentContextItem(ShippedItemInstance shippedItemInstance)
+        private ContextItem CreateItemTreatmentContextItem(ShippedItemInstance shippedItemInstance, ILogger _logger)
         {
             ItemItemTreatment seedTreatment = shippedItemInstance.Item.ItemTreatment;
             ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", null);
@@ -447,7 +453,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                _logger.LogError(e.Message);
 
             }
             return seedTreatmentContextItem;
@@ -601,7 +607,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             return contextItems;
         }
 
-        private void SetManufacturerAndBrand(ShippedItemInstance shippedItemInstance, Product product)
+        private void SetManufacturerAndBrand(ShippedItemInstance shippedItemInstance, Product product, ILogger _logger)
         {
             //Set Manufacturer & Brand as available
 
@@ -627,7 +633,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     {
                         brandName = new Brand()
                         { Description = shippedItemInstance.Item.BrandName, ManufacturerId = product.ManufacturerId ?? 0 };
-                        Console.WriteLine("Brand Name = " + brandName.Description);
+                        _logger.LogInformation("Brand Name = " + brandName.Description);
 
 
                         Catalog.Brands.Add(brandName);
@@ -640,7 +646,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     // gtin , add this to unique identifer on product?
                     //
                     var gtin = shippedItemInstance.Item.Gtinid;
-                    Console.WriteLine("GTIN = " + gtin);
+                    _logger.LogInformation("GTIN = " + gtin);
                     //
                     // Where is gtin used?
                     //
@@ -653,7 +659,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             }
         }
 
-        private void SetCrop(ShippedItemInstance shippedItemInstance, Product product)
+        private void SetCrop(ShippedItemInstance shippedItemInstance, Product product, ILogger _logger)
         {
             // Set Crop as available
             // for seed this will be available
@@ -669,7 +675,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 //
                 if (product is CropVarietyProduct)
                 {
-                    Console.WriteLine("product is CropVarietyProduct");
+                    _logger.LogInformation("product is CropVarietyProduct");
                     // this should not use First or Default but filter the array for specific typeCodes
                     // Trait, CropType, AGIIS code for CropType value (content)
                     //
@@ -680,7 +686,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     if (cropInformation.Count() > 0)
                     {
                         // CropType 
-                        Console.WriteLine("cropInformation is not null, count = " + cropInformation.Count().ToString());
+                        _logger.LogInformation("cropInformation is not null, count = " + cropInformation.Count().ToString());
                         // should implement equivalent to this JSON PATH
                         // $[0].item.classification.codes.code[?@.typeCode=='CropType'].content
                         // 
@@ -689,17 +695,17 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                             if (cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype")?.Content.ToString() != null)
                             {
                                 string cropName = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").Content.ToString();
-                                Console.WriteLine("cropName = " + cropName);
+                                _logger.LogInformation("cropName = " + cropName);
 
                                 if (cropName.ToString() != null)
                                 {
 
                                     string idAgency = cropInformation.FirstOrDefault(c => c.TypeCode.ToLower() == "croptype").ListAgencyId;
-                                    Console.WriteLine("idAgency = " + idAgency);
+                                    _logger.LogInformation("idAgency = " + idAgency);
                                     //  
                                     //
                                     string cropID = cropInformation.FirstOrDefault(c => c.TypeCode == cropName && c.ListAgencyId == "AGIIS").Content;
-                                    Console.WriteLine("cropID = " + cropID);
+                                    _logger.LogInformation("cropID = " + cropID);
                                     //  
                                     //
                                     Crop crop = Catalog.Crops.FirstOrDefault(c => c.Name == cropName);
@@ -710,7 +716,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
 
                                         var varietyName = shippedItemInstance?.Item?.VarietyName;
 
-                                        Console.WriteLine("varietyName = " + varietyName);
+                                        _logger.LogInformation("varietyName = " + varietyName);
 
                                         // how does this get mapped to CVT in ISO?
                                         // CVT seems to be coming from product.Description
@@ -734,7 +740,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e.Message);
+                            _logger.LogError(e.Message);
 
                         }
                         // need to test to see if this is present first
@@ -746,7 +752,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         }
 
 
-        private void SetGrower(ShippedItemInstance shippedItemInstance)
+        private void SetGrower(ShippedItemInstance shippedItemInstance, ILogger _logger)
         {
             //  Need to test the typeCode of the both the ShipToParty and ShipFromParty to see which is the grower
             //  Shipments from the Retailer to the Grower is for Seed
@@ -761,7 +767,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 {
                     grower = new Grower() { Name = Farmer.Name };
 
-                    Console.WriteLine("grower.Name = " + grower.Name);
+                    _logger.LogInformation("grower.Name = " + grower.Name);
 
                     // Previously GLN was used but most farmers lack a GLN, 
                     // so the Retailer's ERP accountId for the farmer is best
