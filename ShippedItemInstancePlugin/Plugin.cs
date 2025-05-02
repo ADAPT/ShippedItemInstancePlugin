@@ -69,6 +69,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     // Console.WriteLine(jsonText);
 
                     List<ShippedItemInstance> ShippedItems = JsonConvert.DeserializeObject<List<ShippedItemInstance>>(jsonText);
+
                     if (ShippedItems != null)
                     {
                         //Each document will import as individual ApplicationDataModel
@@ -80,11 +81,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     }
                     else
                     {
+                        
                         errors.Add(new Error(null, $"Importing {fileName}", "Couldn't parse ShippedItemInstances", null));
                     }
                 }
                 catch (Exception ex)
                 {
+                    _logger.LogError("Parse Error" + ex);   
                     errors.Add(new Error(null, $"Exception Importing {fileName}", ex.Message, ex.StackTrace));
                 }
 
