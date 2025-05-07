@@ -310,9 +310,9 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             contextItem.NestedItems.Add(CreateContextItem("ShipmentId", shippedItemInstance.ShipmentReference?.Id));
 
             //  semi-trailer Id
-            if (shippedItemInstance.ShipmentReference.ShipUnitReference.Id.Content != null &&
-                shippedItemInstance.ShipmentReference.ShipUnitReference.Id.TypeCode != null &&
-                shippedItemInstance.ShipmentReference.ShipUnitReference.TypeCode != null)
+            if (shippedItemInstance.ShipmentReference?.ShipUnitReference?.Id?.Content != null &&
+                shippedItemInstance.ShipmentReference?.ShipUnitReference?.Id?.TypeCode != null &&
+                shippedItemInstance.ShipmentReference?.ShipUnitReference?.TypeCode != null)
             {
                 contextItem.NestedItems.Add(CreateContextItem("ShippingContainer.Type",
                     shippedItemInstance.ShipmentReference.ShipUnitReference.TypeCode));
@@ -338,7 +338,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             items.Add(contextItem);
 
             // Item.Retailed is the link to AGIIS
-            if (shippedItemInstance.Item.RelatedId?.Count > 0)
+            if (shippedItemInstance.Item?.RelatedId?.Count > 0)
             {
                 contextItem = CreateRelatedIdsContextItem(shippedItemInstance);
                 if (contextItem.NestedItems.Count > 0)
