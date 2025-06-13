@@ -546,6 +546,13 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 contextItems.Add(CreateContextItem("Product.VarietyName", shippedItemInstance.Item.VarietyName));
             }
 
+            // gtin -- should I add this to unique identifer on product?
+
+            if (shippedItemInstance.Item.Gtinid != null)
+            {
+                contextItems.Add(CreateContextItem("Product.GTIN", shippedItemInstance.Item.Gtinid));
+            }
+            
             // item perPackage quantity, e.g., weight of a bag
             //
             if (shippedItemInstance.Item?.Packaging?.PerPackageQuantity?.Content != null &&
@@ -641,15 +648,6 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     // it appears that the Add method generates the Id.ReferenceId
                     product.BrandId = brandName.Id.ReferenceId;
 
-                    // map to contentItems
-                    //
-                    // gtin , add this to unique identifer on product?
-                    //
-                    var gtin = shippedItemInstance.Item.Gtinid;
-                    _logger.LogInformation("GTIN = " + gtin);
-                    //
-                    // Where is gtin used?
-                    //
                     // create a colleciton of Product components and add substatnce to it
                     // var productComponents = shippedItemInstance.Item.ItemTreatment.Substance.FirstOrDefault(s => s.Name = )
                     // product.ProductComponents = shippedItemInstance.Item.ItemTreatment.Substance
