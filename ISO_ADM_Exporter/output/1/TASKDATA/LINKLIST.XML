@@ -10,6 +10,7 @@
     <LNK A="PDT1" B="Product.Name|CP2585" />
     <LNK A="PDT1" B="Product.BrandName|CROPLAN" />
     <LNK A="PDT1" B="Product.VarietyName|VT2P/RIB" />
+    <LNK A="PDT1" B="Product.GTIN|00888346580291" />
     <LNK A="PDT1" B="Product.PerPackageQuantity|55" />
     <LNK A="PDT1" B="Product.PerPackageQuantity.UOM|LB" />
     <LNK A="PDT1" B="Product.Classification.Type|Crop" />

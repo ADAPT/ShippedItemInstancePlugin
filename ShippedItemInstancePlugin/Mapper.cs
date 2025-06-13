@@ -529,26 +529,26 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             {
                 contextItems.Add(CreateContextItem("Product.Type", shippedItemInstance.TypeCode));
             }
-            if (shippedItemInstance.Item.Description != null)
+            if (shippedItemInstance.Item?.Description != null)
             {
                 contextItems.Add(CreateContextItem("Product.Description", shippedItemInstance.Item.Description));
             }
-            if (shippedItemInstance.Item.ProductName != null)
+            if (shippedItemInstance.Item?.ProductName != null)
             {
                 contextItems.Add(CreateContextItem("Product.Name", shippedItemInstance.Item.ProductName));
             }
-            if (shippedItemInstance.Item.BrandName != null)
+            if (shippedItemInstance.Item?.BrandName != null)
             {
                 contextItems.Add(CreateContextItem("Product.BrandName", shippedItemInstance.Item.BrandName));
             }
-            if (shippedItemInstance.Item.VarietyName != null)
+            if (shippedItemInstance.Item?.VarietyName != null)
             {
                 contextItems.Add(CreateContextItem("Product.VarietyName", shippedItemInstance.Item.VarietyName));
             }
 
             // gtin -- should I add this to unique identifer on product?
 
-            if (shippedItemInstance.Item.Gtinid != null)
+            if (shippedItemInstance.Item?.Gtinid != null)
             {
                 contextItems.Add(CreateContextItem("Product.GTIN", shippedItemInstance.Item.Gtinid));
             }
