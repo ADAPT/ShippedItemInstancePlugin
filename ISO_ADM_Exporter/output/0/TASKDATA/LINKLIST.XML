@@ -11,6 +11,7 @@
     <LNK A="PDT1" B="Product.Name|3230Enlist" />
     <LNK A="PDT1" B="Product.BrandName|Beck's" />
     <LNK A="PDT1" B="Product.VarietyName|3230Enlist" />
+    <LNK A="PDT1" B="Product.GTIN|" />
     <LNK A="PDT1" B="Product.Classification.Type|Crop" />
     <LNK A="PDT1" B="Product.Classification.Codes.1.CropType|Soybeans" />
     <LNK A="PDT1" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -31,6 +32,7 @@
     <LNK A="PDT2" B="Product.Name|3510Enlist" />
     <LNK A="PDT2" B="Product.BrandName|Beck's" />
     <LNK A="PDT2" B="Product.VarietyName|3510Enlist" />
+    <LNK A="PDT2" B="Product.GTIN|" />
     <LNK A="PDT2" B="Product.Classification.Type|Crop" />
     <LNK A="PDT2" B="Product.Classification.Codes.1.CropType|Soybeans" />
     <LNK A="PDT2" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -51,6 +53,7 @@
     <LNK A="PDT3" B="Product.Name|XL 6081AM " />
     <LNK A="PDT3" B="Product.BrandName|Beck's" />
     <LNK A="PDT3" B="Product.VarietyName|XL 6081AM " />
+    <LNK A="PDT3" B="Product.GTIN|" />
     <LNK A="PDT3" B="Product.Classification.Type|Crop" />
     <LNK A="PDT3" B="Product.Classification.Codes.1.CropType|Corn" />
     <LNK A="PDT3" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -71,6 +74,7 @@
     <LNK A="PDT4" B="Product.Name|XL 6241QR " />
     <LNK A="PDT4" B="Product.BrandName|Beck's" />
     <LNK A="PDT4" B="Product.VarietyName|XL 6241QR " />
+    <LNK A="PDT4" B="Product.GTIN|" />
     <LNK A="PDT4" B="Product.Classification.Type|Crop" />
     <LNK A="PDT4" B="Product.Classification.Codes.1.CropType|Corn" />
     <LNK A="PDT4" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -91,6 +95,7 @@
     <LNK A="PDT5" B="Product.Name|6374VT2P B" />
     <LNK A="PDT5" B="Product.BrandName|Beck's" />
     <LNK A="PDT5" B="Product.VarietyName|6374VT2P B" />
+    <LNK A="PDT5" B="Product.GTIN|" />
     <LNK A="PDT5" B="Product.Classification.Type|Crop" />
     <LNK A="PDT5" B="Product.Classification.Codes.1.CropType|Corn" />
     <LNK A="PDT5" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -111,6 +116,7 @@
     <LNK A="PDT6" B="Product.Name|6414VT2P B" />
     <LNK A="PDT6" B="Product.BrandName|Beck's" />
     <LNK A="PDT6" B="Product.VarietyName|6414VT2P B" />
+    <LNK A="PDT6" B="Product.GTIN|" />
     <LNK A="PDT6" B="Product.Classification.Type|Crop" />
     <LNK A="PDT6" B="Product.Classification.Codes.1.Corn|C" />
     <LNK A="PDT6" B="Product.Classification.Codes.1.ListAgencyId|AGIIS" />
@@ -129,6 +135,7 @@
     <LNK A="PDT7" B="Product.Name|3830Enlist" />
     <LNK A="PDT7" B="Product.BrandName|Beck's" />
     <LNK A="PDT7" B="Product.VarietyName|3830Enlist" />
+    <LNK A="PDT7" B="Product.GTIN|" />
     <LNK A="PDT7" B="Product.Classification.Type|Crop" />
     <LNK A="PDT7" B="Product.Classification.Codes.1.CropType|Soybeans" />
     <LNK A="PDT7" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -149,6 +156,7 @@
     <LNK A="PDT8" B="Product.Name|4320Enlist" />
     <LNK A="PDT8" B="Product.BrandName|Beck's" />
     <LNK A="PDT8" B="Product.VarietyName|4320Enlist" />
+    <LNK A="PDT8" B="Product.GTIN|" />
     <LNK A="PDT8" B="Product.Classification.Type|Crop" />
     <LNK A="PDT8" B="Product.Classification.Codes.1.CropType|Soybeans" />
     <LNK A="PDT8" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -169,6 +177,7 @@
     <LNK A="PDT9" B="Product.Name|4030Enlist" />
     <LNK A="PDT9" B="Product.BrandName|Beck's" />
     <LNK A="PDT9" B="Product.VarietyName|4030Enlist" />
+    <LNK A="PDT9" B="Product.GTIN|" />
     <LNK A="PDT9" B="Product.Classification.Type|Crop" />
     <LNK A="PDT9" B="Product.Classification.Codes.1.CropType|Soybeans" />
     <LNK A="PDT9" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -188,6 +197,7 @@
     <LNK A="PDT10" B="Product.Name|3030Enlist" />
     <LNK A="PDT10" B="Product.BrandName|Beck's" />
     <LNK A="PDT10" B="Product.VarietyName|3030Enlist" />
+    <LNK A="PDT10" B="Product.GTIN|" />
     <LNK A="PDT10" B="Product.Classification.Type|Crop" />
     <LNK A="PDT10" B="Product.Classification.Codes.1.CropType|Soybeans" />
     <LNK A="PDT10" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -208,6 +218,7 @@
     <LNK A="PDT11" B="Product.Name|4030Enlist" />
     <LNK A="PDT11" B="Product.BrandName|Beck's" />
     <LNK A="PDT11" B="Product.VarietyName|4030Enlist" />
+    <LNK A="PDT11" B="Product.GTIN|" />
     <LNK A="PDT11" B="Product.Classification.Type|Crop" />
     <LNK A="PDT11" B="Product.Classification.Codes.1.CropType|Soybeans" />
     <LNK A="PDT11" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -228,6 +239,7 @@
     <LNK A="PDT12" B="Product.Name|A6544" />
     <LNK A="PDT12" B="Product.BrandName|AgriGold" />
     <LNK A="PDT12" B="Product.VarietyName|A6544" />
+    <LNK A="PDT12" B="Product.GTIN|" />
     <LNK A="PDT12" B="Product.Classification.Type|Crop" />
     <LNK A="PDT12" B="Product.Classification.Codes.1.CropType|Corn" />
     <LNK A="PDT12" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -246,6 +258,7 @@
     <LNK A="PDT13" B="Product.Name|A64516" />
     <LNK A="PDT13" B="Product.BrandName|AgriGold" />
     <LNK A="PDT13" B="Product.VarietyName|A64516" />
+    <LNK A="PDT13" B="Product.GTIN|" />
     <LNK A="PDT13" B="Product.Classification.Type|Crop" />
     <LNK A="PDT13" B="Product.Classification.Codes.1.CropType|Corn" />
     <LNK A="PDT13" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
@@ -264,6 +277,7 @@
     <LNK A="PDT14" B="Product.Name|A64259" />
     <LNK A="PDT14" B="Product.BrandName|AgriGold" />
     <LNK A="PDT14" B="Product.VarietyName|A64259" />
+    <LNK A="PDT14" B="Product.GTIN|" />
     <LNK A="PDT14" B="Product.Classification.Type|Crop" />
     <LNK A="PDT14" B="Product.Classification.Codes.1.CropType|Corn" />
     <LNK A="PDT14" B="Product.Classification.Codes.1.ListAgencyId|USDA" />
