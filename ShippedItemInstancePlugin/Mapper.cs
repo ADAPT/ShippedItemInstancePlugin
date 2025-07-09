@@ -275,8 +275,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 // need SII model point release change - Quantity.TypeCode added (preferred)
                 // or Package.Quantity as an array
                 //
-                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
-                    ".PackageQuantity"
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +"." + shippedItemInstance.Packaging.TypeCode 
                     , shippedItemInstance.Quantity.Content.ToString()));
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
                     ".PackageQuantity.UOM"
