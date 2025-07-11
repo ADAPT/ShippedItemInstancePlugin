@@ -402,7 +402,11 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         {
             ItemItemTreatment seedTreatment = shippedItemInstance.Item.ItemTreatment;
             ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", null);
-            if (seedTreatment.Name != null && seedTreatment.Id != null)
+            if (seedTreatment?.TypeCode != null)
+            {
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("TreatmentType", seedTreatment.TypeCode));
+            }
+            if (seedTreatment?.Name != null && seedTreatment?.Id != null )
             {
                 seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Name", seedTreatment.Name));
                 seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Id", seedTreatment.Id));

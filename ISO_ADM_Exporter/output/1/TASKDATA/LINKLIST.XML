@@ -39,6 +39,7 @@
     <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount|892" />
     <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount.UOM|count/bg" />
     <LNK A="PDT1" B="Results.QuantitativeMeasurements.1.SeedCount.Timestamp|2/8/2021 12:17:45 PM" />
+    <LNK A="PDT1" B="SeedTreatment.TreatmentType|Fungicide" />
     <LNK A="PDT1" B="SeedTreatment.Name|Fortivent® Plus" />
     <LNK A="PDT1" B="SeedTreatment.Id|1001339" />
     <LNK A="PDT1" B="SeedTreatment.Substance.Name|Ethaboxam Fungicide" />

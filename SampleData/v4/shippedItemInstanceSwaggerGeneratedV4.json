@@ -84,6 +84,7 @@
         "varietyName": "VT2P/RIB",
         "itemTreatment": {
           "id": "1001339",
+          "typeCode": "Fungicide",
           "name": "Fortivent® Plus",
           "substance": [
             {
