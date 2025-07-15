@@ -275,8 +275,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 // need SII model point release change - Quantity.TypeCode added (preferred)
                 // or Package.Quantity as an array
                 //
-                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
-                    ".PackageQuantity"
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +"." + shippedItemInstance.Packaging.TypeCode 
                     , shippedItemInstance.Quantity.Content.ToString()));
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
                     ".PackageQuantity.UOM"
@@ -403,7 +402,11 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         {
             ItemItemTreatment seedTreatment = shippedItemInstance.Item.ItemTreatment;
             ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", null);
-            if (seedTreatment.Name != null && seedTreatment.Id != null)
+            if (seedTreatment?.TypeCode != null)
+            {
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("TreatmentType", seedTreatment.TypeCode));
+            }
+            if (seedTreatment?.Name != null && seedTreatment?.Id != null )
             {
                 seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Name", seedTreatment.Name));
                 seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Id", seedTreatment.Id));
