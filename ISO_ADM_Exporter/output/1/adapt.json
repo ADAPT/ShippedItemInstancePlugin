@@ -1,0 +1,472 @@
+﻿{
+  "catalog": {
+    "brands": [
+      {
+        "id": {
+          "referenceId": "-23"
+        },
+        "manufacturerId": "-22",
+        "name": "CROPLAN"
+      }
+    ],
+    "crops": [
+      {
+        "id": {
+          "referenceId": "-21",
+          "uniqueIds": [
+            {
+              "idSource": "USDA",
+              "idText": "C",
+              "idTypeCode": "STRING"
+            }
+          ]
+        },
+        "name": "Corn"
+      }
+    ],
+    "customDataTypeDefinitions": [
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.Type",
+        "name": "Product.Type ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.Description",
+        "name": "Product.Description ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.Name",
+        "name": "Product.Name ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.BrandName",
+        "name": "Product.BrandName ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.VarietyName",
+        "name": "Product.VarietyName ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.GTIN",
+        "name": "Product.GTIN ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.PerPackageQuantity",
+        "name": "Product.PerPackageQuantity ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.PerPackageQuantity.UOM",
+        "name": "Product.PerPackageQuantity.UOM ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Type",
+        "name": "Type ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Codes",
+        "name": "Codes ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.Classification",
+        "name": "Product.Classification ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "LotIdentifier",
+        "name": "LotIdentifier ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShipUnitTypeCode",
+        "name": "ShipUnitTypeCode ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "SeedBox.Id",
+        "name": "SeedBox.Id ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "SeedBox.GrossWeight",
+        "name": "SeedBox.GrossWeight ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "SeedBox.GrossWeight.UOM",
+        "name": "SeedBox.GrossWeight.UOM ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "SeedBox.SeedBox",
+        "name": "SeedBox.SeedBox ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "SeedBox.PackageQuantity.UOM",
+        "name": "SeedBox.PackageQuantity.UOM ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Packaging",
+        "name": "Packaging ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShipFromGLN",
+        "name": "ShipFromGLN ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShipmentId",
+        "name": "ShipmentId ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShippingContainer.Type",
+        "name": "ShippingContainer.Type ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShippingContainer.Id.USDOT_Number",
+        "name": "ShippingContainer.Id.USDOT_Number ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Carrier.SCAC",
+        "name": "Carrier.SCAC ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShipmentReference",
+        "name": "ShipmentReference ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "InFieldProductID.API.Path.id",
+        "name": "InFieldProductID.API.Path.id ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "AgGateway",
+        "name": "AgGateway ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "RelatedIdentifiers",
+        "name": "RelatedIdentifiers ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "encodingSchemaId",
+        "name": "encodingSchemaId ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "DataMatrixId",
+        "name": "DataMatrixId ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "schemaAgencyId",
+        "name": "schemaAgencyId ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "EncodedIdentification",
+        "name": "EncodedIdentification ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "QuantitativeMeasurements.1",
+        "name": "QuantitativeMeasurements.1 ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Results",
+        "name": "Results ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "TreatmentType",
+        "name": "TreatmentType ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Name",
+        "name": "Name ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Id",
+        "name": "Id ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Substance",
+        "name": "Substance ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "SeedTreatment",
+        "name": "SeedTreatment ()"
+      }
+    ],
+    "description": "/home/dubnemo/ShippedItemInstancePlugin/SampleData/v4/shippedItemInstanceSwaggerGeneratedV4.json",
+    "farms": [],
+    "fields": [],
+    "growers": [
+      {
+        "id": {
+          "referenceId": "-24",
+          "uniqueIds": [
+            {
+              "idSource": "RetailerERPAccount",
+              "idText": "12345",
+              "idTypeCode": "STRING"
+            }
+          ]
+        },
+        "name": "Farmer Bob"
+      }
+    ],
+    "manufacturers": [
+      {
+        "id": {
+          "referenceId": "-22"
+        },
+        "name": "WinField United"
+      }
+    ],
+    "products": [
+      {
+        "brandId": "-23",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "VT DoublePro RIB Complete Relative Maturity 85 days"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "CP2585"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "CROPLAN"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "VT2P/RIB"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": "00888346580291"
+          },
+          {
+            "definitionCode": "Product.PerPackageQuantity",
+            "valueText": "55"
+          },
+          {
+            "definitionCode": "Product.PerPackageQuantity.UOM",
+            "valueText": "LB"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "769MXJ4JX"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipUnitTypeCode",
+                "valueText": "SeedBox"
+              },
+              {
+                "definitionCode": "SeedBox.Id",
+                "valueText": "844f95ac-422a-406a-91c5-65d017de2f09"
+              },
+              {
+                "definitionCode": "SeedBox.GrossWeight",
+                "valueText": "2475"
+              },
+              {
+                "definitionCode": "SeedBox.GrossWeight.UOM",
+                "valueText": "LB"
+              },
+              {
+                "definitionCode": "SeedBox.SeedBox",
+                "valueText": "45"
+              },
+              {
+                "definitionCode": "SeedBox.PackageQuantity.UOM",
+                "valueText": "BG"
+              }
+            ],
+            "definitionCode": "Packaging"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1100028417954"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "34343535"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id.USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "AgGateway",
+                "valueText": "AGIIS"
+              }
+            ],
+            "definitionCode": "RelatedIdentifiers"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "encodingSchemaId",
+                "valueText": "DataMatrix"
+              },
+              {
+                "definitionCode": "DataMatrixId",
+                "valueText": "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce"
+              },
+              {
+                "definitionCode": "schemaAgencyId",
+                "valueText": "GS1"
+              }
+            ],
+            "definitionCode": "EncodedIdentification"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "QuantitativeMeasurements.1"
+              }
+            ],
+            "definitionCode": "Results"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "TreatmentType",
+                "valueText": "Fungicide"
+              },
+              {
+                "definitionCode": "Name",
+                "valueText": "Fortivent® Plus"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "1001339"
+              },
+              {
+                "definitionCode": "Substance",
+                "valueText": ""
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-21",
+        "id": {
+          "referenceId": "-20"
+        },
+        "manufacturerId": "-22",
+        "name": "CP2585-769MXJ4JX",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      }
+    ]
+  },
+  "documents": {
+    "workRecords": []
+  },
+  "rootSchemaVersion": "2.0.0"
+}
