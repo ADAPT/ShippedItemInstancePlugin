@@ -21,7 +21,7 @@ namespace ISO_ADM_Exporter
 
             AgGateway.ADAPT.ISOv4Plugin.Plugin isoPlugin = new AgGateway.ADAPT.ISOv4Plugin.Plugin();
             AgGateway.ADAPT.ADMPlugin.Plugin admPlugin = new AgGateway.ADAPT.ADMPlugin.Plugin();
-            AgGateway.ADAPT.StandardPlugin.Plugin standardPlugin = new AgGateway.ADAPT.StandardPlugin.Plugin();
+            // AgGateway.ADAPT.StandardPlugin.Plugin standardPlugin = new AgGateway.ADAPT.StandardPlugin.Plugin();
 
             ;
             int countModel = models.Count;
@@ -38,8 +38,8 @@ namespace ISO_ADM_Exporter
                     Console.WriteLine("Wrote ISO files to " + folder);
                     admPlugin.Export(models[i], folder, p);
                     Console.WriteLine("Wrote ADM files to " + folder);
-                    standardPlugin.Export(models[i], folder, p);
-                    Console.WriteLine("Wrote ADAPT Std files to " + folder);
+                    // standardPlugin.Export(models[i], folder, p);
+                    // Console.WriteLine("Wrote ADAPT Std files to " + folder);
 
                 }
             }

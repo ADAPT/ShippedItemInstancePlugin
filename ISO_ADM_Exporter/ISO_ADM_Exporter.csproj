@@ -10,7 +10,7 @@
     <PackageReference Include="AgGatewayADAPTFramework" Version="3.1.0" />
     <PackageReference Include="AgGatewayADMPlugin" Version="3.0.2" />
     <PackageReference Include="AgGatewayISOPlugin" Version="5.4.0" />
-    <PackageReference Include="AgGateway.ADAPT.StandardPlugin" Version="0.9.7" /> 
+    <!-- PackageReference Include="AgGateway.ADAPT.StandardPlugin" Version="0.9.7" / --> 
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
