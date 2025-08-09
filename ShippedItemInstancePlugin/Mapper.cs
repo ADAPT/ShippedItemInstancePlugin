@@ -275,8 +275,7 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                 // need SII model point release change - Quantity.TypeCode added (preferred)
                 // or Package.Quantity as an array
                 //
-                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
-                    ".PackageQuantity"
+                contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +"." + shippedItemInstance.Packaging.TypeCode 
                     , shippedItemInstance.Quantity.Content.ToString()));
                 contextItem.NestedItems.Add(CreateContextItem(shippedItemInstance.Packaging.TypeCode +
                     ".PackageQuantity.UOM"
@@ -403,7 +402,11 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
         {
             ItemItemTreatment seedTreatment = shippedItemInstance.Item.ItemTreatment;
             ContextItem seedTreatmentContextItem = CreateContextItem("SeedTreatment", null);
-            if (seedTreatment.Name != null && seedTreatment.Id != null)
+            if (seedTreatment?.TypeCode != null)
+            {
+                seedTreatmentContextItem.NestedItems.Add(CreateContextItem("TreatmentType", seedTreatment.TypeCode));
+            }
+            if (seedTreatment?.Name != null && seedTreatment?.Id != null )
             {
                 seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Name", seedTreatment.Name));
                 seedTreatmentContextItem.NestedItems.Add(CreateContextItem("Id", seedTreatment.Id));
@@ -529,23 +532,30 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
             {
                 contextItems.Add(CreateContextItem("Product.Type", shippedItemInstance.TypeCode));
             }
-            if (shippedItemInstance.Item.Description != null)
+            if (shippedItemInstance.Item?.Description != null)
             {
                 contextItems.Add(CreateContextItem("Product.Description", shippedItemInstance.Item.Description));
             }
-            if (shippedItemInstance.Item.ProductName != null)
+            if (shippedItemInstance.Item?.ProductName != null)
             {
                 contextItems.Add(CreateContextItem("Product.Name", shippedItemInstance.Item.ProductName));
             }
-            if (shippedItemInstance.Item.BrandName != null)
+            if (shippedItemInstance.Item?.BrandName != null)
             {
                 contextItems.Add(CreateContextItem("Product.BrandName", shippedItemInstance.Item.BrandName));
             }
-            if (shippedItemInstance.Item.VarietyName != null)
+            if (shippedItemInstance.Item?.VarietyName != null)
             {
                 contextItems.Add(CreateContextItem("Product.VarietyName", shippedItemInstance.Item.VarietyName));
             }
 
+            // gtin -- should I add this to unique identifer on product?
+
+            if (shippedItemInstance.Item?.Gtinid != null)
+            {
+                contextItems.Add(CreateContextItem("Product.GTIN", shippedItemInstance.Item.Gtinid));
+            }
+            
             // item perPackage quantity, e.g., weight of a bag
             //
             if (shippedItemInstance.Item?.Packaging?.PerPackageQuantity?.Content != null &&
@@ -641,15 +651,6 @@ namespace AgGateway.ADAPT.ShippedItemInstancePlugin
                     // it appears that the Add method generates the Id.ReferenceId
                     product.BrandId = brandName.Id.ReferenceId;
 
-                    // map to contentItems
-                    //
-                    // gtin , add this to unique identifer on product?
-                    //
-                    var gtin = shippedItemInstance.Item.Gtinid;
-                    _logger.LogInformation("GTIN = " + gtin);
-                    //
-                    // Where is gtin used?
-                    //
                     // create a colleciton of Product components and add substatnce to it
                     // var productComponents = shippedItemInstance.Item.ItemTreatment.Substance.FirstOrDefault(s => s.Name = )
                     // product.ProductComponents = shippedItemInstance.Item.ItemTreatment.Substance

@@ -1,0 +1,1493 @@
+﻿{
+  "catalog": {
+    "brands": [
+      {
+        "id": {
+          "referenceId": "-3"
+        },
+        "name": "Beck's"
+      },
+      {
+        "id": {
+          "referenceId": "-17"
+        },
+        "name": "AgriGold"
+      }
+    ],
+    "crops": [
+      {
+        "id": {
+          "referenceId": "-2",
+          "uniqueIds": [
+            {
+              "idSource": "USDA",
+              "idText": "S",
+              "idTypeCode": "STRING"
+            }
+          ]
+        },
+        "name": "Soybeans"
+      },
+      {
+        "id": {
+          "referenceId": "-7",
+          "uniqueIds": [
+            {
+              "idSource": "USDA",
+              "idText": "C",
+              "idTypeCode": "STRING"
+            }
+          ]
+        },
+        "name": "Corn"
+      }
+    ],
+    "customDataTypeDefinitions": [
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.Type",
+        "name": "Product.Type ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.Description",
+        "name": "Product.Description ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.Name",
+        "name": "Product.Name ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.BrandName",
+        "name": "Product.BrandName ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.VarietyName",
+        "name": "Product.VarietyName ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.GTIN",
+        "name": "Product.GTIN ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Type",
+        "name": "Type ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Codes",
+        "name": "Codes ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Product.Classification",
+        "name": "Product.Classification ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "LotIdentifier",
+        "name": "LotIdentifier ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShipFromGLN",
+        "name": "ShipFromGLN ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShipmentId",
+        "name": "ShipmentId ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShippingContainer.Type",
+        "name": "ShippingContainer.Type ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShippingContainer.Id. USDOT_Number",
+        "name": "ShippingContainer.Id. USDOT_Number ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Carrier.SCAC",
+        "name": "Carrier.SCAC ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "ShipmentReference",
+        "name": "ShipmentReference ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "InFieldProductID.API.Path.id",
+        "name": "InFieldProductID.API.Path.id ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Name",
+        "name": "Name ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "Id",
+        "name": "Id ()"
+      },
+      {
+        "dataDefinitionBaseTypeCode": "TEXT",
+        "dataDefinitionStatusCode": "INVALID",
+        "definitionCode": "SeedTreatment",
+        "name": "SeedTreatment ()"
+      }
+    ],
+    "description": "/home/dubnemo/ShippedItemInstancePlugin/SampleData/v4/2022-BecksShipment-DTtestV4.json",
+    "farms": [],
+    "fields": [],
+    "growers": [
+      {
+        "id": {
+          "referenceId": "-4",
+          "uniqueIds": [
+            {
+              "idSource": "RetailerERPAccount",
+              "idText": "13",
+              "idTypeCode": "STRING"
+            }
+          ]
+        },
+        "name": "Jeremy Wilson"
+      }
+    ],
+    "products": [
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "3230Enlist SDBX ESCALATE SDS+ BEANS"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "3230Enlist"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "3230Enlist"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "E22388816X"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6af79ed0-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE SDS+"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE SDS+"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-2",
+        "id": {
+          "referenceId": "-1"
+        },
+        "name": "3230Enlist-E22388816X",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "3510Enlist SDBX ESCALATE BEANS"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "3510Enlist"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "3510Enlist"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "F2212127X"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b072f30-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-2",
+        "id": {
+          "referenceId": "-5"
+        },
+        "name": "3510Enlist-F2212127X",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "XL 6081AM BAG ESCALATE MED FLAT CORN"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "XL 6081AM "
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "XL 6081AM "
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "S116FF"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b167170-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-7",
+        "id": {
+          "referenceId": "-6"
+        },
+        "name": "XL 6081AM -S116FF",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "XL 6241QR BAG ESCALATE MED FLAT CORN"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "XL 6241QR "
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "XL 6241QR "
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "S260FF"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b25dac0-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-7",
+        "id": {
+          "referenceId": "-8"
+        },
+        "name": "XL 6241QR -S260FF",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "6374VT2P BAG ESCALATE MED FLAT CORN"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "6374VT2P B"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "6374VT2P B"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "S65FF"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b354410-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-7",
+        "id": {
+          "referenceId": "-9"
+        },
+        "name": "6374VT2P B-S65FF",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "6414VT2P BAG ESCALATE MED FLAT CORN"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "6414VT2P B"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "6414VT2P B"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "E181FF"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b44ad60-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "0",
+        "id": {
+          "referenceId": "-10"
+        },
+        "name": "6414VT2P B-E181FF",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "3830Enlist SDBX ESCALATE SDS+ BEANS"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "3830Enlist"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "3830Enlist"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "F22121214X"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b53efa0-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE SDS+"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE SDS+"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-2",
+        "id": {
+          "referenceId": "-11"
+        },
+        "name": "3830Enlist-F22121214X",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "4320Enlist SDBX EXCALATE SDS+ BEANS"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "4320Enlist"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "4320Enlist"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "A22242312X"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b6358f0-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE SDS+"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE SDS+"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-2",
+        "id": {
+          "referenceId": "-12"
+        },
+        "name": "4320Enlist-A22242312X",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "4030Enlist SDBX ESCALATE SDS+ BEANS"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "4030Enlist"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "4030Enlist"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b729b30-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE SDS+"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE SDS+"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-2",
+        "id": {
+          "referenceId": "-13"
+        },
+        "name": "4030Enlist-B2227251X",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "3030Enlist SDBX ESCALATE SDS+ BEANS"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "3030Enlist"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "3030Enlist"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "E2238579X"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b820480-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ESCALATE SDS+"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ESCALATE SDS+"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-2",
+        "id": {
+          "referenceId": "-14"
+        },
+        "name": "3030Enlist-E2238579X",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-3",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "4030Enlist SDBX ILEVO TWO BEANS"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "4030Enlist"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "Beck's"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "4030Enlist"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "B2223136XI"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6b9194e0-cc35-11ee-b08c-81db61397719"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Name",
+                "valueText": "ILEVO"
+              },
+              {
+                "definitionCode": "Id",
+                "valueText": "ILEVO"
+              }
+            ],
+            "definitionCode": "SeedTreatment"
+          }
+        ],
+        "cropId": "-2",
+        "id": {
+          "referenceId": "-15"
+        },
+        "name": "4030Enlist-B2223136XI",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-17",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "A6544-VT2RIB"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "A6544"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "AgriGold"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "A6544"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "EF06466361"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6ba0d720-cc35-11ee-b08c-81db61397719"
+          }
+        ],
+        "cropId": "-7",
+        "id": {
+          "referenceId": "-16"
+        },
+        "name": "A6544-EF06466361",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-17",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "A64516-VT2RIB"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "A64516"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "AgriGold"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "A64516"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "EF09168506"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6bb04070-cc35-11ee-b08c-81db61397719"
+          }
+        ],
+        "cropId": "-7",
+        "id": {
+          "referenceId": "-18"
+        },
+        "name": "A64516-EF09168506",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      },
+      {
+        "brandId": "-17",
+        "contextItems": [
+          {
+            "definitionCode": "Product.Type",
+            "valueText": "SEED"
+          },
+          {
+            "definitionCode": "Product.Description",
+            "valueText": "A64259-VT2RIB"
+          },
+          {
+            "definitionCode": "Product.Name",
+            "valueText": "A64259"
+          },
+          {
+            "definitionCode": "Product.BrandName",
+            "valueText": "AgriGold"
+          },
+          {
+            "definitionCode": "Product.VarietyName",
+            "valueText": "A64259"
+          },
+          {
+            "definitionCode": "Product.GTIN",
+            "valueText": ""
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "Type",
+                "valueText": "Crop"
+              },
+              {
+                "definitionCode": "Codes"
+              }
+            ],
+            "definitionCode": "Product.Classification",
+            "valueText": ""
+          },
+          {
+            "definitionCode": "LotIdentifier",
+            "valueText": "II36062097"
+          },
+          {
+            "contextItems": [
+              {
+                "definitionCode": "ShipFromGLN",
+                "valueText": "1369458675000"
+              },
+              {
+                "definitionCode": "ShipmentId",
+                "valueText": "7302"
+              },
+              {
+                "definitionCode": "ShippingContainer.Type",
+                "valueText": "Semi-Trailer"
+              },
+              {
+                "definitionCode": "ShippingContainer.Id. USDOT_Number",
+                "valueText": "12345678"
+              },
+              {
+                "definitionCode": "Carrier.SCAC",
+                "valueText": "NA"
+              }
+            ],
+            "definitionCode": "ShipmentReference"
+          },
+          {
+            "definitionCode": "InFieldProductID.API.Path.id",
+            "valueText": "6bbf82b0-cc35-11ee-b08c-81db61397719"
+          }
+        ],
+        "cropId": "-7",
+        "id": {
+          "referenceId": "-19"
+        },
+        "name": "A64259-II36062097",
+        "productFormCode": "SOLID",
+        "productStatusCode": "ACTIVE",
+        "productTypeCode": "NOT_SPECIFIED"
+      }
+    ]
+  },
+  "documents": {
+    "workRecords": []
+  },
+  "rootSchemaVersion": "2.0.0"
+}

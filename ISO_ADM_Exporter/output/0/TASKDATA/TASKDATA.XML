@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ISO11783_TaskData VersionMajor="4" VersionMinor="2" ManagementSoftwareManufacturer="AgGateway" ManagementSoftwareVersion="1.0" TaskControllerManufacturer="" TaskControllerVersion="" DataTransferOrigin="1">
-  <!--Export created 5/1/2025 10:45:19 PM-->
+  <!--Export created 8/8/2025 7:15:34 AM-->
   <PGP A="PGP1" B="CropType" C="2" />
   <CTP A="CTP1" B="Soybeans" C="PGP1">
     <CVT A="CVT1" B="3230Enlist-E22388816X" C="PDT1" />
